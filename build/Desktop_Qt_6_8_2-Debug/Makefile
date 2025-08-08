@@ -796,7 +796,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../resource.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../../resource.qrc ../../resource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/6.8.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../main.cpp ../../mainwindow.cpp $(DISTDIR)/
@@ -824,12 +824,41 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_resource.cpp
+compiler_rcc_make_all: qrc_resource.cpp qrc_resource.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_resource.cpp
+	-$(DEL_FILE) qrc_resource.cpp qrc_resource.cpp
 qrc_resource.cpp: ../../resource.qrc \
 		../../../../Qt/6.8.2/gcc_64/libexec/rcc \
-		../../img/board.png
+		../../img/bN.png \
+		../../img/wP.png \
+		../../img/bP.png \
+		../../img/bQ.png \
+		../../img/wQ.png \
+		../../img/board.png \
+		../../img/wB.png \
+		../../img/bK.png \
+		../../img/bB.png \
+		../../img/wN.png \
+		../../img/wR.png \
+		../../img/bR.png \
+		../../img/wK.png
+	/home/daro/Qt/6.8.2/gcc_64/libexec/rcc -name resource ../../resource.qrc -o qrc_resource.cpp
+
+qrc_resource.cpp: ../../resource.qrc \
+		../../../../Qt/6.8.2/gcc_64/libexec/rcc \
+		../../img/bN.png \
+		../../img/wP.png \
+		../../img/bP.png \
+		../../img/bQ.png \
+		../../img/wQ.png \
+		../../img/board.png \
+		../../img/wB.png \
+		../../img/bK.png \
+		../../img/bB.png \
+		../../img/wN.png \
+		../../img/wR.png \
+		../../img/bR.png \
+		../../img/wK.png
 	/home/daro/Qt/6.8.2/gcc_64/libexec/rcc -name resource ../../resource.qrc -o qrc_resource.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -1456,12 +1485,19 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/QVariant \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QFrame \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QMenuBar \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QStatusBar \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 qrc_resource.o: qrc_resource.cpp 
