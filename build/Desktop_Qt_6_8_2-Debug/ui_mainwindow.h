@@ -10,12 +10,17 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,72 +29,96 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QWidget *gridLayoutWidget;
-    QGridLayout *gridLayout;
-    QFrame *frame_9;
-    QFrame *frame_12;
-    QFrame *frame_5;
-    QFrame *frame_14;
-    QFrame *frame_10;
-    QFrame *frame_3;
-    QFrame *frame_8;
-    QFrame *frame_11;
-    QFrame *frame_7;
-    QFrame *frame_4;
+    QGridLayout *gridLayout_3;
+    QFrame *frame_67;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_13;
+    QLabel *label_16;
+    QLabel *label_15;
+    QLabel *label_14;
+    QLabel *label_12;
+    QLabel *label_11;
+    QLabel *label_9;
+    QLabel *label_10;
+    QFrame *frame_66;
+    QVBoxLayout *verticalLayout;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_7;
+    QLabel *label;
+    QLabel *label_6;
+    QLabel *label_8;
+    QLabel *label_2;
     QFrame *frame;
-    QFrame *frame_13;
-    QFrame *frame_2;
-    QFrame *frame_6;
-    QFrame *frame_15;
-    QFrame *frame_16;
-    QFrame *frame_17;
-    QFrame *frame_18;
-    QFrame *frame_19;
-    QFrame *frame_20;
-    QFrame *frame_21;
-    QFrame *frame_22;
-    QFrame *frame_23;
-    QFrame *frame_24;
-    QFrame *frame_25;
-    QFrame *frame_26;
-    QFrame *frame_27;
-    QFrame *frame_28;
-    QFrame *frame_29;
-    QFrame *frame_30;
-    QFrame *frame_31;
-    QFrame *frame_32;
-    QFrame *frame_33;
-    QFrame *frame_34;
-    QFrame *frame_35;
-    QFrame *frame_36;
-    QFrame *frame_37;
-    QFrame *frame_38;
-    QFrame *frame_39;
-    QFrame *frame_40;
-    QFrame *frame_41;
-    QFrame *frame_42;
-    QFrame *frame_43;
-    QFrame *frame_44;
-    QFrame *frame_45;
-    QFrame *frame_46;
-    QFrame *frame_47;
-    QFrame *frame_48;
-    QFrame *frame_49;
-    QFrame *frame_50;
-    QFrame *frame_51;
-    QFrame *frame_52;
-    QFrame *frame_53;
-    QFrame *frame_54;
-    QFrame *frame_55;
-    QFrame *frame_56;
-    QFrame *frame_57;
-    QFrame *frame_58;
-    QFrame *frame_59;
-    QFrame *frame_60;
-    QFrame *frame_61;
-    QFrame *frame_62;
-    QFrame *frame_63;
-    QFrame *frame_64;
+    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout;
+    QFrame *frame_H6;
+    QFrame *frame_E1;
+    QFrame *frame_E8;
+    QFrame *frame_C3;
+    QFrame *frame_D3;
+    QFrame *frame_C5;
+    QFrame *frame_E3;
+    QFrame *frame_G8;
+    QFrame *frame_A5;
+    QFrame *frame_B5;
+    QFrame *frame_H5;
+    QFrame *frame_B4;
+    QFrame *frame_E4;
+    QFrame *frame_D8;
+    QFrame *frame_A7;
+    QFrame *frame_F4;
+    QFrame *frame_H2;
+    QFrame *frame_G1;
+    QFrame *frame_C4;
+    QFrame *frame_A8;
+    QFrame *frame_H3;
+    QFrame *frame_F3;
+    QFrame *frame_D2;
+    QFrame *frame_B6;
+    QFrame *frame_E5;
+    QFrame *frame_G3;
+    QFrame *frame_H7;
+    QFrame *frame_A4;
+    QFrame *frame_D6;
+    QFrame *frame_G4;
+    QFrame *frame_C7;
+    QFrame *frame_E2;
+    QFrame *frame_H8;
+    QFrame *frame_E7;
+    QFrame *frame_F6;
+    QFrame *frame_C6;
+    QFrame *frame_C8;
+    QFrame *frame_D5;
+    QFrame *frame_F8;
+    QFrame *frame_B1;
+    QFrame *frame_B8;
+    QFrame *frame_H4;
+    QFrame *frame_F1;
+    QFrame *frame_A2;
+    QFrame *frame_D1;
+    QFrame *frame_F7;
+    QFrame *frame_D7;
+    QFrame *frame_F5;
+    QFrame *frame_G7;
+    QFrame *frame_B7;
+    QFrame *frame_E6;
+    QFrame *frame_C2;
+    QFrame *frame_F2;
+    QFrame *frame_G2;
+    QFrame *frame_B3;
+    QFrame *frame_A6;
+    QFrame *frame_D4;
+    QFrame *frame_C1;
+    QFrame *frame_G5;
+    QFrame *frame_A3;
+    QFrame *frame_G6;
+    QFrame *frame_B2;
+    QFrame *frame_H1;
+    QFrame *frame_A1;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -100,460 +129,618 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        gridLayoutWidget = new QWidget(centralwidget);
-        gridLayoutWidget->setObjectName("gridLayoutWidget");
-        gridLayoutWidget->setGeometry(QRect(60, 20, 671, 501));
-        gridLayout = new QGridLayout(gridLayoutWidget);
-        gridLayout->setSpacing(0);
-        gridLayout->setObjectName("gridLayout");
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        frame_9 = new QFrame(gridLayoutWidget);
-        frame_9->setObjectName("frame_9");
-        frame_9->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_9->setFrameShadow(QFrame::Shadow::Raised);
+        gridLayout_3 = new QGridLayout(centralwidget);
+        gridLayout_3->setObjectName("gridLayout_3");
+        frame_67 = new QFrame(centralwidget);
+        frame_67->setObjectName("frame_67");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(1);
+        sizePolicy.setHeightForWidth(frame_67->sizePolicy().hasHeightForWidth());
+        frame_67->setSizePolicy(sizePolicy);
+        frame_67->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_67->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_2 = new QHBoxLayout(frame_67);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        label_13 = new QLabel(frame_67);
+        label_13->setObjectName("label_13");
+        label_13->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_9, 1, 1, 1, 1);
+        horizontalLayout_2->addWidget(label_13);
 
-        frame_12 = new QFrame(gridLayoutWidget);
-        frame_12->setObjectName("frame_12");
-        frame_12->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_12->setFrameShadow(QFrame::Shadow::Raised);
+        label_16 = new QLabel(frame_67);
+        label_16->setObjectName("label_16");
+        label_16->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_12, 4, 1, 1, 1);
+        horizontalLayout_2->addWidget(label_16);
 
-        frame_5 = new QFrame(gridLayoutWidget);
-        frame_5->setObjectName("frame_5");
-        frame_5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_5->setFrameShadow(QFrame::Shadow::Raised);
+        label_15 = new QLabel(frame_67);
+        label_15->setObjectName("label_15");
+        label_15->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_5, 0, 3, 1, 1);
+        horizontalLayout_2->addWidget(label_15);
 
-        frame_14 = new QFrame(gridLayoutWidget);
-        frame_14->setObjectName("frame_14");
-        frame_14->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_14->setFrameShadow(QFrame::Shadow::Raised);
+        label_14 = new QLabel(frame_67);
+        label_14->setObjectName("label_14");
+        label_14->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_14, 6, 1, 1, 1);
+        horizontalLayout_2->addWidget(label_14);
 
-        frame_10 = new QFrame(gridLayoutWidget);
-        frame_10->setObjectName("frame_10");
-        frame_10->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_10->setFrameShadow(QFrame::Shadow::Raised);
+        label_12 = new QLabel(frame_67);
+        label_12->setObjectName("label_12");
+        label_12->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_10, 2, 1, 1, 1);
+        horizontalLayout_2->addWidget(label_12);
 
-        frame_3 = new QFrame(gridLayoutWidget);
-        frame_3->setObjectName("frame_3");
-        frame_3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_3->setFrameShadow(QFrame::Shadow::Raised);
+        label_11 = new QLabel(frame_67);
+        label_11->setObjectName("label_11");
+        label_11->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_3, 0, 6, 1, 1);
+        horizontalLayout_2->addWidget(label_11);
 
-        frame_8 = new QFrame(gridLayoutWidget);
-        frame_8->setObjectName("frame_8");
-        frame_8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_8->setFrameShadow(QFrame::Shadow::Raised);
+        label_9 = new QLabel(frame_67);
+        label_9->setObjectName("label_9");
+        label_9->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_8, 0, 0, 1, 1);
+        horizontalLayout_2->addWidget(label_9);
 
-        frame_11 = new QFrame(gridLayoutWidget);
-        frame_11->setObjectName("frame_11");
-        frame_11->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_11->setFrameShadow(QFrame::Shadow::Raised);
+        label_10 = new QLabel(frame_67);
+        label_10->setObjectName("label_10");
+        label_10->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_11, 3, 1, 1, 1);
+        horizontalLayout_2->addWidget(label_10);
 
-        frame_7 = new QFrame(gridLayoutWidget);
-        frame_7->setObjectName("frame_7");
-        frame_7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_7, 0, 1, 1, 1);
+        gridLayout_3->addWidget(frame_67, 1, 1, 1, 1);
 
-        frame_4 = new QFrame(gridLayoutWidget);
-        frame_4->setObjectName("frame_4");
-        frame_4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_4->setFrameShadow(QFrame::Shadow::Raised);
+        frame_66 = new QFrame(centralwidget);
+        frame_66->setObjectName("frame_66");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(1);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(frame_66->sizePolicy().hasHeightForWidth());
+        frame_66->setSizePolicy(sizePolicy1);
+        frame_66->setStyleSheet(QString::fromUtf8(""));
+        frame_66->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_66->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout = new QVBoxLayout(frame_66);
+        verticalLayout->setObjectName("verticalLayout");
+        label_3 = new QLabel(frame_66);
+        label_3->setObjectName("label_3");
+        label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_4, 0, 7, 1, 1);
+        verticalLayout->addWidget(label_3);
 
-        frame = new QFrame(gridLayoutWidget);
+        label_4 = new QLabel(frame_66);
+        label_4->setObjectName("label_4");
+        label_4->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_4);
+
+        label_5 = new QLabel(frame_66);
+        label_5->setObjectName("label_5");
+        label_5->setStyleSheet(QString::fromUtf8(""));
+        label_5->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_5);
+
+        label_7 = new QLabel(frame_66);
+        label_7->setObjectName("label_7");
+        label_7->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_7);
+
+        label = new QLabel(frame_66);
+        label->setObjectName("label");
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label);
+
+        label_6 = new QLabel(frame_66);
+        label_6->setObjectName("label_6");
+        label_6->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_6);
+
+        label_8 = new QLabel(frame_66);
+        label_8->setObjectName("label_8");
+        label_8->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_8);
+
+        label_2 = new QLabel(frame_66);
+        label_2->setObjectName("label_2");
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(label_2);
+
+
+        gridLayout_3->addWidget(frame_66, 0, 0, 1, 1);
+
+        frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy2.setHorizontalStretch(20);
+        sizePolicy2.setVerticalStretch(20);
+        sizePolicy2.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
+        frame->setSizePolicy(sizePolicy2);
+        frame->setStyleSheet(QString::fromUtf8("QFrame {color:white;}"));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout = new QHBoxLayout(frame);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout = new QGridLayout();
+        gridLayout->setSpacing(0);
+        gridLayout->setObjectName("gridLayout");
+        frame_H6 = new QFrame(frame);
+        frame_H6->setObjectName("frame_H6");
+        frame_H6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame, 0, 4, 1, 1);
+        gridLayout->addWidget(frame_H6, 2, 7, 1, 1);
 
-        frame_13 = new QFrame(gridLayoutWidget);
-        frame_13->setObjectName("frame_13");
-        frame_13->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_13->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E1 = new QFrame(frame);
+        frame_E1->setObjectName("frame_E1");
+        frame_E1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_13, 5, 1, 1, 1);
+        gridLayout->addWidget(frame_E1, 7, 4, 1, 1);
 
-        frame_2 = new QFrame(gridLayoutWidget);
-        frame_2->setObjectName("frame_2");
-        frame_2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_2->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E8 = new QFrame(frame);
+        frame_E8->setObjectName("frame_E8");
+        frame_E8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_2, 0, 5, 1, 1);
+        gridLayout->addWidget(frame_E8, 0, 4, 1, 1);
 
-        frame_6 = new QFrame(gridLayoutWidget);
-        frame_6->setObjectName("frame_6");
-        frame_6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_6->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C3 = new QFrame(frame);
+        frame_C3->setObjectName("frame_C3");
+        frame_C3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_6, 0, 2, 1, 1);
+        gridLayout->addWidget(frame_C3, 5, 2, 1, 1);
 
-        frame_15 = new QFrame(gridLayoutWidget);
-        frame_15->setObjectName("frame_15");
-        frame_15->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_15->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D3 = new QFrame(frame);
+        frame_D3->setObjectName("frame_D3");
+        frame_D3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_15, 7, 1, 1, 1);
+        gridLayout->addWidget(frame_D3, 5, 3, 1, 1);
 
-        frame_16 = new QFrame(gridLayoutWidget);
-        frame_16->setObjectName("frame_16");
-        frame_16->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_16->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C5 = new QFrame(frame);
+        frame_C5->setObjectName("frame_C5");
+        frame_C5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_16, 1, 0, 1, 1);
+        gridLayout->addWidget(frame_C5, 3, 2, 1, 1);
 
-        frame_17 = new QFrame(gridLayoutWidget);
-        frame_17->setObjectName("frame_17");
-        frame_17->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_17->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E3 = new QFrame(frame);
+        frame_E3->setObjectName("frame_E3");
+        frame_E3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_17, 2, 0, 1, 1);
+        gridLayout->addWidget(frame_E3, 5, 4, 1, 1);
 
-        frame_18 = new QFrame(gridLayoutWidget);
-        frame_18->setObjectName("frame_18");
-        frame_18->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_18->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G8 = new QFrame(frame);
+        frame_G8->setObjectName("frame_G8");
+        frame_G8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_18, 3, 0, 1, 1);
+        gridLayout->addWidget(frame_G8, 0, 6, 1, 1);
 
-        frame_19 = new QFrame(gridLayoutWidget);
-        frame_19->setObjectName("frame_19");
-        frame_19->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_19->setFrameShadow(QFrame::Shadow::Raised);
+        frame_A5 = new QFrame(frame);
+        frame_A5->setObjectName("frame_A5");
+        frame_A5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_19, 4, 0, 1, 1);
+        gridLayout->addWidget(frame_A5, 3, 0, 1, 1);
 
-        frame_20 = new QFrame(gridLayoutWidget);
-        frame_20->setObjectName("frame_20");
-        frame_20->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_20->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B5 = new QFrame(frame);
+        frame_B5->setObjectName("frame_B5");
+        frame_B5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_20, 5, 0, 1, 1);
+        gridLayout->addWidget(frame_B5, 3, 1, 1, 1);
 
-        frame_21 = new QFrame(gridLayoutWidget);
-        frame_21->setObjectName("frame_21");
-        frame_21->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_21->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H5 = new QFrame(frame);
+        frame_H5->setObjectName("frame_H5");
+        frame_H5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_21, 6, 0, 1, 1);
+        gridLayout->addWidget(frame_H5, 3, 7, 1, 1);
 
-        frame_22 = new QFrame(gridLayoutWidget);
-        frame_22->setObjectName("frame_22");
-        frame_22->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_22->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B4 = new QFrame(frame);
+        frame_B4->setObjectName("frame_B4");
+        frame_B4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_22, 7, 0, 1, 1);
+        gridLayout->addWidget(frame_B4, 4, 1, 1, 1);
 
-        frame_23 = new QFrame(gridLayoutWidget);
-        frame_23->setObjectName("frame_23");
-        frame_23->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_23->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E4 = new QFrame(frame);
+        frame_E4->setObjectName("frame_E4");
+        frame_E4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_23, 1, 2, 1, 1);
+        gridLayout->addWidget(frame_E4, 4, 4, 1, 1);
 
-        frame_24 = new QFrame(gridLayoutWidget);
-        frame_24->setObjectName("frame_24");
-        frame_24->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_24->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D8 = new QFrame(frame);
+        frame_D8->setObjectName("frame_D8");
+        frame_D8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_24, 2, 2, 1, 1);
+        gridLayout->addWidget(frame_D8, 0, 3, 1, 1);
 
-        frame_25 = new QFrame(gridLayoutWidget);
-        frame_25->setObjectName("frame_25");
-        frame_25->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_25->setFrameShadow(QFrame::Shadow::Raised);
+        frame_A7 = new QFrame(frame);
+        frame_A7->setObjectName("frame_A7");
+        frame_A7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_25, 3, 2, 1, 1);
+        gridLayout->addWidget(frame_A7, 1, 0, 1, 1);
 
-        frame_26 = new QFrame(gridLayoutWidget);
-        frame_26->setObjectName("frame_26");
-        frame_26->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_26->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F4 = new QFrame(frame);
+        frame_F4->setObjectName("frame_F4");
+        frame_F4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_26, 4, 2, 1, 1);
+        gridLayout->addWidget(frame_F4, 4, 5, 1, 1);
 
-        frame_27 = new QFrame(gridLayoutWidget);
-        frame_27->setObjectName("frame_27");
-        frame_27->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_27->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H2 = new QFrame(frame);
+        frame_H2->setObjectName("frame_H2");
+        frame_H2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_27, 5, 2, 1, 1);
+        gridLayout->addWidget(frame_H2, 6, 7, 1, 1);
 
-        frame_28 = new QFrame(gridLayoutWidget);
-        frame_28->setObjectName("frame_28");
-        frame_28->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_28->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G1 = new QFrame(frame);
+        frame_G1->setObjectName("frame_G1");
+        frame_G1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_28, 6, 2, 1, 1);
+        gridLayout->addWidget(frame_G1, 7, 6, 1, 1);
 
-        frame_29 = new QFrame(gridLayoutWidget);
-        frame_29->setObjectName("frame_29");
-        frame_29->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_29->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C4 = new QFrame(frame);
+        frame_C4->setObjectName("frame_C4");
+        frame_C4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_29, 7, 2, 1, 1);
+        gridLayout->addWidget(frame_C4, 4, 2, 1, 1);
 
-        frame_30 = new QFrame(gridLayoutWidget);
-        frame_30->setObjectName("frame_30");
-        frame_30->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_30->setFrameShadow(QFrame::Shadow::Raised);
+        frame_A8 = new QFrame(frame);
+        frame_A8->setObjectName("frame_A8");
+        frame_A8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_30, 1, 3, 1, 1);
+        gridLayout->addWidget(frame_A8, 0, 0, 1, 1);
 
-        frame_31 = new QFrame(gridLayoutWidget);
-        frame_31->setObjectName("frame_31");
-        frame_31->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_31->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H3 = new QFrame(frame);
+        frame_H3->setObjectName("frame_H3");
+        frame_H3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_31, 2, 3, 1, 1);
+        gridLayout->addWidget(frame_H3, 5, 7, 1, 1);
 
-        frame_32 = new QFrame(gridLayoutWidget);
-        frame_32->setObjectName("frame_32");
-        frame_32->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_32->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F3 = new QFrame(frame);
+        frame_F3->setObjectName("frame_F3");
+        frame_F3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_32, 3, 3, 1, 1);
+        gridLayout->addWidget(frame_F3, 5, 5, 1, 1);
 
-        frame_33 = new QFrame(gridLayoutWidget);
-        frame_33->setObjectName("frame_33");
-        frame_33->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_33->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D2 = new QFrame(frame);
+        frame_D2->setObjectName("frame_D2");
+        frame_D2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_33, 4, 3, 1, 1);
+        gridLayout->addWidget(frame_D2, 6, 3, 1, 1);
 
-        frame_34 = new QFrame(gridLayoutWidget);
-        frame_34->setObjectName("frame_34");
-        frame_34->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_34->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B6 = new QFrame(frame);
+        frame_B6->setObjectName("frame_B6");
+        frame_B6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_34, 5, 3, 1, 1);
+        gridLayout->addWidget(frame_B6, 2, 1, 1, 1);
 
-        frame_35 = new QFrame(gridLayoutWidget);
-        frame_35->setObjectName("frame_35");
-        frame_35->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_35->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E5 = new QFrame(frame);
+        frame_E5->setObjectName("frame_E5");
+        frame_E5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_35, 6, 3, 1, 1);
+        gridLayout->addWidget(frame_E5, 3, 4, 1, 1);
 
-        frame_36 = new QFrame(gridLayoutWidget);
-        frame_36->setObjectName("frame_36");
-        frame_36->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_36->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G3 = new QFrame(frame);
+        frame_G3->setObjectName("frame_G3");
+        frame_G3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_36, 7, 3, 1, 1);
+        gridLayout->addWidget(frame_G3, 5, 6, 1, 1);
 
-        frame_37 = new QFrame(gridLayoutWidget);
-        frame_37->setObjectName("frame_37");
-        frame_37->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_37->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H7 = new QFrame(frame);
+        frame_H7->setObjectName("frame_H7");
+        frame_H7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_37, 1, 4, 1, 1);
+        gridLayout->addWidget(frame_H7, 1, 7, 1, 1);
 
-        frame_38 = new QFrame(gridLayoutWidget);
-        frame_38->setObjectName("frame_38");
-        frame_38->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_38->setFrameShadow(QFrame::Shadow::Raised);
+        frame_A4 = new QFrame(frame);
+        frame_A4->setObjectName("frame_A4");
+        frame_A4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_38, 2, 4, 1, 1);
+        gridLayout->addWidget(frame_A4, 4, 0, 1, 1);
 
-        frame_39 = new QFrame(gridLayoutWidget);
-        frame_39->setObjectName("frame_39");
-        frame_39->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_39->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D6 = new QFrame(frame);
+        frame_D6->setObjectName("frame_D6");
+        frame_D6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_39, 3, 4, 1, 1);
+        gridLayout->addWidget(frame_D6, 2, 3, 1, 1);
 
-        frame_40 = new QFrame(gridLayoutWidget);
-        frame_40->setObjectName("frame_40");
-        frame_40->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_40->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G4 = new QFrame(frame);
+        frame_G4->setObjectName("frame_G4");
+        frame_G4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_40, 4, 4, 1, 1);
+        gridLayout->addWidget(frame_G4, 4, 6, 1, 1);
 
-        frame_41 = new QFrame(gridLayoutWidget);
-        frame_41->setObjectName("frame_41");
-        frame_41->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_41->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C7 = new QFrame(frame);
+        frame_C7->setObjectName("frame_C7");
+        frame_C7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_41, 5, 4, 1, 1);
+        gridLayout->addWidget(frame_C7, 1, 2, 1, 1);
 
-        frame_42 = new QFrame(gridLayoutWidget);
-        frame_42->setObjectName("frame_42");
-        frame_42->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_42->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E2 = new QFrame(frame);
+        frame_E2->setObjectName("frame_E2");
+        frame_E2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_42, 6, 4, 1, 1);
+        gridLayout->addWidget(frame_E2, 6, 4, 1, 1);
 
-        frame_43 = new QFrame(gridLayoutWidget);
-        frame_43->setObjectName("frame_43");
-        frame_43->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_43->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H8 = new QFrame(frame);
+        frame_H8->setObjectName("frame_H8");
+        frame_H8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_43, 7, 4, 1, 1);
+        gridLayout->addWidget(frame_H8, 0, 7, 1, 1);
 
-        frame_44 = new QFrame(gridLayoutWidget);
-        frame_44->setObjectName("frame_44");
-        frame_44->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_44->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E7 = new QFrame(frame);
+        frame_E7->setObjectName("frame_E7");
+        frame_E7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_44, 1, 5, 1, 1);
+        gridLayout->addWidget(frame_E7, 1, 4, 1, 1);
 
-        frame_45 = new QFrame(gridLayoutWidget);
-        frame_45->setObjectName("frame_45");
-        frame_45->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_45->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F6 = new QFrame(frame);
+        frame_F6->setObjectName("frame_F6");
+        frame_F6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_45, 2, 5, 1, 1);
+        gridLayout->addWidget(frame_F6, 2, 5, 1, 1);
 
-        frame_46 = new QFrame(gridLayoutWidget);
-        frame_46->setObjectName("frame_46");
-        frame_46->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_46->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C6 = new QFrame(frame);
+        frame_C6->setObjectName("frame_C6");
+        frame_C6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_46, 3, 5, 1, 1);
+        gridLayout->addWidget(frame_C6, 2, 2, 1, 1);
 
-        frame_47 = new QFrame(gridLayoutWidget);
-        frame_47->setObjectName("frame_47");
-        frame_47->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_47->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C8 = new QFrame(frame);
+        frame_C8->setObjectName("frame_C8");
+        frame_C8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_47, 4, 5, 1, 1);
+        gridLayout->addWidget(frame_C8, 0, 2, 1, 1);
 
-        frame_48 = new QFrame(gridLayoutWidget);
-        frame_48->setObjectName("frame_48");
-        frame_48->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_48->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D5 = new QFrame(frame);
+        frame_D5->setObjectName("frame_D5");
+        frame_D5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_48, 5, 5, 1, 1);
+        gridLayout->addWidget(frame_D5, 3, 3, 1, 1);
 
-        frame_49 = new QFrame(gridLayoutWidget);
-        frame_49->setObjectName("frame_49");
-        frame_49->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_49->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F8 = new QFrame(frame);
+        frame_F8->setObjectName("frame_F8");
+        frame_F8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_49, 6, 5, 1, 1);
+        gridLayout->addWidget(frame_F8, 0, 5, 1, 1);
 
-        frame_50 = new QFrame(gridLayoutWidget);
-        frame_50->setObjectName("frame_50");
-        frame_50->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_50->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B1 = new QFrame(frame);
+        frame_B1->setObjectName("frame_B1");
+        frame_B1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_50, 7, 5, 1, 1);
+        gridLayout->addWidget(frame_B1, 7, 1, 1, 1);
 
-        frame_51 = new QFrame(gridLayoutWidget);
-        frame_51->setObjectName("frame_51");
-        frame_51->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_51->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B8 = new QFrame(frame);
+        frame_B8->setObjectName("frame_B8");
+        frame_B8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B8->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_51, 1, 6, 1, 1);
+        gridLayout->addWidget(frame_B8, 0, 1, 1, 1);
 
-        frame_52 = new QFrame(gridLayoutWidget);
-        frame_52->setObjectName("frame_52");
-        frame_52->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_52->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H4 = new QFrame(frame);
+        frame_H4->setObjectName("frame_H4");
+        frame_H4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_52, 2, 6, 1, 1);
+        gridLayout->addWidget(frame_H4, 4, 7, 1, 1);
 
-        frame_53 = new QFrame(gridLayoutWidget);
-        frame_53->setObjectName("frame_53");
-        frame_53->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_53->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F1 = new QFrame(frame);
+        frame_F1->setObjectName("frame_F1");
+        frame_F1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_53, 3, 6, 1, 1);
+        gridLayout->addWidget(frame_F1, 7, 5, 1, 1);
 
-        frame_54 = new QFrame(gridLayoutWidget);
-        frame_54->setObjectName("frame_54");
-        frame_54->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_54->setFrameShadow(QFrame::Shadow::Raised);
+        frame_A2 = new QFrame(frame);
+        frame_A2->setObjectName("frame_A2");
+        frame_A2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_54, 4, 6, 1, 1);
+        gridLayout->addWidget(frame_A2, 6, 0, 1, 1);
 
-        frame_55 = new QFrame(gridLayoutWidget);
-        frame_55->setObjectName("frame_55");
-        frame_55->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_55->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D1 = new QFrame(frame);
+        frame_D1->setObjectName("frame_D1");
+        frame_D1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_55, 5, 6, 1, 1);
+        gridLayout->addWidget(frame_D1, 7, 3, 1, 1);
 
-        frame_56 = new QFrame(gridLayoutWidget);
-        frame_56->setObjectName("frame_56");
-        frame_56->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_56->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F7 = new QFrame(frame);
+        frame_F7->setObjectName("frame_F7");
+        frame_F7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_56, 6, 6, 1, 1);
+        gridLayout->addWidget(frame_F7, 1, 5, 1, 1);
 
-        frame_57 = new QFrame(gridLayoutWidget);
-        frame_57->setObjectName("frame_57");
-        frame_57->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_57->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D7 = new QFrame(frame);
+        frame_D7->setObjectName("frame_D7");
+        frame_D7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_57, 7, 6, 1, 1);
+        gridLayout->addWidget(frame_D7, 1, 3, 1, 1);
 
-        frame_58 = new QFrame(gridLayoutWidget);
-        frame_58->setObjectName("frame_58");
-        frame_58->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_58->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F5 = new QFrame(frame);
+        frame_F5->setObjectName("frame_F5");
+        frame_F5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_58, 1, 7, 1, 1);
+        gridLayout->addWidget(frame_F5, 3, 5, 1, 1);
 
-        frame_59 = new QFrame(gridLayoutWidget);
-        frame_59->setObjectName("frame_59");
-        frame_59->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_59->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G7 = new QFrame(frame);
+        frame_G7->setObjectName("frame_G7");
+        frame_G7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_59, 2, 7, 1, 1);
+        gridLayout->addWidget(frame_G7, 1, 6, 1, 1);
 
-        frame_60 = new QFrame(gridLayoutWidget);
-        frame_60->setObjectName("frame_60");
-        frame_60->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_60->setFrameShadow(QFrame::Shadow::Raised);
+        frame_B7 = new QFrame(frame);
+        frame_B7->setObjectName("frame_B7");
+        frame_B7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_60, 3, 7, 1, 1);
+        gridLayout->addWidget(frame_B7, 1, 1, 1, 1);
 
-        frame_61 = new QFrame(gridLayoutWidget);
-        frame_61->setObjectName("frame_61");
-        frame_61->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_61->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E6 = new QFrame(frame);
+        frame_E6->setObjectName("frame_E6");
+        frame_E6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E6->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_61, 4, 7, 1, 1);
+        gridLayout->addWidget(frame_E6, 2, 4, 1, 1);
 
-        frame_62 = new QFrame(gridLayoutWidget);
-        frame_62->setObjectName("frame_62");
-        frame_62->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_62->setFrameShadow(QFrame::Shadow::Raised);
+        frame_C2 = new QFrame(frame);
+        frame_C2->setObjectName("frame_C2");
+        frame_C2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_62, 5, 7, 1, 1);
+        gridLayout->addWidget(frame_C2, 6, 2, 1, 1);
 
-        frame_63 = new QFrame(gridLayoutWidget);
-        frame_63->setObjectName("frame_63");
-        frame_63->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_63->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F2 = new QFrame(frame);
+        frame_F2->setObjectName("frame_F2");
+        frame_F2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_63, 6, 7, 1, 1);
+        gridLayout->addWidget(frame_F2, 6, 5, 1, 1);
 
-        frame_64 = new QFrame(gridLayoutWidget);
-        frame_64->setObjectName("frame_64");
-        frame_64->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_64->setFrameShadow(QFrame::Shadow::Raised);
+        frame_G2 = new QFrame(frame);
+        frame_G2->setObjectName("frame_G2");
+        frame_G2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_64, 7, 7, 1, 1);
+        gridLayout->addWidget(frame_G2, 6, 6, 1, 1);
+
+        frame_B3 = new QFrame(frame);
+        frame_B3->setObjectName("frame_B3");
+        frame_B3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B3, 5, 1, 1, 1);
+
+        frame_A6 = new QFrame(frame);
+        frame_A6->setObjectName("frame_A6");
+        frame_A6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A6, 2, 0, 1, 1);
+
+        frame_D4 = new QFrame(frame);
+        frame_D4->setObjectName("frame_D4");
+        frame_D4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D4->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_D4, 4, 3, 1, 1);
+
+        frame_C1 = new QFrame(frame);
+        frame_C1->setObjectName("frame_C1");
+        frame_C1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C1, 7, 2, 1, 1);
+
+        frame_G5 = new QFrame(frame);
+        frame_G5->setObjectName("frame_G5");
+        frame_G5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G5, 3, 6, 1, 1);
+
+        frame_A3 = new QFrame(frame);
+        frame_A3->setObjectName("frame_A3");
+        frame_A3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A3, 5, 0, 1, 1);
+
+        frame_G6 = new QFrame(frame);
+        frame_G6->setObjectName("frame_G6");
+        frame_G6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G6, 2, 6, 1, 1);
+
+        frame_B2 = new QFrame(frame);
+        frame_B2->setObjectName("frame_B2");
+        frame_B2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B2, 6, 1, 1, 1);
+
+        frame_H1 = new QFrame(frame);
+        frame_H1->setObjectName("frame_H1");
+        frame_H1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H1, 7, 7, 1, 1);
+
+        frame_A1 = new QFrame(frame);
+        frame_A1->setObjectName("frame_A1");
+        frame_A1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A1->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_3 = new QHBoxLayout(frame_A1);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        pushButton = new QPushButton(frame_A1);
+        pushButton->setObjectName("pushButton");
+        pushButton->setStyleSheet(QString::fromUtf8("QLabel { \n"
+"	background: rgba(0,0,0,0.5);\n"
+"}"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/resource/img/wR.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        pushButton->setIcon(icon);
+        pushButton->setIconSize(QSize(48, 48));
+
+        horizontalLayout_3->addWidget(pushButton);
+
+
+        gridLayout->addWidget(frame_A1, 7, 0, 1, 1);
+
+
+        horizontalLayout->addLayout(gridLayout);
+
+
+        gridLayout_3->addWidget(frame, 0, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -572,6 +759,24 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setStyleSheet(QString());
+        label_13->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "C", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "D", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "E", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "F", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "G", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "H", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
+        pushButton->setText(QString());
     } // retranslateUi
 
 };
