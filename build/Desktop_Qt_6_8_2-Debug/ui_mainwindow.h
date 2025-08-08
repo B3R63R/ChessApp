@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -23,6 +24,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
+    QFrame *frame;
     QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -34,9 +36,17 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        pushButton = new QPushButton(centralwidget);
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(9, 9, 782, 538));
+        frame->setStyleSheet(QString::fromUtf8("QFrame {\n"
+"	border-image: url(:/resource/img/board.png);\n"
+"}"));
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        pushButton = new QPushButton(frame);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(280, 210, 88, 25));
+        pushButton->setGeometry(QRect(300, 220, 88, 25));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

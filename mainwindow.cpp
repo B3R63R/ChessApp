@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QLayout>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,5 +16,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     ui->pushButton->move( rand() % 200, rand() % 200);
+
 }
 
