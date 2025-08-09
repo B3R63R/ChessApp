@@ -31,7 +31,7 @@ public:
     bool hasMoved;
 
     Piece(const std::string& color, int row, int column, const std::string& name);
-
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
     std::string getSymbol();
     std::string getColor();
     std::string getName();
@@ -49,24 +49,29 @@ public:
 class Knight : public Piece {
 public:
     Knight(const std::string& color, int row, int column);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
 };
 
 class Rook : public Piece {
 public:
     Rook(const std::string& color, int row, int column);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
 };
 
 class Bishop : public Piece {
 public:
     Bishop(const std::string& color, int row, int column);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
 };
 
 class Queen : public Piece {
 public:
     Queen(const std::string& color, int row, int column);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
 };
 
 class King : public Piece {
 public:
     King(const std::string& color, int row, int column);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
 };

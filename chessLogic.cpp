@@ -29,6 +29,35 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         column = Column;
         hasMoved = true;
     }
+    std::vector<std::tuple<int, int>> Piece::getPotentialMoves(const Board& board, std::vector<std::tuple<int, int>>& directions) {
+        std::vector<std::tuple<int, int>> potentialMoves;
+        const auto& boardArray = board.getBoard();
+        for (const auto& [rowOffset, colOffset] : directions) {
+            int newRow = this->getRow();
+            int newCol = this->getColumn();
+            while(true) {
+                newRow += rowOffset;
+                newCol += colOffset;
+                //Check if moves is in chessboard scope
+                if (!(0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8)) {
+                    break;
+                }
+                //Check moves to empty squeres
+                else if (boardArray[newRow][newCol] == nullptr) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
+                //End loop if scanning reaches field with piece of the same color
+                else if (boardArray[newRow][newCol]->getColor() == this->getColor()) {
+                    break;
+                }
+                //Add take-piece-move and stop scanning at this direction
+                else if (boardArray[newRow][newCol]->getColor() != this->getColor()) {
+                    potentialMoves.push_back({newRow, newCol});
+                    break;
+                }
+            }
+        }
+    }
 
 Pawn::Pawn(const std::string& color, int row, int column):
     Piece(color, row, column, "P") {}
@@ -88,8 +117,6 @@ Pawn::Pawn(const std::string& color, int row, int column):
 
 Knight::Knight(const std::string& color, int row, int column):
     Piece(color, row, column, "N") {}
-
-
 
 
 Rook::Rook(const std::string& color, int row, int column):
