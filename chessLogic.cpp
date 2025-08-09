@@ -57,7 +57,9 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
                 }
             }
         }
+        return potentialMoves;
     }
+
 
 Pawn::Pawn(const std::string& color, int row, int column):
     Piece(color, row, column, "P") {}
@@ -105,7 +107,7 @@ Pawn::Pawn(const std::string& color, int row, int column):
                     }
                 }
             }
-            //Check beating piece diagonally (squere occupied by diffent color piece)
+            //Check beating piece diagonally (squere occupied by diffrent color piece)
             else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor()) {
                 potentialMoves.push_back({newRow, newCol});
             }
@@ -118,21 +120,78 @@ Pawn::Pawn(const std::string& color, int row, int column):
 Knight::Knight(const std::string& color, int row, int column):
     Piece(color, row, column, "N") {}
 
+    std::vector<std::tuple<int, int>> Knight::getPotentialMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> potentialMoves;
+        const auto& boardArray = board.getBoard();
+        std::vector<std::tuple<int, int>> knightDirections = {{1, 2}, {1, -2}, {2, 1}, {2, -1},
+                                                            {-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
+        for (const auto& [row, col] : knightDirections) {
+            int newRow = this->getRow() + row;
+            int newCol = this->getColumn() + col;
+            //Check if moves is in chessboard scope
+            if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
+                //Move to empty square
+                if (boardArray[newRow][newCol] == nullptr) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
+                //Take-piece-move
+                else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor()) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
+            }
+        }
+        return potentialMoves;
+    }
+
+
 
 Rook::Rook(const std::string& color, int row, int column):
     Piece(color, row, column, "R") {}
 
+    std::vector<std::tuple<int, int>> Rook::getPotentialMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+        return Piece::getPotentialMoves(board, rookDirections);
+    }
 
 Bishop::Bishop(const std::string& color, int row, int column):
     Piece(color, row, column, "B") {}
 
+    std::vector<std::tuple<int, int>> Bishop::getPotentialMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
+        return Piece::getPotentialMoves(board, bishopDirections);
+    }
 Queen::Queen(const std::string& color, int row, int column):
     Piece(color, row, column, "Q") {}
 
+    std::vector<std::tuple<int, int>> Queen::getPotentialMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> QueenDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
+        return Piece::getPotentialMoves(board, QueenDirections);
+    }
 
 King::King(const std::string& color, int row, int column):
     Piece(color, row, column, "K") {}
 
+    std::vector<std::tuple<int, int>> King::getPotentialMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> potentialMoves;
+        const auto& boardArray = board.getBoard();
+        std::vector<std::tuple<int, int>> kingDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
+        for (const auto& [row, col] : kingDirections) {
+            int newRow = this->getRow() + row;
+            int newCol = this->getColumn() + col;
+            //Check if moves is in chessboard scope
+            if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
+                //Move to empty square
+                if (boardArray[newRow][newCol] == nullptr) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
+                //Take-piece-move
+                else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor()) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
+            }
+        }
+        return potentialMoves;
+    }
 
 Board::Board() {
     for (int row=0; row<8; row++) {
