@@ -170,7 +170,6 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
 
     }
 
-
 Pawn::Pawn(const std::string& color, int row, int column):
     Piece(color, row, column, "P") {}
 
@@ -344,40 +343,47 @@ Board::Board() {
 const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const { //przenoszenie tylko do odczytu
     return board;
     }
-void Board::display() {
-    for (int row = 7; row >= 0; row--) {
-        for (int col = 0; col <8; col++) {
-            if (board[row][col]) {
-                std::cout << board[row][col] -> getSymbol() + " ";
+    void Board::display() {
+        for (int row = 7; row >= 0; row--) {
+            for (int col = 0; col <8; col++) {
+                if (board[row][col]) {
+                    std::cout << board[row][col] -> getSymbol() + " ";
+                }
+                else {
+                    std::cout << "-";
+                }
             }
-            else {
-                std::cout << "-";
-            }
+            std::cout << '\n';
         }
-        std::cout << '\n';
     }
-}
-void Board::setupPieces() {
-    // Pawns
-    for (int field = 0; field < 8; field++) {
-        board[1][field] = std::make_unique<Pawn>("w", 1, field);
-        board[6][field] = std::make_unique<Pawn>("b", 6, field);
-    }
+    void Board::setupPieces() {
+        // Pawns
+        for (int field = 0; field < 8; field++) {
+            board[1][field] = std::make_unique<Pawn>("w", 1, field);
+            board[6][field] = std::make_unique<Pawn>("b", 6, field);
+        }
 
-    // Other pieces
-    std::map <std::string, int> piecesParams = {{"w", 0}, {"b", 7}};
+        // Other pieces
+        std::map <std::string, int> piecesParams = {{"w", 0}, {"b", 7}};
 
-    for (auto const& [color, row] : piecesParams) {
-        board[row][0] = std::make_unique<Rook>(color, row, 0);
-        board[row][1] = std::make_unique<Knight>(color, row, 1);
-        board[row][2] = std::make_unique<Bishop>(color, row, 2);
-        board[row][3] = std::make_unique<Queen>(color, row, 3);
-        board[row][4] = std::make_unique<King>(color, row, 4);
-        board[row][5] = std::make_unique<Bishop>(color, row, 5);
-        board[row][6] = std::make_unique<Knight>(color, row, 6);
-        board[row][7] = std::make_unique<Rook>(color, row, 7);
+        for (auto const& [color, row] : piecesParams) {
+            board[row][0] = std::make_unique<Rook>(color, row, 0);
+            board[row][1] = std::make_unique<Knight>(color, row, 1);
+            board[row][2] = std::make_unique<Bishop>(color, row, 2);
+            board[row][3] = std::make_unique<Queen>(color, row, 3);
+            board[row][4] = std::make_unique<King>(color, row, 4);
+            board[row][5] = std::make_unique<Bishop>(color, row, 5);
+            board[row][6] = std::make_unique<Knight>(color, row, 6);
+            board[row][7] = std::make_unique<Rook>(color, row, 7);
+        }
+
     }
-}
+    void Board::setNewPosition(int currentRow, int currentCol, int newRow, int newCol) {
+        auto& transferedPiece = board[currentRow][currentCol];
+        board[currentRow][currentCol] = nullptr;
+        board[newRow][newCol] = std::move(transferedPiece);
+        transferedPiece->setPosition(newRow, newCol);
+    }
 int main() {
     Board b;
     b.setupPieces();
