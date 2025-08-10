@@ -32,7 +32,8 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
     bool Piece::isMoved() {
         return hasMoved;
     }
-    std::vector<std::tuple<int, int>> Piece::getPotentialMoves(const Board& board, std::vector<std::tuple<int, int>>& directions) {
+
+    std::vector<std::tuple<int, int>> Piece::getPotentialMovesHelper(const Board& board, std::vector<std::tuple<int, int>>& directions) {
         std::vector<std::tuple<int, int>> potentialMoves;
         const auto& boardArray = board.getBoard();
         for (const auto& [rowOffset, colOffset] : directions) {
@@ -179,6 +180,11 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         return isKingInDanger;
     }
 
+    std::vector<std::tuple<int, int>> Piece::getAvailableMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
+
+    }
+
 Pawn::Pawn(const std::string& color, int row, int column):
     Piece(color, row, column, "P") {}
 
@@ -268,7 +274,7 @@ Rook::Rook(const std::string& color, int row, int column):
 
     std::vector<std::tuple<int, int>> Rook::getPotentialMoves(const Board& board) {
         std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
-        return Piece::getPotentialMoves(board, rookDirections);
+        return Piece::getPotentialMovesHelper(board, rookDirections);
     }
 
 Bishop::Bishop(const std::string& color, int row, int column):
@@ -276,14 +282,14 @@ Bishop::Bishop(const std::string& color, int row, int column):
 
     std::vector<std::tuple<int, int>> Bishop::getPotentialMoves(const Board& board) {
         std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
-        return Piece::getPotentialMoves(board, bishopDirections);
+        return Piece::getPotentialMovesHelper(board, bishopDirections);
     }
 Queen::Queen(const std::string& color, int row, int column):
     Piece(color, row, column, "Q") {}
 
     std::vector<std::tuple<int, int>> Queen::getPotentialMoves(const Board& board) {
         std::vector<std::tuple<int, int>> QueenDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
-        return Piece::getPotentialMoves(board, QueenDirections);
+        return Piece::getPotentialMovesHelper(board, QueenDirections);
     }
 
 King::King(const std::string& color, int row, int column):
@@ -391,6 +397,37 @@ King::King(const std::string& color, int row, int column):
         }
         return true;
 
+    }
+    std::vector<std::tuple<int, int>> King::getAvailableMoves(const Board& board) {
+        std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
+        bool isShortCastleAvailableResult = this->isShortCastleAvailable(board);
+        bool isLongCastleAvailableResult = this->isLongCastleAvailable(board);
+        int kingRow = this->getRow();
+        int kingCol = this->getColumn();
+
+        if (potentialMovesStorage.size() == 0) {
+            return potentialMovesStorage;
+        }
+        std::vector<std::tuple<int, int>> availableMoves;
+        //itarate potential moves
+        for (auto const& [row, col] : potentialMovesStorage) {
+            bool isKingAttackedResult = this->isAttacked(board, row, col);
+            //Reject analized move (checking if move endanger king)
+            if (isKingAttackedResult) {
+                continue;
+            }
+            else {
+                availableMoves.push_back({row, col});
+            }
+        }
+
+        if (isShortCastleAvailableResult) {
+            availableMoves.push_back({kingRow, kingCol+2});
+        }
+        if (isLongCastleAvailableResult) {
+            availableMoves.push_back({kingRow, kingCol-2});
+        }
+        return availableMoves;
     }
 
 Board::Board() {

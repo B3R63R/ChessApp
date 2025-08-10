@@ -33,11 +33,13 @@ public:
     bool hasMoved;
 
     Piece(const std::string& color, int row, int column, const std::string& name);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board, std::vector<std::tuple<int, int>>& directions);
+    virtual std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) = 0;
+    std::vector<std::tuple<int, int>> getPotentialMovesHelper(const Board& board, std::vector<std::tuple<int, int>>& directions);
     bool isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttacked(const Board& board, int row, int col);
     bool isPinnedOrChecked( Board& board, int row, int col);
+    std::vector<std::tuple<int, int>> getAvailableMoves(const Board& board);
     std::string getSymbol();
     std::string getColor();
     std::string getName();
@@ -50,37 +52,43 @@ public:
 class Pawn : public Piece {
 public:
     Pawn(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+
 };
 
 class Knight : public Piece {
 public:
     Knight(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+
 };
 
 class Rook : public Piece {
 public:
     Rook(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+
 };
 
 class Bishop : public Piece {
 public:
     Bishop(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+
 };
 
 class Queen : public Piece {
 public:
     Queen(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+
 };
 
 class King : public Piece {
 public:
     King(const std::string& color, int row, int column);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
     bool isShortCastleAvailable(const Board& board);
     bool isLongCastleAvailable(const Board& board);
+    std::vector<std::tuple<int, int>> getAvailableMoves(const Board& board);
 };
