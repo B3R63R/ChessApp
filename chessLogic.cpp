@@ -29,6 +29,9 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         column = Column;
         hasMoved = true;
     }
+    bool Piece::isMoved() {
+        return hasMoved;
+    }
     std::vector<std::tuple<int, int>> Piece::getPotentialMoves(const Board& board, std::vector<std::tuple<int, int>>& directions) {
         std::vector<std::tuple<int, int>> potentialMoves;
         const auto& boardArray = board.getBoard();
@@ -59,6 +62,113 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         }
         return potentialMoves;
     }
+    bool Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+        const auto& boardArray = board.getBoard();
+        bool pieceAttacked = false;
+        //iterate directions
+        for (const auto& [rowOffset, colOffset] : directions) {
+            int examinedRow = row;
+            int examinedCol = col;
+            //scan direction
+            while(true) {
+                examinedRow += rowOffset;
+                examinedCol += colOffset;
+                //
+
+                //Check if move is in chessboard scope
+                if (!(0 <= examinedRow && examinedRow < 8 && 0 <= examinedCol && examinedCol < 8)) {
+                    break;
+                }
+                //Field isn't attacked, check another field
+                if (boardArray[examinedRow][examinedCol] == nullptr) {
+                    continue;
+                }
+                //finish scanning direction if king is covered
+                else if (boardArray[examinedRow][examinedCol]->getColor() == this->getColor() && boardArray[examinedRow][examinedCol]->getName() != "K") {
+                    break;
+                }
+                //Scanner reached other color piece
+                else if (boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
+                    //pointed piece attacks (or Queen) attacks king
+                    if (boardArray[examinedRow][examinedCol]->getName() == pieceName || boardArray[examinedRow][examinedCol]->getName() == "Q") {
+                        pieceAttacked = true;
+                    }
+                    //if other color piece doesn't endanger king
+                    else {
+                        break;
+                    }
+                }
+            }
+            if (pieceAttacked == true) {
+                    break;
+                }
+        }
+        return pieceAttacked;
+    }
+    bool Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+        const auto& boardArray = board.getBoard();
+        bool pieceAttacked = false;
+        //iterate directions
+        for (const auto& [rowOffset, colOffset] : directions) {
+            int examinedRow = row;
+            int examinedCol = col;
+            if (pieceName == "K" || pieceName == "N" || this->getColor() == "w") {
+                examinedRow += rowOffset;
+                examinedCol += colOffset;
+            }
+            else {
+                examinedRow += rowOffset * (-1);
+                examinedCol += colOffset;
+            }
+            //Check if move is in chessboard scope
+            if (0 <= examinedRow && examinedRow < 8 && 0 <= examinedCol && examinedCol < 8) {
+                //There is other color piece
+                if (boardArray[examinedRow][examinedCol] != nullptr && boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
+                    //Check if this piece can attack king
+                    if (boardArray[examinedRow][examinedCol]->getName() == pieceName) {
+                        pieceAttacked = true;
+                    }
+                }
+            }
+        }
+        return pieceAttacked;
+    }
+    bool Piece::isAttacked(const Board& board, int row, int col) {
+        std::vector<std::tuple<int, int>> pawnDirections = {{1, 0 }, {2, 0}, {1, 1}, {1, -1}};
+        std::vector<std::tuple<int, int>> knightDirections = {{1, 2}, {1, -2}, {2, 1}, {2, -1},{-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
+        std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+        std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
+        std::vector<std::tuple<int, int>> kingDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
+
+        bool isKingAttackedByRook = this->isAttackedBySlidingPieces(board, row, col, rookDirections, "R");
+        bool isKingAttackedByBishop = this->isAttackedBySlidingPieces(board, row, col, rookDirections, "B");
+        bool isKingAttackedByPawn = this->isAttackedByOtherPieces(board, row, col, rookDirections, "P");
+        bool isKingAttackedByKnight = this->isAttackedByOtherPieces(board, row, col, rookDirections, "N");
+        bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, rookDirections, "K");
+
+        if (isKingAttackedByBishop) {
+            return true;
+        }
+        else if (isKingAttackedByKnight) {
+            return true;
+        }
+        else if (isKingAttackedByPawn) {
+            return true;
+        }
+
+        else if (isKingAttackedByRook) {
+            return true;
+        }
+
+        else if (isKingAttackedByKing) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+    }
 
 
 Pawn::Pawn(const std::string& color, int row, int column):
@@ -84,7 +194,7 @@ Pawn::Pawn(const std::string& color, int row, int column):
                 newRow = this->getRow() + row*(-1);
                 newCol = this->getColumn();
             }
-            //Check if moves is in chessboard scope
+            //Check if move is in chessboard scope
             if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
                 //Check moves on empty squere (the same column)
                 if (boardArray[newRow][newCol] == nullptr && newCol == this->getColumn()) {
@@ -191,6 +301,37 @@ King::King(const std::string& color, int row, int column):
             }
         }
         return potentialMoves;
+    }
+
+    bool King::isShortCastleAvailable(const Board& board) {
+        const auto& boardArray = board.getBoard();
+        int kingRow = this->getRow();
+        int kingCol = this->getColumn();
+        int rookRow;
+        int rookCol = 7;
+        if (this->getColor() == "w") {
+            rookRow = 0;
+        }
+        else {
+            rookRow = 7;
+        }
+        std::tuple currentKingField = {kingRow, kingCol};
+        std::tuple passKingField = {kingRow, kingCol+1};
+        std::tuple desiredKingField = {kingRow, kingCol+2};
+
+        //Castling fields must be empty
+        if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
+            return false;
+        }
+        //Rook and King didnt moved
+        if (boardArray[rookRow][rookCol]->isMoved())
+
+        //Rook have to have specific location
+        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() == "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+            return false;
+        }
+
+        return true;
     }
 
 Board::Board() {

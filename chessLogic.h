@@ -31,13 +31,17 @@ public:
     bool hasMoved;
 
     Piece(const std::string& color, int row, int column, const std::string& name);
-    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board, std::vector<std::tuple<int, int>>& directions);
+    bool isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, std::string& pieceName);
+    bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, std::string& pieceName);
+    bool isAttacked(const Board& board, int row, int col);
     std::string getSymbol();
     std::string getColor();
     std::string getName();
     int getColumn();
     int getRow();
     void setPosition(int Row, int Column);
+    bool isMoved();
 };
 
 class Pawn : public Piece {
@@ -74,4 +78,5 @@ class King : public Piece {
 public:
     King(const std::string& color, int row, int column);
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
+    bool isShortCastleAvailable(const Board& board);
 };
