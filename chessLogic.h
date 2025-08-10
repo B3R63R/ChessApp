@@ -14,6 +14,7 @@ class Piece;
 
 class Board {
 public:
+    std::array<int, 4> lastMove = {-1, -1, -1, -1};
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
 
     Board();
@@ -22,6 +23,9 @@ public:
     void setupPieces();
     void setNewPosition(int currentRow, int currentCol, int newRow, int newCol);
     std::tuple<int, int> getKingLocation(std::string color) const;
+    void makeLegalMove(int currentRow, int currentCol, int newRow, int newCol);
+    std::array<int, 4> getLastMove();
+    void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
 };
 
 class Piece {

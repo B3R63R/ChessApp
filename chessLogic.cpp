@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <tuple>
+#include <algorithm>
 
 Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
@@ -246,6 +247,7 @@ Pawn::Pawn(const std::string& color, int row, int column):
         return potentialMoves;
 
     }
+
 
 
 Knight::Knight(const std::string& color, int row, int column):
@@ -507,6 +509,28 @@ Board::Board() {
         }
         return {-1, -1};
     }
+    void Board::setLastMove(int currentRow, int currentCol, int newRow, int newCol) {
+        lastMove[0] = currentRow;
+        lastMove[1] = currentCol;
+        lastMove[2] = newRow;
+        lastMove[3] = newCol;
+    }
+
+    std::array<int, 4> Board::getLastMove() {
+        return lastMove;
+    }
+
+    void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol) {
+        auto const& piece = this->getBoard()[currentRow][currentCol];
+        std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
+        std::tuple<int, int> newMove = {newRow, newCol};
+        bool isNewMoveInAvailableMoves = (std::find(availableMovesForPiece.begin(), availableMovesForPiece.end(), newMove) != availableMovesForPiece.end());
+        if (isNewMoveInAvailableMoves) {
+            this->setLastMove(currentRow, currentCol, newRow, newCol);
+            this->setNewPosition(currentRow, currentCol, newRow, newCol);
+        }
+    }
+
 
 int main() {
     Board b;
