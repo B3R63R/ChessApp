@@ -322,24 +322,75 @@ King::King(const std::string& color, int row, int column):
         }
         else {
             rookRow = 7;
-        }
+        } 
         std::tuple currentKingField = {kingRow, kingCol};
         std::tuple passKingField = {kingRow, kingCol+1};
         std::tuple desiredKingField = {kingRow, kingCol+2};
+        std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
 
         //Castling fields must be empty
         if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
             return false;
         }
         //Rook and King didnt moved
-        if (boardArray[rookRow][rookCol]->isMoved())
+        if (boardArray[rookRow][rookCol]->isMoved() || boardArray[kingRow][kingCol]->isMoved()) {
+            return false;
+        }
 
         //Rook have to have specific location
         if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() == "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
             return false;
         }
 
+        //Castling fields are not attacked
+        for (auto const& [row, col] : castlingFieldsStorage) {
+            if (this->isAttacked(board, row, col)) {
+                return false;
+            }
+        }
         return true;
+
+    }
+
+    bool King::isLongCastleAvailable(const Board& board) {
+        const auto& boardArray = board.getBoard();
+        int kingRow = this->getRow();
+        int kingCol = this->getColumn();
+        int rookRow;
+        int rookCol = 7;
+        if (this->getColor() == "w") {
+            rookRow = 0;
+        }
+        else {
+            rookRow = 7;
+        }
+        std::tuple currentKingField = {kingRow, kingCol};
+        std::tuple passKingField = {kingRow, kingCol-1};
+        std::tuple desiredKingField = {kingRow, kingCol-2};
+        std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
+
+        //Castling fields must be empty
+        if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
+            return false;
+        }
+        //Rook and King didnt moved
+        if (boardArray[rookRow][rookCol]->isMoved() || boardArray[kingRow][kingCol]->isMoved()) {
+            return false;
+        }
+
+        //Rook have to have specific location
+        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() == "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+            return false;
+        }
+
+        //Castling fields are not attacked
+        for (auto const& [row, col] : castlingFieldsStorage) {
+            if (this->isAttacked(board, row, col)) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 Board::Board() {

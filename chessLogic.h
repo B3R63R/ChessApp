@@ -82,4 +82,5 @@ public:
     King(const std::string& color, int row, int column);
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board);
     bool isShortCastleAvailable(const Board& board);
+    bool isLongCastleAvailable(const Board& board);
 };
