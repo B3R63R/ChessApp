@@ -39,7 +39,7 @@ public:
     bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttacked(const Board& board, int row, int col);
     bool isPinnedOrChecked( Board& board, int row, int col);
-    std::vector<std::tuple<int, int>> getAvailableMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
     std::string getSymbol();
     std::string getColor();
     std::string getName();
