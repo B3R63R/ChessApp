@@ -142,10 +142,10 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         std::vector<std::tuple<int, int>> kingDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
 
         bool isKingAttackedByRook = this->isAttackedBySlidingPieces(board, row, col, rookDirections, "R");
-        bool isKingAttackedByBishop = this->isAttackedBySlidingPieces(board, row, col, rookDirections, "B");
-        bool isKingAttackedByPawn = this->isAttackedByOtherPieces(board, row, col, rookDirections, "P");
-        bool isKingAttackedByKnight = this->isAttackedByOtherPieces(board, row, col, rookDirections, "N");
-        bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, rookDirections, "K");
+        bool isKingAttackedByBishop = this->isAttackedBySlidingPieces(board, row, col, bishopDirections, "B");
+        bool isKingAttackedByPawn = this->isAttackedByOtherPieces(board, row, col, pawnDirections, "P");
+        bool isKingAttackedByKnight = this->isAttackedByOtherPieces(board, row, col, knightDirections, "N");
+        bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, kingDirections, "K");
 
         if (isKingAttackedByBishop) {
             return true;
@@ -175,14 +175,21 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
         board.setNewPosition(currentRow, currentCol, row, col);
         std::tuple<int, int> kingLocation = board.getKingLocation(transferedPieceColor);
-        bool isKingInDanger = this->isAttacked(board, get<0>(kingLocation), get<1>(kingLocation));
+        bool isKingInDanger = this->isAttacked(board, std::get<0>(kingLocation), std::get<1>(kingLocation));
         board.setNewPosition(row, col, currentRow, currentCol);
         return isKingInDanger;
     }
 
-    std::vector<std::tuple<int, int>> Piece::getAvailableMoves(const Board& board) {
+    std::vector<std::tuple<int, int>> Piece::getAvailableMoves(Board& board) {
         std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
+        std::vector<std::tuple<int, int>> availableMoves;
 
+        for (const auto& [row, col] : potentialMovesStorage) {
+            if (this->isPinnedOrChecked(board, row, col) != true) {
+                availableMoves.push_back({row, col});
+            }
+        }
+        return availableMoves;
     }
 
 Pawn::Pawn(const std::string& color, int row, int column):
@@ -344,7 +351,7 @@ King::King(const std::string& color, int row, int column):
         }
 
         //Rook have to have specific location
-        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() == "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
             return false;
         }
 
@@ -376,7 +383,7 @@ King::King(const std::string& color, int row, int column):
         std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
 
         //Castling fields must be empty
-        if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
+        if (boardArray[kingRow][kingCol-1] != nullptr || boardArray[kingRow][kingCol-2] != nullptr) {
             return false;
         }
         //Rook and King didnt moved
@@ -385,7 +392,7 @@ King::King(const std::string& color, int row, int column):
         }
 
         //Rook have to have specific location
-        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() == "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+        if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
             return false;
         }
 
