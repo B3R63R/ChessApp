@@ -166,8 +166,17 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         else {
             return false;
         }
-
-
+    }
+    bool Piece::isPinnedOrChecked(Board& board, int row, int col) {
+        auto& boardArray = board.getBoard();
+        int currentRow = this->getRow();
+        int currentCol = this->getColumn();
+        std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
+        board.setNewPosition(currentRow, currentCol, row, col);
+        std::tuple<int, int> kingLocation = board.getKingLocation(transferedPieceColor);
+        bool isKingInDanger = this->isAttacked(board, get<0>(kingLocation), get<1>(kingLocation));
+        board.setNewPosition(row, col, currentRow, currentCol);
+        return isKingInDanger;
     }
 
 Pawn::Pawn(const std::string& color, int row, int column):
@@ -340,22 +349,22 @@ Board::Board() {
         }
     }
 }
-const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const { //przenoszenie tylko do odczytu
-    return board;
-    }
-    void Board::display() {
-        for (int row = 7; row >= 0; row--) {
-            for (int col = 0; col <8; col++) {
-                if (board[row][col]) {
-                    std::cout << board[row][col] -> getSymbol() + " ";
-                }
-                else {
-                    std::cout << "-";
-                }
-            }
-            std::cout << '\n';
+    const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const { //przenoszenie tylko do odczytu
+        return board;
         }
-    }
+        void Board::display() {
+            for (int row = 7; row >= 0; row--) {
+                for (int col = 0; col <8; col++) {
+                    if (board[row][col]) {
+                        std::cout << board[row][col] -> getSymbol() + " ";
+                    }
+                    else {
+                        std::cout << "-";
+                    }
+                }
+                std::cout << '\n';
+            }
+        }
     void Board::setupPieces() {
         // Pawns
         for (int field = 0; field < 8; field++) {
@@ -382,13 +391,38 @@ const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() co
         auto& transferedPiece = board[currentRow][currentCol];
         board[currentRow][currentCol] = nullptr;
         board[newRow][newCol] = std::move(transferedPiece);
-        transferedPiece->setPosition(newRow, newCol);
+        board[newRow][newCol]->setPosition(newRow, newCol);
     }
+    std::tuple<int,int> Board::getKingLocation(std::string color) const {
+        int kingRow = -1;
+        int kingCol = -1;
+        size_t rowIdx = 0;
+        const auto& boardArray = this->getBoard();
+        for (const auto& row : boardArray) {
+            size_t colIdx = 0;
+            for (const auto& col : row) {
+                if (col && col->getName() == "K" && col->getColor() == color) {
+                    kingRow = rowIdx;
+                    kingCol = colIdx;
+                    return {kingRow, kingCol};
+                }
+                colIdx++;
+            }
+            rowIdx++;
+        }
+        return {-1, -1};
+    }
+
 int main() {
     Board b;
     b.setupPieces();
     b.display();
+    auto [row, col] = b.getKingLocation("w");
+
+    std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
+
     return 0;
+
 }
 
 
