@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     chessLogic.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    pawnwhite.cpp
 
 HEADERS += \
     chessLogic.h \
-    mainwindow.h
+    mainwindow.h \
+    pawnwhite.h
 
 FORMS += \
     mainwindow.ui

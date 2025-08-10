@@ -531,7 +531,7 @@ Board::Board() {
         }
     }
 
-
+/*
 int main() {
     Board b;
     b.setupPieces();
@@ -543,7 +543,7 @@ int main() {
     return 0;
 
 }
-
+*/
 
 
 
