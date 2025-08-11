@@ -25,5 +25,6 @@ private:
     QPushButton *button=NULL;
     void setupSquaresColors();
     void setupSquaresParameters();
+    void setupLabelParameters();
 };
 #endif // MAINWINDOW_H

@@ -9,10 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->gridLayout->setSpacing(0);
     setupSquaresColors();
     setupSquaresParameters();
-
+    setupLabelParameters();
     pawnWhite *widget = new pawnWhite(ui->frame_A2);
     ui->frame_A2->layout()->addWidget(widget);
     ui->frame_A2->layout()->setAlignment(widget, Qt::AlignCenter);
@@ -25,12 +24,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setupSquaresParameters() {
-   QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
-    for (auto frame : SquaresStorage) {
-       frame->setMinimumSize(50, 50);
-       frame->setMaximumSize(120, 120);
+void MainWindow::setupLabelParameters() {
+    QList<QLabel*> labelsStorage = ui->frame->findChildren<QLabel*>();
+    for (auto label : labelsStorage) {
+        label->setStyleSheet("background-color: white;");
 
+    }
+}
+
+void MainWindow::setupSquaresParameters() {
+    ui->frame->setMinimumSize(600,600);
+    ui->frame->setMaximumSize(960,960);
+    QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
+    for (auto frame : SquaresStorage) {
        if (!frame->layout()) {
            auto layout = new QHBoxLayout(frame);
            frame->setLayout(layout);
