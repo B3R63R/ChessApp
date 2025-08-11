@@ -6,7 +6,7 @@
 #include <map>
 #include <tuple>
 #include <algorithm>
-
+#include <QDebug>
 Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
 
@@ -446,22 +446,29 @@ Board::Board() {
         }
     }
 }
-    const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const { //przenoszenie tylko do odczytu
+    const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const {
         return board;
         }
-        void Board::display() {
-            for (int row = 7; row >= 0; row--) {
-                for (int col = 0; col <8; col++) {
-                    if (board[row][col]) {
-                        std::cout << board[row][col] -> getSymbol() + " ";
-                    }
-                    else {
-                        std::cout << "-";
-                    }
+
+    void Board::display() {
+        for (int row = 7; row >= 0; row--) {
+            for (int col = 0; col <8; col++) {
+                if (board[row][col]) {
+                    std::cout << board[row][col] -> getSymbol() + " ";
+                    //qDebug() << board[row][col] -> getSymbol() + " ";
                 }
-                std::cout << '\n';
+                else {
+                    std::cout << "-";
+                    //qDebug() << "-";
+                }
             }
+
+            std::cout << '\n';
+            //qDebug() << '\n';
         }
+        std::cout << std::endl;
+    }
+
     void Board::setupPieces() {
         // Pawns
         for (int field = 0; field < 8; field++) {

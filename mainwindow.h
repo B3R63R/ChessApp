@@ -1,8 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "chessLogic.h"
 #include <QMainWindow>
 #include <QPushButton>
+#include <QResizeEvent>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 private slots:
     //void on_pushButton_clicked();
 
@@ -26,5 +30,6 @@ private:
     void setupSquaresColors();
     void setupSquaresParameters();
     void setupLabelParameters();
+    void setupPiecesGUI();
 };
 #endif // MAINWINDOW_H
