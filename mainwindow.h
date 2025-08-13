@@ -22,14 +22,16 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private slots:
-    //void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QPushButton *button=NULL;
+    Board board;
+
     void setupSquaresColors();
     void setupSquaresParameters();
     void setupLabelParameters();
     void setupPiecesGUI();
+
 };
 #endif // MAINWINDOW_H

@@ -9,9 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    Board b;
-    b.setupPieces();
-    b.display();
+    board.setupPieces();
+    board.display();
 
     ui->setupUi(this);
     setupSquaresColors();
@@ -25,11 +24,51 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+int convertRowCharIdxToRowIntIdx(char row) {
+    int result;
+    switch(row) {
+    case 'A': {
+        result = 1;
+        break;
+    }
+    case 'B': {
+        result = 2;
+        break;
+    }
+    case 'C': {
+        result = 3;
+        break;
+    }
+    case 'D': {
+        result = 4;
+        break;
+    }
+    case 'E': {
+        result = 5;
+        break;
+    }
+    case 'F': {
+        result = 6;
+        break;
+    }
+    case 'G': {
+        result = 7;
+        break;
+    }
+    case 'H': {
+        result = 8;
+        break;
+    }
+
+    }
+    return result;
+}
+
 void MainWindow::setupPiecesGUI() {
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     //std::array<char, 8> rowIdx = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
     for (auto frame : SquaresStorage) {
-        auto fieldName = frame->objectName();
+        auto fieldName = frame->objectName().toStdString();
 
         if (fieldName[0] == 'f') {
             //Pawns
@@ -43,7 +82,18 @@ void MainWindow::setupPiecesGUI() {
                 pawnBlack *bPawn = new pawnBlack(frame);
                 frame->layout()->addWidget(bPawn);
                 frame->layout()->setAlignment(bPawn, Qt::AlignCenter);
-                //qDebug() << frame->objectName();
+
+                connect(bPawn, &QPushButton::clicked, this, [=]() {
+                    char rowIdx = fieldName[7];
+                    char colIdx = fieldName[6];
+                    int irowIdx = (rowIdx - '0') -1;
+                    int icolIdx = convertRowCharIdxToRowIntIdx(colIdx) -1;
+                    board.RaisePiece(irowIdx, icolIdx);
+
+
+
+                });
+
             }
             //Other pieces
             else if (fieldName[7] == '1') {
@@ -245,4 +295,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     // Ustaw nową geometrię dla ramki z szachownicą
     ui->frame->setGeometry(x, y, side, side);
 }
+
+
 

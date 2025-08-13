@@ -6,6 +6,7 @@ class pawnBlack : public QPushButton
 {
 public:
     pawnBlack(QWidget *parent = 0);
+
 };
 
 

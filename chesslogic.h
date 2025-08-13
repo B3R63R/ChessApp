@@ -26,6 +26,8 @@ public:
     void makeLegalMove(int currentRow, int currentCol, int newRow, int newCol);
     std::array<int, 4> getLastMove();
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
+    void RaisePiece(int currentRow, int currentCol);
+    void addPiece(int row, int col, std::string color, std::string name);
 };
 
 class Piece {
@@ -94,5 +96,5 @@ public:
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
     bool isShortCastleAvailable(const Board& board);
     bool isLongCastleAvailable(const Board& board);
-    std::vector<std::tuple<int, int>> getAvailableMoves(const Board& board);
+    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
 };

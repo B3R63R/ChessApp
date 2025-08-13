@@ -6,7 +6,8 @@
 #include <map>
 #include <tuple>
 #include <algorithm>
-#include <QDebug>
+//#include <QDebug>
+
 Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
 
@@ -110,11 +111,13 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
     bool Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
         const auto& boardArray = board.getBoard();
         bool pieceAttacked = false;
+        std::string color;
+
         //iterate directions
         for (const auto& [rowOffset, colOffset] : directions) {
             int examinedRow = row;
             int examinedCol = col;
-            if (pieceName == "K" || pieceName == "N" || this->getColor() == "w") {
+            if (pieceName == "K" || pieceName == "N" || this->getColor() == "b") {
                 examinedRow += rowOffset;
                 examinedCol += colOffset;
             }
@@ -214,7 +217,7 @@ Pawn::Pawn(const std::string& color, int row, int column):
             }
             else {
                 newRow = this->getRow() + row*(-1);
-                newCol = this->getColumn();
+                newCol = this->getColumn() + col;
             }
             //Check if move is in chessboard scope
             if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
@@ -238,10 +241,11 @@ Pawn::Pawn(const std::string& color, int row, int column):
                         }
                     }
                 }
-            }
-            //Check beating piece diagonally (squere occupied by diffrent color piece)
-            else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor()) {
-                potentialMoves.push_back({newRow, newCol});
+
+                //Check beating piece diagonally (squere occupied by diffrent color piece)
+                else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor() && newCol != this->getColumn()) {
+                    potentialMoves.push_back({newRow, newCol});
+                }
             }
         }
         return potentialMoves;
@@ -343,12 +347,8 @@ King::King(const std::string& color, int row, int column):
         std::tuple desiredKingField = {kingRow, kingCol+2};
         std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
 
-        //Castling fields must be empty
-        if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
-            return false;
-        }
-        //Rook and King didnt moved
-        if (boardArray[rookRow][rookCol]->isMoved() || boardArray[kingRow][kingCol]->isMoved()) {
+        //King didnt moved
+        if (boardArray[kingRow][kingCol]->isMoved() || kingCol != 4) {
             return false;
         }
 
@@ -356,7 +356,14 @@ King::King(const std::string& color, int row, int column):
         if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
             return false;
         }
-
+        //Castling fields must be empty
+        if (boardArray[kingRow][kingCol+1] != nullptr || boardArray[kingRow][kingCol+2] != nullptr) {
+            return false;
+        }
+        //Rook didnt moved
+        if (boardArray[rookRow][rookCol]->isMoved()) {
+            return false;
+        }
         //Castling fields are not attacked
         for (auto const& [row, col] : castlingFieldsStorage) {
             if (this->isAttacked(board, row, col)) {
@@ -372,7 +379,7 @@ King::King(const std::string& color, int row, int column):
         int kingRow = this->getRow();
         int kingCol = this->getColumn();
         int rookRow;
-        int rookCol = 7;
+        int rookCol = 0;
         if (this->getColor() == "w") {
             rookRow = 0;
         }
@@ -382,22 +389,25 @@ King::King(const std::string& color, int row, int column):
         std::tuple currentKingField = {kingRow, kingCol};
         std::tuple passKingField = {kingRow, kingCol-1};
         std::tuple desiredKingField = {kingRow, kingCol-2};
-        std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
+        std::tuple passRookField = {kingRow, kingCol-3};
+        std::tuple<int, int> castlingFieldsStorage[4] = {currentKingField, passKingField, desiredKingField, passRookField};
 
-        //Castling fields must be empty
-        if (boardArray[kingRow][kingCol-1] != nullptr || boardArray[kingRow][kingCol-2] != nullptr) {
+        //King didnt moved
+        if (boardArray[kingRow][kingCol]->isMoved() || kingCol != 4) {
             return false;
         }
-        //Rook and King didnt moved
-        if (boardArray[rookRow][rookCol]->isMoved() || boardArray[kingRow][kingCol]->isMoved()) {
-            return false;
-        }
-
         //Rook have to have specific location
         if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
             return false;
         }
-
+        //Castling fields must be empty
+        if (boardArray[kingRow][kingCol-1] != nullptr || boardArray[kingRow][kingCol-2] != nullptr) {
+            return false;
+        }
+        //Rook didnt moved
+        if (boardArray[rookRow][rookCol]->isMoved()) {
+            return false;
+        }
         //Castling fields are not attacked
         for (auto const& [row, col] : castlingFieldsStorage) {
             if (this->isAttacked(board, row, col)) {
@@ -407,7 +417,7 @@ King::King(const std::string& color, int row, int column):
         return true;
 
     }
-    std::vector<std::tuple<int, int>> King::getAvailableMoves(const Board& board) {
+    std::vector<std::tuple<int, int>> King::getAvailableMoves(Board& board) {
         std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
         bool isShortCastleAvailableResult = this->isShortCastleAvailable(board);
         bool isLongCastleAvailableResult = this->isLongCastleAvailable(board);
@@ -458,7 +468,7 @@ Board::Board() {
                     //qDebug() << board[row][col] -> getSymbol() + " ";
                 }
                 else {
-                    std::cout << "-";
+                    std::cout << "--" << " ";
                     //qDebug() << "-";
                 }
             }
@@ -537,20 +547,70 @@ Board::Board() {
             this->setNewPosition(currentRow, currentCol, newRow, newCol);
         }
     }
+    void Board::addPiece(int row, int col, std::string color, std::string name) {
+        if (name == "R") {
+            // Wieża (Rook)
+            board[row][col] = std::make_unique<Rook>(color, row, col);
+        }
+        else if (name == "N") {
+            // Skoczek (Knight)
+            board[row][col] = std::make_unique<Knight>(color, row, col);
+        }
+        else if (name == "B") {
+            // Goniec (Bishop)
+            board[row][col] = std::make_unique<Bishop>(color, row, col);
+        }
+        else if (name == "Q") {
+            // Hetman (Queen)
+            board[row][col] = std::make_unique<Queen>(color, row, col);
+        }
+        else if (name == "K") {
+            // Król (King)
+            board[row][col] = std::make_unique<King>(color, row, col);
+        }
+        else if (name == "P") {
+            // Pion (Pawn)
+            board[row][col] = std::make_unique<Pawn>(color, row, col);
+        }
 
-/*
+    }
+
+    void Board::RaisePiece(int currentRow, int currentCol) {
+        auto const& piece = this->getBoard()[currentRow][currentCol];
+        std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
+        std::cout << piece->getSymbol();
+        /*
+        for (auto& move : availableMovesForPiece) {
+            qDebug() << "\n";
+            qDebug() << "[";
+            qDebug() << std::get<0>(move);
+            qDebug() << ", ";
+            qDebug() << std::get<1>(move);
+            qDebug() << "], ";
+        }
+        qDebug() << "\n";
+        */
+    }
+
+
 int main() {
     Board b;
     b.setupPieces();
+    b.addPiece(4, 3, "b", "R");
+    b.addPiece(4, 6, "w", "K");
     b.display();
-    auto [row, col] = b.getKingLocation("w");
+    //auto [row, col] = b.getKingLocation("w");
 
-    std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
+    //std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
+
+    for (const auto& t : b.getBoard()[4][6]->getAvailableMoves(b)) {
+        std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")\n";
+    }
 
     return 0;
 
 }
-*/
+
 
 
 
