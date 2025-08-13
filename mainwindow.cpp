@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "whitepiececlasses.h"
+#include "blackpiececlasses.h"
 #include <QLayout>
 #include <QDebug>
 
@@ -28,12 +29,94 @@ void MainWindow::setupPiecesGUI() {
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     //std::array<char, 8> rowIdx = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
     for (auto frame : SquaresStorage) {
-        if (frame->objectName()[7] == '2' && frame->objectName()[0] == 'f') {
-            pawnWhite *wPawn = new pawnWhite(frame);
-            frame->layout()->addWidget(wPawn);
-            frame->layout()->setAlignment(wPawn, Qt::AlignCenter);
-            qDebug() << frame->objectName();
+        auto fieldName = frame->objectName();
+
+        if (fieldName[0] == 'f') {
+            //Pawns
+            if (fieldName[7] == '2') {
+                pawnWhite *wPawn = new pawnWhite(frame);
+                frame->layout()->addWidget(wPawn);
+                frame->layout()->setAlignment(wPawn, Qt::AlignCenter);
+                //qDebug() << frame->objectName();
+            }
+            else if (fieldName[7] == '7') {
+                pawnBlack *bPawn = new pawnBlack(frame);
+                frame->layout()->addWidget(bPawn);
+                frame->layout()->setAlignment(bPawn, Qt::AlignCenter);
+                //qDebug() << frame->objectName();
+            }
+            //Other pieces
+            else if (fieldName[7] == '1') {
+                //Set white
+                if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
+                    rookWhite *wRook = new rookWhite(frame);
+                    frame->layout()->addWidget(wRook);
+                    frame->layout()->setAlignment(wRook, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
+                    knightWhite *wKnight = new knightWhite(frame);
+                    frame->layout()->addWidget(wKnight);
+                    frame->layout()->setAlignment(wKnight, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
+                    bishopWhite *wBishop = new bishopWhite(frame);
+                    frame->layout()->addWidget(wBishop);
+                    frame->layout()->setAlignment(wBishop, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'D') {
+                    queenWhite *wQueen = new queenWhite(frame);
+                    frame->layout()->addWidget(wQueen);
+                    frame->layout()->setAlignment(wQueen, Qt::AlignCenter);
+
+                }
+
+                else if (fieldName[6] == 'E') {
+                    kingWhite *wKing = new kingWhite(frame);
+                    frame->layout()->addWidget(wKing);
+                    frame->layout()->setAlignment(wKing, Qt::AlignCenter);
+
+                }
+            }
+            //Set black
+            else if (fieldName[7] == '8') {
+
+                if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
+                    rookBlack *bRook = new rookBlack(frame);
+                    frame->layout()->addWidget(bRook);
+                    frame->layout()->setAlignment(bRook, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
+                    knightBlack *bKnight = new knightBlack(frame);
+                    frame->layout()->addWidget(bKnight);
+                    frame->layout()->setAlignment(bKnight, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
+                    bishopBlack *bBishop = new bishopBlack(frame);
+                    frame->layout()->addWidget(bBishop);
+                    frame->layout()->setAlignment(bBishop, Qt::AlignCenter);
+
+                }
+                else if (fieldName[6] == 'D') {
+                    queenBlack *bQueen = new queenBlack(frame);
+                    frame->layout()->addWidget(bQueen);
+                    frame->layout()->setAlignment(bQueen, Qt::AlignCenter);
+
+                }
+
+                else if (fieldName[6] == 'E') {
+                    kingBlack *bKing = new kingBlack(frame);
+                    frame->layout()->addWidget(bKing);
+                    frame->layout()->setAlignment(bKing, Qt::AlignCenter);
+                }
+            }
+
         }
+
     }
 
 }
