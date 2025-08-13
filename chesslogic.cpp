@@ -1,4 +1,4 @@
-#include "chessLogic.h"
+#include "chesslogic.h"
 #include <array>
 #include <string>
 #include <memory>

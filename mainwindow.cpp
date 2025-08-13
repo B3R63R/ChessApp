@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "pawnwhite.h"
+#include "whitepiececlasses.h"
 #include <QLayout>
 #include <QDebug>
 
