@@ -13,12 +13,14 @@ SOURCES += \
     chesslogic.cpp \
     main.cpp \
     mainwindow.cpp \
+    moveindicator.cpp \
     whitepiececlasses.cpp
 
 HEADERS += \
     blackpiececlasses.h \
     chesslogic.h \
     mainwindow.h \
+    moveindicator.h \
     whitepiececlasses.h
 
 FORMS += \

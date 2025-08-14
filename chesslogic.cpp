@@ -6,7 +6,7 @@
 #include <map>
 #include <tuple>
 #include <algorithm>
-//#include <QDebug>
+#include <QDebug>
 
 Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
@@ -67,7 +67,6 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
     }
     bool Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
         const auto& boardArray = board.getBoard();
-        bool pieceAttacked = false;
         //iterate directions
         for (const auto& [rowOffset, colOffset] : directions) {
             int examinedRow = row;
@@ -94,35 +93,41 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
                 else if (boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
                     //pointed piece attacks (or Queen) attacks king
                     if (boardArray[examinedRow][examinedCol]->getName() == pieceName || boardArray[examinedRow][examinedCol]->getName() == "Q") {
-                        pieceAttacked = true;
+                        return true;
                     }
-                    //if other color piece doesn't endanger king
-                    else {
-                        break;
-                    }
+
                 }
             }
-            if (pieceAttacked == true) {
-                    break;
-                }
         }
-        return pieceAttacked;
+        return false;
     }
     bool Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
         const auto& boardArray = board.getBoard();
-        bool pieceAttacked = false;
-        std::string color;
+        int direction;
+        std::string opponentColor;
 
         //iterate directions
         for (const auto& [rowOffset, colOffset] : directions) {
             int examinedRow = row;
             int examinedCol = col;
-            if (pieceName == "K" || pieceName == "N" || this->getColor() == "b") {
+
+            //If king is white look for black attacking pawn
+            if (this->getColor() == "w") {
+                opponentColor = "b";
+                direction = 1;
+            }
+            else {
+                opponentColor = "w";
+                direction = -1;
+            }
+            //Check danger from king or knight
+            if (pieceName == "K" || pieceName == "N") {
                 examinedRow += rowOffset;
                 examinedCol += colOffset;
             }
-            else {
-                examinedRow += rowOffset * (-1);
+            //Check danger from pawns
+            else if (pieceName == "P") {
+                examinedRow += rowOffset * direction;
                 examinedCol += colOffset;
             }
             //Check if move is in chessboard scope
@@ -131,15 +136,15 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
                 if (boardArray[examinedRow][examinedCol] != nullptr && boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
                     //Check if this piece can attack king
                     if (boardArray[examinedRow][examinedCol]->getName() == pieceName) {
-                        pieceAttacked = true;
+                        return true;
                     }
                 }
             }
         }
-        return pieceAttacked;
+        return false;
     }
     bool Piece::isAttacked(const Board& board, int row, int col) {
-        std::vector<std::tuple<int, int>> pawnDirections = {{1, 0 }, {2, 0}, {1, 1}, {1, -1}};
+        std::vector<std::tuple<int, int>> pawnDirections = {{1, 1}, {1, -1}};
         std::vector<std::tuple<int, int>> knightDirections = {{1, 2}, {1, -2}, {2, 1}, {2, -1},{-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
         std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
         std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
@@ -173,14 +178,30 @@ Piece::Piece(const std::string& color, int row, int column, const std::string& n
         }
     }
     bool Piece::isPinnedOrChecked(Board& board, int row, int col) {
-        auto& boardArray = board.getBoard();
+
+        auto& boardArray = board.getBoardModifiable();
         int currentRow = this->getRow();
         int currentCol = this->getColumn();
+
+        //Keep piece that can be captured
+        auto capturedPiece = std::move(boardArray[row][col]);
+
+        //Place piece to new field
         std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
-        board.setNewPosition(currentRow, currentCol, row, col);
+        boardArray[row][col] = std::move(boardArray[currentRow][currentCol]);
+        boardArray[row][col]->setPosition(row, col);
+
+        //Check if king is exposed
         std::tuple<int, int> kingLocation = board.getKingLocation(transferedPieceColor);
         bool isKingInDanger = this->isAttacked(board, std::get<0>(kingLocation), std::get<1>(kingLocation));
-        board.setNewPosition(row, col, currentRow, currentCol);
+
+        //Undo move to keep piece on their original place
+        boardArray[currentRow][currentCol] = std::move(boardArray[row][col]);
+        boardArray[currentRow][currentCol]->setPosition(currentRow, currentCol);
+
+        //Restore captured piece
+        boardArray[row][col] = std::move(capturedPiece);
+
         return isKingInDanger;
     }
 
@@ -578,39 +599,41 @@ Board::Board() {
     void Board::RaisePiece(int currentRow, int currentCol) {
         auto const& piece = this->getBoard()[currentRow][currentCol];
         std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
-        std::cout << piece->getSymbol();
-        /*
+        qDebug() << piece->getSymbol();
+
         for (auto& move : availableMovesForPiece) {
-            qDebug() << "\n";
-            qDebug() << "[";
-            qDebug() << std::get<0>(move);
-            qDebug() << ", ";
-            qDebug() << std::get<1>(move);
-            qDebug() << "], ";
+            qDebug() << "\n[" << std::get<0>(move) << ", " << std::get<1>(move) << "], ";
+
         }
-        qDebug() << "\n";
-        */
+        //qDebug() << "\n";
+
+    }
+    std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoardModifiable() {
+        return board;
     }
 
-
+/*
 int main() {
     Board b;
     b.setupPieces();
-    b.addPiece(4, 3, "b", "R");
-    b.addPiece(4, 6, "w", "K");
+    //b.addPiece(4, 3, "b", "R");
+    //b.addPiece(5, 6, "b", "R");
+    //b.addPiece(4, 6, "w", "K");
+    b.addPiece(3, 6, "w", "K");
+    b.addPiece(5, 6, "b", "P");
     b.display();
     //auto [row, col] = b.getKingLocation("w");
 
     //std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
 
-    for (const auto& t : b.getBoard()[4][6]->getAvailableMoves(b)) {
+    for (const auto& t : b.getBoard()[3][6]->getAvailableMoves(b)) {
         std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")\n";
     }
 
     return 0;
 
 }
-
+*/
 
 
 

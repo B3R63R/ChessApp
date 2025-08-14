@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "whitepiececlasses.h"
 #include "blackpiececlasses.h"
+#include "moveindicator.h"
 #include <QLayout>
 #include <QDebug>
 
@@ -67,6 +68,7 @@ int convertRowCharIdxToRowIntIdx(char row) {
 void MainWindow::setupPiecesGUI() {
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     //std::array<char, 8> rowIdx = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+
     for (auto frame : SquaresStorage) {
         auto fieldName = frame->objectName().toStdString();
 
@@ -90,6 +92,9 @@ void MainWindow::setupPiecesGUI() {
                     int icolIdx = convertRowCharIdxToRowIntIdx(colIdx) -1;
                     board.RaisePiece(irowIdx, icolIdx);
 
+                    //moveIndicator *mIndicator = new moveIndicator(ui->frame_A5);
+                    //ui->frame_A5->layout()->addWidget(mIndicator);
+                    //ui->frame_A5->layout()->setAlignment(mIndicator, Qt::AlignCenter);
 
 
                 });

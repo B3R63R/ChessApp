@@ -55,3 +55,4 @@ kingWhite::kingWhite(QWidget *parent)
     this->setFixedSize(60, 60);
     this->setStyleSheet("background-image: url(:/resource/img/wK.png) 0 0 0 0 stretch stretch; border: none;");
 }
+

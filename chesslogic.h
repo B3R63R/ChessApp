@@ -28,6 +28,7 @@ public:
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
     void RaisePiece(int currentRow, int currentCol);
     void addPiece(int row, int col, std::string color, std::string name);
+    std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoardModifiable();
 };
 
 class Piece {
@@ -45,7 +46,7 @@ public:
     bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttacked(const Board& board, int row, int col);
     bool isPinnedOrChecked( Board& board, int row, int col);
-    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
+    virtual std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
     std::string getSymbol();
     std::string getColor();
     std::string getName();
@@ -96,5 +97,5 @@ public:
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
     bool isShortCastleAvailable(const Board& board);
     bool isLongCastleAvailable(const Board& board);
-    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
+    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board) override;
 };

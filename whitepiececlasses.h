@@ -39,5 +39,4 @@ public:
     kingWhite(QWidget *parent = 0);
 };
 
-
 #endif // WHITEPIECECLASSES_H
