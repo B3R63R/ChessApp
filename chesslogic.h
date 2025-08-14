@@ -18,17 +18,22 @@ public:
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
 
     Board();
-    const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
+
     void display();
     void setupPieces();
     void setNewPosition(int currentRow, int currentCol, int newRow, int newCol);
-    std::tuple<int, int> getKingLocation(std::string color) const;
     void makeLegalMove(int currentRow, int currentCol, int newRow, int newCol);
-    std::array<int, 4> getLastMove();
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
-    void RaisePiece(int currentRow, int currentCol);
     void addPiece(int row, int col, std::string color, std::string name);
+
+    const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
+    std::tuple<int, int> getKingLocation(std::string color) const;
+    std::array<int, 4> getLastMove();
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoardModifiable();
+    std::vector<std::tuple<int,int>>RaisePiece(int currentRow, int currentCol);
+
+
+
 };
 
 class Piece {

@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     moveindicator.cpp \
+    piece.cpp \
     whitepiececlasses.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     chesslogic.h \
     mainwindow.h \
     moveindicator.h \
+    piece.h \
     whitepiececlasses.h
 
 FORMS += \

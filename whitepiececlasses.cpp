@@ -1,9 +1,8 @@
 #include "whitepiececlasses.h"
-#include <QPushButton>
-
+#include "piece.h"
 
 pawnWhite::pawnWhite(QWidget *parent)
-    : QPushButton(parent)
+    : piece(parent)
 {
 
     this->setFixedSize(60, 60);

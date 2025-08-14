@@ -596,17 +596,10 @@ Board::Board() {
 
     }
 
-    void Board::RaisePiece(int currentRow, int currentCol) {
+    std::vector<std::tuple<int,int>> Board::RaisePiece(int currentRow, int currentCol) {
         auto const& piece = this->getBoard()[currentRow][currentCol];
         std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
-        qDebug() << piece->getSymbol();
-
-        for (auto& move : availableMovesForPiece) {
-            qDebug() << "\n[" << std::get<0>(move) << ", " << std::get<1>(move) << "], ";
-
-        }
-        //qDebug() << "\n";
-
+        return availableMovesForPiece;
     }
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoardModifiable() {
         return board;

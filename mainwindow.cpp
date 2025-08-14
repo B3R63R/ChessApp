@@ -86,6 +86,7 @@ void MainWindow::setupPiecesGUI() {
                 frame->layout()->setAlignment(bPawn, Qt::AlignCenter);
 
                 connect(bPawn, &QPushButton::clicked, this, [=]() {
+                    char
                     char rowIdx = fieldName[7];
                     char colIdx = fieldName[6];
                     int irowIdx = (rowIdx - '0') -1;

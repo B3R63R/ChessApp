@@ -1,39 +1,41 @@
 #ifndef WHITEPIECECLASSES_H
 #define WHITEPIECECLASSES_H
 #include <QPushButton>
+#include "piece.h"
 
-class pawnWhite : public QPushButton
+
+class pawnWhite : public piece
 {
 public:
     pawnWhite(QWidget *parent = 0);
 };
 
 
-class rookWhite : public QPushButton
+class rookWhite : public piece
 {
 public:
     rookWhite(QWidget *parent = 0);
 };
 
-class knightWhite : public QPushButton
+class knightWhite : public piece
 {
 public:
     knightWhite(QWidget *parent = 0);
 };
 
-class bishopWhite : public QPushButton
+class bishopWhite : public piece
 {
 public:
     bishopWhite(QWidget *parent = 0);
 };
 
-class queenWhite : public QPushButton
+class queenWhite : public piece
 {
 public:
     queenWhite(QWidget *parent = 0);
 };
 
-class kingWhite : public QPushButton
+class kingWhite : public piece
 {
 public:
     kingWhite(QWidget *parent = 0);
