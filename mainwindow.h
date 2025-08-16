@@ -27,11 +27,14 @@ private:
     Ui::MainWindow *ui;
     QPushButton *button=NULL;
     Board board;
-
+    std::vector<std::tuple<int,int>> availableMovesHistory;
+    std::string lastClickedPieceSquareName;
+    int lastRowClicked;
+    int lastColClicked;
     void setupSquaresColors();
     void setupSquaresParameters();
     void setupLabelParameters();
     void setupPiecesGUI();
-
+    int handlePieceClick(const std::string& fieldName);
 };
 #endif // MAINWINDOW_H

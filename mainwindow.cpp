@@ -5,6 +5,8 @@
 #include "moveindicator.h"
 #include <QLayout>
 #include <QDebug>
+#include <QList>
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,49 +27,200 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int convertRowCharIdxToRowIntIdx(char row) {
-    int result;
-    switch(row) {
-    case 'A': {
-        result = 1;
-        break;
+int convertColCharToIntIdx(char col) {
+    return col - 'A';
+}
+
+char convertColIntToCharIdx(int col) {
+    return col + 'A';
+}
+
+int convertRowCharToIntIdx(char row) {
+    return row - 1 - '0';
+}
+
+char convertRowIntToCharIdx(int row) {
+    return row + 1 + '0';
+}
+
+
+int MainWindow::handlePieceClick(const std::string& fieldName) {
+    QString startSquareName = QString::fromStdString(lastClickedPieceSquareName);
+    QString endSquareName = QString::fromStdString(fieldName);
+    //Download coordinates
+    int rowIdx = convertRowCharToIntIdx(fieldName[7]);
+    int colIdx = convertColCharToIntIdx(fieldName[6]);
+    std::tuple<int, int> move = {rowIdx, colIdx};
+
+    //Check if it right color to move
+    if (board.getBoard()[rowIdx][colIdx]->getColor() == "w") {
+        if (!board.getIsWhiteTurn()) {
+            if (availableMovesHistory.empty()) {
+                return 0;
+            }
+            //Beating for white
+            else {
+                if (std::find(availableMovesHistory.begin(), availableMovesHistory.end(), move) != availableMovesHistory.end()) {
+
+                    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
+                    for (auto indicator : indicators) {
+                        indicator->deleteLater();
+                    }
+
+                    auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
+                    auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
+                    auto lastPiece = lastPieceSquareClicked->findChild<piece*>();
+                    auto currentPiece = currentPieceSquareClicked->findChild<piece*>();
+                    if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
+
+                    lastPieceSquareClicked->layout()->removeWidget(lastPiece);
+                    if (currentPiece) {
+                        currentPieceSquareClicked->layout()->removeWidget(currentPiece);
+                        currentPiece->deleteLater();
+                    }
+                    currentPieceSquareClicked->layout()->addWidget(lastPiece);
+                    currentPieceSquareClicked->layout()->setAlignment(lastPiece, Qt::AlignCenter);
+                    board.makeLegalMove(lastRowClicked, lastColClicked, rowIdx, colIdx);
+                    lastClickedPieceSquareName.clear();
+                    lastRowClicked = -1;
+                    lastColClicked = -1;
+                    currentPieceSquareClicked->update();
+                    currentPieceSquareClicked->repaint();
+                    return 0;
+                }
+
+                else {
+                    return 0;
+                }
+            }
+
+        }
     }
-    case 'B': {
-        result = 2;
-        break;
-    }
-    case 'C': {
-        result = 3;
-        break;
-    }
-    case 'D': {
-        result = 4;
-        break;
-    }
-    case 'E': {
-        result = 5;
-        break;
-    }
-    case 'F': {
-        result = 6;
-        break;
-    }
-    case 'G': {
-        result = 7;
-        break;
-    }
-    case 'H': {
-        result = 8;
-        break;
+    else {
+        if (board.getIsWhiteTurn()) {
+            if (availableMovesHistory.empty()) {
+                return 0;
+            }
+            //Beating for black
+            else {
+                if (std::find(availableMovesHistory.begin(), availableMovesHistory.end(), move) != availableMovesHistory.end()) {
+
+                    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
+                    for (auto indicator : indicators) {
+                        indicator->deleteLater();
+                    }
+
+                    auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
+                    auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
+                    auto lastPiece = lastPieceSquareClicked->findChild<piece*>();
+                    auto currentPiece = currentPieceSquareClicked->findChild<piece*>();
+                    if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
+
+                    lastPieceSquareClicked->layout()->removeWidget(lastPiece);
+                    if (currentPiece) {
+                        currentPieceSquareClicked->layout()->removeWidget(currentPiece);
+                        currentPiece->deleteLater();
+                    }
+                    currentPieceSquareClicked->layout()->addWidget(lastPiece);
+                    currentPieceSquareClicked->layout()->setAlignment(lastPiece, Qt::AlignCenter);
+                    board.makeLegalMove(lastRowClicked, lastColClicked, rowIdx, colIdx);
+                    lastClickedPieceSquareName.clear();
+                    lastRowClicked = -1;
+                    lastColClicked = -1;
+                    return 0;
+                }
+
+                else {
+                    return 0;
+                }
+            }
+        }
     }
 
+
+    //Clear previous indicators from board
+    QList<moveIndicator*> previousIndicators = findChildren<moveIndicator*>();
+    for (auto indicator : previousIndicators) {
+        indicator->deleteLater();
     }
-    return result;
+    //Set variables to store last click history
+    lastClickedPieceSquareName = fieldName;
+    lastRowClicked = rowIdx;
+    lastColClicked = colIdx;
+
+    //Download available moves
+    std::vector<std::tuple<int,int>> availableMovesStorage = board.RaisePiece(rowIdx, colIdx);
+    availableMovesHistory = availableMovesStorage;
+
+    //Show new indicators
+    for (auto& [row, col] : availableMovesStorage) {
+
+        //Convert data types
+        char rowChar = convertRowIntToCharIdx(row);
+        char colChar = convertColIntToCharIdx(col);
+
+        //Create full objectName
+        std::string squareName = "frame_" + std::string(1, colChar) + std::string(1,rowChar);
+
+        //Access frame by objectName
+        auto targetSquare = ui->frame->findChild<QFrame*>(squareName);
+
+        //Check if square is empty
+        auto targetSquarePiece = targetSquare->findChild<piece*>();
+
+        if (targetSquarePiece) {
+            continue;
+        }
+
+        //Load indicator
+        moveIndicator *mIndicator = new moveIndicator(targetSquare);
+        targetSquare->layout()->addWidget(mIndicator);
+        targetSquare->layout()->setAlignment(mIndicator, Qt::AlignCenter);
+
+        //handling move on empty square
+        connect(mIndicator, &QPushButton::clicked, this, [=]() {
+
+            //Clear indicators from board
+
+            auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
+            auto targetSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(squareName));
+
+            if (!lastPieceSquareClicked || !targetSquare) return;
+
+            piece* lastPiece = lastPieceSquareClicked->findChild<piece*>();
+            if (!lastPiece) return;
+
+
+            lastPieceSquareClicked->layout()->removeWidget(lastPiece);
+
+
+            targetSquare->layout()->addWidget(lastPiece);
+            targetSquare->layout()->setAlignment(lastPiece, Qt::AlignCenter);
+
+            board.makeLegalMove(lastRowClicked, lastColClicked, row, col); // Użyj 'row' i 'col' z lambdy!
+
+
+            QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
+            for (auto indicator : indicators) {
+                indicator->deleteLater();
+            }
+
+
+            lastClickedPieceSquareName.clear();
+            lastRowClicked = -1;
+            lastColClicked = -1;
+
+        });
+
+    }
+    return 0;
 }
+
+
+
 
 void MainWindow::setupPiecesGUI() {
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
-    //std::array<char, 8> rowIdx = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
     for (auto frame : SquaresStorage) {
         auto fieldName = frame->objectName().toStdString();
@@ -75,29 +228,30 @@ void MainWindow::setupPiecesGUI() {
         if (fieldName[0] == 'f') {
             //Pawns
             if (fieldName[7] == '2') {
+
                 pawnWhite *wPawn = new pawnWhite(frame);
+
+                wPawn->setPosition(1, convertColCharToIntIdx(fieldName[6]));
                 frame->layout()->addWidget(wPawn);
                 frame->layout()->setAlignment(wPawn, Qt::AlignCenter);
-                //qDebug() << frame->objectName();
+
+                connect(wPawn, &QPushButton::clicked, this, [=]() {
+                    QFrame* parentFrame = qobject_cast<QFrame*>(wPawn->parentWidget());
+                    handlePieceClick(parentFrame->objectName().toStdString());
+                });
+
             }
             else if (fieldName[7] == '7') {
+
                 pawnBlack *bPawn = new pawnBlack(frame);
+
+                bPawn->setPosition(6, convertColCharToIntIdx(fieldName[6]));
                 frame->layout()->addWidget(bPawn);
                 frame->layout()->setAlignment(bPawn, Qt::AlignCenter);
 
                 connect(bPawn, &QPushButton::clicked, this, [=]() {
-                    char
-                    char rowIdx = fieldName[7];
-                    char colIdx = fieldName[6];
-                    int irowIdx = (rowIdx - '0') -1;
-                    int icolIdx = convertRowCharIdxToRowIntIdx(colIdx) -1;
-                    board.RaisePiece(irowIdx, icolIdx);
-
-                    //moveIndicator *mIndicator = new moveIndicator(ui->frame_A5);
-                    //ui->frame_A5->layout()->addWidget(mIndicator);
-                    //ui->frame_A5->layout()->setAlignment(mIndicator, Qt::AlignCenter);
-
-
+                    QFrame* parentFrame = qobject_cast<QFrame*>(bPawn->parentWidget());
+                    handlePieceClick(parentFrame->objectName().toStdString());
                 });
 
             }
@@ -109,11 +263,23 @@ void MainWindow::setupPiecesGUI() {
                     frame->layout()->addWidget(wRook);
                     frame->layout()->setAlignment(wRook, Qt::AlignCenter);
 
+                    connect(wRook, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(wRook->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
+
                 }
                 else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
                     knightWhite *wKnight = new knightWhite(frame);
                     frame->layout()->addWidget(wKnight);
                     frame->layout()->setAlignment(wKnight, Qt::AlignCenter);
+
+                    connect(wKnight, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(wKnight->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
 
                 }
                 else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
@@ -121,11 +287,22 @@ void MainWindow::setupPiecesGUI() {
                     frame->layout()->addWidget(wBishop);
                     frame->layout()->setAlignment(wBishop, Qt::AlignCenter);
 
+                    connect(wBishop, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(wBishop->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
+
                 }
                 else if (fieldName[6] == 'D') {
                     queenWhite *wQueen = new queenWhite(frame);
                     frame->layout()->addWidget(wQueen);
                     frame->layout()->setAlignment(wQueen, Qt::AlignCenter);
+
+                    connect(wQueen, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(wQueen->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
 
                 }
 
@@ -133,6 +310,11 @@ void MainWindow::setupPiecesGUI() {
                     kingWhite *wKing = new kingWhite(frame);
                     frame->layout()->addWidget(wKing);
                     frame->layout()->setAlignment(wKing, Qt::AlignCenter);
+
+                    connect(wKing, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(wKing->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
 
                 }
             }
@@ -144,11 +326,23 @@ void MainWindow::setupPiecesGUI() {
                     frame->layout()->addWidget(bRook);
                     frame->layout()->setAlignment(bRook, Qt::AlignCenter);
 
+                    connect(bRook, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(bRook->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
+
                 }
                 else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
                     knightBlack *bKnight = new knightBlack(frame);
                     frame->layout()->addWidget(bKnight);
                     frame->layout()->setAlignment(bKnight, Qt::AlignCenter);
+
+                    connect(bKnight, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(bKnight->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
 
                 }
                 else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
@@ -156,11 +350,23 @@ void MainWindow::setupPiecesGUI() {
                     frame->layout()->addWidget(bBishop);
                     frame->layout()->setAlignment(bBishop, Qt::AlignCenter);
 
+                    connect(bBishop, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(bBishop->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
+
                 }
                 else if (fieldName[6] == 'D') {
                     queenBlack *bQueen = new queenBlack(frame);
                     frame->layout()->addWidget(bQueen);
                     frame->layout()->setAlignment(bQueen, Qt::AlignCenter);
+
+                    connect(bQueen, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(bQueen->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
 
                 }
 
@@ -168,6 +374,12 @@ void MainWindow::setupPiecesGUI() {
                     kingBlack *bKing = new kingBlack(frame);
                     frame->layout()->addWidget(bKing);
                     frame->layout()->setAlignment(bKing, Qt::AlignCenter);
+
+                    connect(bKing, &QPushButton::clicked, this, [=]() {
+                        QFrame* parentFrame = qobject_cast<QFrame*>(bKing->parentWidget());
+                        handlePieceClick(parentFrame->objectName().toStdString());
+                    });
+
                 }
             }
 

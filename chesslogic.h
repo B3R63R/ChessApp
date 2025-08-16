@@ -16,16 +16,16 @@ class Board {
 public:
     std::array<int, 4> lastMove = {-1, -1, -1, -1};
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
+    bool isWhiteTurn;
 
     Board();
 
     void display();
     void setupPieces();
-    void setNewPosition(int currentRow, int currentCol, int newRow, int newCol);
     void makeLegalMove(int currentRow, int currentCol, int newRow, int newCol);
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
     void addPiece(int row, int col, std::string color, std::string name);
-
+    bool getIsWhiteTurn();
     const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
     std::tuple<int, int> getKingLocation(std::string color) const;
     std::array<int, 4> getLastMove();
@@ -58,7 +58,9 @@ public:
     int getColumn();
     int getRow();
     void setPosition(int Row, int Column);
-    bool isMoved();
+    bool getIsMoved();
+    void setIsMoved();
+
 };
 
 class Pawn : public Piece {

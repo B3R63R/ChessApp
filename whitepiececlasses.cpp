@@ -4,8 +4,6 @@
 pawnWhite::pawnWhite(QWidget *parent)
     : piece(parent)
 {
-
-    this->setFixedSize(60, 60);
     this->setStyleSheet("background-image: url(:/resource/img/wP.png) 0 0 0 0 stretch stretch; border: none;");
     //this->setGeometry(80,80);
     //QIcon icon(":/resource/img/wP.png");
@@ -16,42 +14,32 @@ pawnWhite::pawnWhite(QWidget *parent)
 }
 
 rookWhite::rookWhite(QWidget *parent)
-    : QPushButton(parent)
+    : piece(parent)
 {
-
-    this->setFixedSize(60, 60);
     this->setStyleSheet("background-image: url(:/resource/img/wR.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
 bishopWhite::bishopWhite(QWidget *parent)
-    : QPushButton(parent)
-{
-
-    this->setFixedSize(60, 60);
+    : piece(parent)
+{ 
     this->setStyleSheet("background-image: url(:/resource/img/wB.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
 knightWhite::knightWhite(QWidget *parent)
-    : QPushButton(parent)
-{
-
-    this->setFixedSize(60, 60);
+    : piece(parent)
+{   
     this->setStyleSheet("background-image: url(:/resource/img/wN.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
 queenWhite::queenWhite(QWidget *parent)
-    : QPushButton(parent)
-{
-
-    this->setFixedSize(60, 60);
+    : piece(parent)
+{  
     this->setStyleSheet("background-image: url(:/resource/img/wQ.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
 kingWhite::kingWhite(QWidget *parent)
-    : QPushButton(parent)
-{
-
-    this->setFixedSize(60, 60);
+    : piece(parent)
+{ 
     this->setStyleSheet("background-image: url(:/resource/img/wK.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
