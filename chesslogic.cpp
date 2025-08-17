@@ -556,6 +556,15 @@ std::array<int, 4> Board::getLastMove() {
     return lastMove;
 }
 
+std::tuple<bool, char> Board::getIsCastling() {
+    return isCastling;
+}
+
+void Board::setIsCastling(bool detector, char type) {
+    isCastling = {detector, type};
+}
+
+
 void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol) {
 
     auto& boardArr = getBoardModifiable();
@@ -569,6 +578,8 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
 
     bool isNewMoveInAvailableMoves = (std::find(availableMovesForPiece.begin(), availableMovesForPiece.end(), newMove) != availableMovesForPiece.end());
 
+    bool detectorForCatling = false;
+    char typeOfCastling = ' ';
 
     if (isNewMoveInAvailableMoves) {
 
@@ -583,15 +594,16 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
         }
 
         //Handle castling
-        if (movedPiece->getName() == "K" && abs(newCol-currentCol) > 1) {
+        if (movedPiece->getName() == "K" && abs(newCol-currentCol) >1) {
             int row = isWhiteTurn ? 0 : 7;
-
+            detectorForCatling = true;
             //Short castle
             if (newCol == 6) {
                 boardArr[row][5] = std::move(boardArr[row][7]);
                 auto& rook = boardArr[row][5];
                 rook->setPosition(row, 5);
                 rook->setIsMoved();
+                typeOfCastling = 's';
             }
             //Long castle
             else {
@@ -599,9 +611,11 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
                 auto& rook = boardArr[row][3];
                 rook->setPosition(row, 3);
                 rook->setIsMoved();
+                typeOfCastling = 'l';
             }
         }
         isWhiteTurn = !isWhiteTurn;
+        this->setIsCastling(detectorForCatling, typeOfCastling);
     }
 }
 
@@ -676,6 +690,7 @@ bool Board::examineCheckmate() {
     }
     return true;
 }
+
 
 /*
 int main() {
