@@ -563,12 +563,16 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
     if (!boardArr[currentRow][currentCol]) {
         return;
     }
+    auto& piece = boardArr[currentRow][currentCol];
     std::vector<std::tuple<int,int>> availableMovesForPiece = boardArr[currentRow][currentCol]->getAvailableMoves(*this);
     std::tuple<int, int> newMove = {newRow, newCol};
 
     bool isNewMoveInAvailableMoves = (std::find(availableMovesForPiece.begin(), availableMovesForPiece.end(), newMove) != availableMovesForPiece.end());
 
+
     if (isNewMoveInAvailableMoves) {
+
+
         this->setLastMove(currentRow, currentCol, newRow, newCol);
         boardArr[newRow][newCol] = std::move(boardArr[currentRow][currentCol]);
         auto& movedPiece = boardArr[newRow][newCol];
@@ -576,6 +580,26 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
         if (movedPiece) {
             movedPiece->setPosition(newRow, newCol);
             movedPiece->setIsMoved();
+        }
+
+        //Handle castling
+        if (movedPiece->getName() == "K" && abs(newCol-currentCol) > 1) {
+            int row = isWhiteTurn ? 0 : 7;
+
+            //Short castle
+            if (newCol == 6) {
+                boardArr[row][5] = std::move(boardArr[row][7]);
+                auto& rook = boardArr[row][5];
+                rook->setPosition(row, 5);
+                rook->setIsMoved();
+            }
+            //Long castle
+            else {
+                boardArr[row][3] = std::move(boardArr[row][0]);
+                auto& rook = boardArr[row][3];
+                rook->setPosition(row, 3);
+                rook->setIsMoved();
+            }
         }
         isWhiteTurn = !isWhiteTurn;
     }
@@ -622,15 +646,15 @@ bool Board::getIsWhiteTurn() {
     return isWhiteTurn;
 }
 bool Board::examineisKingChecked() {
-    std::string kingColor;
-    const auto& boardArr = this->getBoard();
-    if (this->getIsWhiteTurn()) {
-        kingColor = "w";
-    }
-    else {
-        kingColor = "b";
-    }
+    auto& boardArr = this->getBoard();
+
+    std::string kingColor = this->getIsWhiteTurn() ? "w" : "b";
+
     std::tuple<int, int> kingLocation = this->getKingLocation(kingColor);
+    //protection when is isnt on board;
+    if (std::get<0>(kingLocation) == -1) {
+        return false;
+    }
     //Check if king is exposed
     auto& king = boardArr[get<0>(kingLocation)][std::get<1>(kingLocation)];
     bool isKingInDanger = king->isAttacked(*this, std::get<0>(kingLocation), std::get<1>(kingLocation));
@@ -638,18 +662,12 @@ bool Board::examineisKingChecked() {
 }
 
 bool Board::examineCheckmate() {
-    std::string pieceColor;
-    if (this->getIsWhiteTurn()) {
-        pieceColor = "w";
-    }
-    else {
-        pieceColor = "b";
-    }
-    const auto& boardArr = this->getBoard();
+    std::string pieceColor = this->getIsWhiteTurn() ? "w" : "b";
+    auto& boardArr = this->getBoard();
 
-    for (const auto& row : boardArr) {
+    for (auto& row : boardArr) {
         for (const auto& col : row) {
-            if (col->getColor() == pieceColor) {
+            if (col && col->getColor() == pieceColor) {
                 if (!col->getAvailableMoves(*this).empty()) {
                     return false;
                 }
