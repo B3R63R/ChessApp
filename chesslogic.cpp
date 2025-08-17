@@ -638,7 +638,25 @@ bool Board::examineisKingChecked() {
 }
 
 bool Board::examineCheckmate() {
+    std::string pieceColor;
+    if (this->getIsWhiteTurn()) {
+        pieceColor = "w";
+    }
+    else {
+        pieceColor = "b";
+    }
+    const auto& boardArr = this->getBoard();
 
+    for (const auto& row : boardArr) {
+        for (const auto& col : row) {
+            if (col->getColor() == pieceColor) {
+                if (!col->getAvailableMoves(*this).empty()) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }
 
 /*
