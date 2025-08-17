@@ -36,5 +36,7 @@ private:
     void setupLabelParameters();
     void setupPiecesGUI();
     int handlePieceClick(const std::string& fieldName);
+    int handleBeatingMove(int row, int col, std::string fieldName);
+    void handleEmptySquareMove(int row, int col);
 };
 #endif // MAINWINDOW_H

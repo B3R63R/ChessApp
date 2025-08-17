@@ -31,6 +31,8 @@ public:
     std::array<int, 4> getLastMove();
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoardModifiable();
     std::vector<std::tuple<int,int>>RaisePiece(int currentRow, int currentCol);
+    bool examineisKingChecked();
+    bool examineCheckmate();
 
 
 
@@ -50,7 +52,7 @@ public:
     bool isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttacked(const Board& board, int row, int col);
-    bool isPinnedOrChecked( Board& board, int row, int col);
+    bool CheckisKingInDanger( Board& board, int row, int col);
     virtual std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
     std::string getSymbol();
     std::string getColor();
