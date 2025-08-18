@@ -9,21 +9,23 @@ CONFIG += c++20
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    blackpiececlasses.cpp \
     chesslogic.cpp \
+    gamedata.cpp \
+    gui_blackpiececlasses.cpp \
+    gui_moveindicator.cpp \
+    gui_piece.cpp \
+    gui_whitepiececlasses.cpp \
     main.cpp \
-    mainwindow.cpp \
-    moveindicator.cpp \
-    piece.cpp \
-    whitepiececlasses.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    blackpiececlasses.h \
     chesslogic.h \
-    mainwindow.h \
-    moveindicator.h \
-    piece.h \
-    whitepiececlasses.h
+    gamedata.h \
+    gui_blackpiececlasses.h \
+    gui_moveindicator.h \
+    gui_piece.h \
+    gui_whitepiececlasses.h \
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui

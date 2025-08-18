@@ -1,41 +1,41 @@
-#include "blackpiececlasses.h"
-#include "piece.h"
+#include "gui_blackpiececlasses.h"
+#include "gui_piece.h"
 
-pawnBlack::pawnBlack(QWidget *parent)
-    : piece(parent)
+PawnBlack::PawnBlack(QWidget *parent)
+    : Piece(parent)
 {
     this->setStyleSheet("background-image: url(:/resource/img/bP.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-rookBlack::rookBlack(QWidget *parent)
-    : piece(parent)
+RookBlack::RookBlack(QWidget *parent)
+    : Piece(parent)
 {
     this->setStyleSheet("background-image: url(:/resource/img/bR.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-bishopBlack::bishopBlack(QWidget *parent)
-    : piece(parent)
+BishopBlack::BishopBlack(QWidget *parent)
+    : Piece(parent)
 {
 
     this->setStyleSheet("background-image: url(:/resource/img/bB.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-knightBlack::knightBlack(QWidget *parent)
-    : piece(parent)
+KnightBlack::KnightBlack(QWidget *parent)
+    : Piece(parent)
 {
 
     this->setStyleSheet("background-image: url(:/resource/img/bN.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-queenBlack::queenBlack(QWidget *parent)
-    : piece(parent)
+QueenBlack::QueenBlack(QWidget *parent)
+    : Piece(parent)
 {
 
     this->setStyleSheet("background-image: url(:/resource/img/bQ.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-kingBlack::kingBlack(QWidget *parent)
-    : piece(parent)
+KingBlack::KingBlack(QWidget *parent)
+    : Piece(parent)
 {
     this->setStyleSheet("background-image: url(:/resource/img/bK.png) 0 0 0 0 stretch stretch; border: none;");
 }

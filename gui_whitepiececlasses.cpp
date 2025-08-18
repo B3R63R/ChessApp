@@ -1,8 +1,9 @@
-#include "whitepiececlasses.h"
-#include "piece.h"
+#include "gui_whitepiececlasses.h"
+#include "Piece.h"
 
-pawnWhite::pawnWhite(QWidget *parent)
-    : piece(parent)
+namespace GUI {
+GUI::PawnWhite::PawnWhite(QWidget *parent)
+    : Piece(parent)
 {
     this->setStyleSheet("background-image: url(:/resource/img/wP.png) 0 0 0 0 stretch stretch; border: none;");
     //this->setGeometry(80,80);
@@ -13,33 +14,34 @@ pawnWhite::pawnWhite(QWidget *parent)
 
 }
 
-rookWhite::rookWhite(QWidget *parent)
-    : piece(parent)
+GUI::RookWhite::RookWhite(QWidget *parent)
+    : Piece(parent)
 {
     this->setStyleSheet("background-image: url(:/resource/img/wR.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-bishopWhite::bishopWhite(QWidget *parent)
-    : piece(parent)
+GUI::BishopWhite::BishopWhite(QWidget *parent)
+    : Piece(parent)
 { 
     this->setStyleSheet("background-image: url(:/resource/img/wB.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-knightWhite::knightWhite(QWidget *parent)
-    : piece(parent)
+GUI::KnightWhite::KnightWhite(QWidget *parent)
+    : Piece(parent)
 {   
     this->setStyleSheet("background-image: url(:/resource/img/wN.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-queenWhite::queenWhite(QWidget *parent)
-    : piece(parent)
+GUI::QueenWhite::QueenWhite(QWidget *parent)
+    : Piece(parent)
 {  
     this->setStyleSheet("background-image: url(:/resource/img/wQ.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-kingWhite::kingWhite(QWidget *parent)
-    : piece(parent)
+GUI::KingWhite::KingWhite(QWidget *parent)
+    : Piece(parent)
 { 
     this->setStyleSheet("background-image: url(:/resource/img/wK.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
+}

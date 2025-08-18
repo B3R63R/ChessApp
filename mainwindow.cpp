@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "whitepiececlasses.h"
-#include "blackpiececlasses.h"
-#include "moveindicator.h"
+#include "gui_whitepiececlasses.h"
+#include "gui_blackpiececlasses.h"
+#include "gui_moveindicator.h"
 #include <QLayout>
 #include <QDebug>
 #include <QList>
 #include <algorithm>
+#include "gamedata.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,7 +45,7 @@ char convertRowIntToCharIdx(int row) {
 }
 
 void MainWindow::clearIndicators() {
-    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
+    QList<GUI::MoveIndicator*> indicators = findChildren<GUI::MoveIndicator*>();
     for (auto indicator : indicators) {
         indicator->deleteLater();
     }
@@ -64,7 +65,7 @@ void MainWindow::handleTrasferRookWhenCastling() {
 
         std::string rookSquareName = "frame_" + std::string(1, colRookChar) + std::string(1,rowRookChar);
         auto rookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(rookSquareName));
-        auto rook = rookSquare->findChild<piece*>();
+        auto rook = rookSquare->findChild<GUI::Piece*>();
         std::string newRookSquareName = "frame_" + std::string(1, newColRookChar) + std::string(1,rowRookChar);
         auto newRookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(newRookSquareName));
 
@@ -93,14 +94,14 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
         auto targetSquare = ui->frame->findChild<QFrame*>(squareName);
 
         //Check if square is empty
-        auto targetSquarePiece = targetSquare->findChild<piece*>();
+        auto targetSquarePiece = targetSquare->findChild<GUI::Piece*>();
 
         if (targetSquarePiece) {
             continue;
         }
 
         //Load indicator
-        moveIndicator *mIndicator = new moveIndicator(targetSquare);
+        GUI::MoveIndicator *mIndicator = new GUI::MoveIndicator(targetSquare);
         targetSquare->layout()->addWidget(mIndicator);
         targetSquare->layout()->setAlignment(mIndicator, Qt::AlignCenter);
 
@@ -114,7 +115,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 
             if (!lastPieceSquareClicked || !targetSquare) return;
 
-            piece* lastPiece = lastPieceSquareClicked->findChild<piece*>();
+            GUI::Piece* lastPiece = lastPieceSquareClicked->findChild<GUI::Piece*>();
             if (!lastPiece) return;
 
 
@@ -145,8 +146,8 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
 
     auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
     auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
-    auto lastPiece = lastPieceSquareClicked->findChild<piece*>();
-    auto currentPiece = currentPieceSquareClicked->findChild<piece*>();
+    auto lastPiece = lastPieceSquareClicked->findChild<GUI::Piece*>();
+    auto currentPiece = currentPieceSquareClicked->findChild<GUI::Piece*>();
     if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
     lastPieceSquareClicked->layout()->removeWidget(lastPiece);
     if (currentPiece) {
@@ -204,7 +205,9 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     return 0;
 }
 
-
+void MainWindow::handleCheck() {
+    //GameData = new GameData(this);
+}
 
 
 void MainWindow::setupPiecesGUI() {
@@ -217,9 +220,8 @@ void MainWindow::setupPiecesGUI() {
             //Pawns
             if (fieldName[7] == '2') {
 
-                pawnWhite *wPawn = new pawnWhite(frame);
+                GUI::PawnWhite *wPawn = new GUI::PawnWhite(frame);
 
-                wPawn->setPosition(1, convertColCharToIntIdx(fieldName[6]));
                 frame->layout()->addWidget(wPawn);
                 frame->layout()->setAlignment(wPawn, Qt::AlignCenter);
 
@@ -231,9 +233,8 @@ void MainWindow::setupPiecesGUI() {
             }
             else if (fieldName[7] == '7') {
 
-                pawnBlack *bPawn = new pawnBlack(frame);
+                GUI::PawnBlack *bPawn = new GUI::PawnBlack(frame);
 
-                bPawn->setPosition(6, convertColCharToIntIdx(fieldName[6]));
                 frame->layout()->addWidget(bPawn);
                 frame->layout()->setAlignment(bPawn, Qt::AlignCenter);
 
@@ -247,7 +248,7 @@ void MainWindow::setupPiecesGUI() {
             else if (fieldName[7] == '1') {
                 //Set white
                 if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
-                    rookWhite *wRook = new rookWhite(frame);
+                    GUI::RookWhite *wRook = new GUI::RookWhite(frame);
                     frame->layout()->addWidget(wRook);
                     frame->layout()->setAlignment(wRook, Qt::AlignCenter);
 
@@ -259,7 +260,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
-                    knightWhite *wKnight = new knightWhite(frame);
+                    GUI::KnightWhite *wKnight = new GUI::KnightWhite(frame);
                     frame->layout()->addWidget(wKnight);
                     frame->layout()->setAlignment(wKnight, Qt::AlignCenter);
 
@@ -271,7 +272,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
-                    bishopWhite *wBishop = new bishopWhite(frame);
+                    GUI::BishopWhite*wBishop = new GUI::BishopWhite(frame);
                     frame->layout()->addWidget(wBishop);
                     frame->layout()->setAlignment(wBishop, Qt::AlignCenter);
 
@@ -283,7 +284,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'D') {
-                    queenWhite *wQueen = new queenWhite(frame);
+                    GUI::QueenWhite *wQueen = new GUI::QueenWhite(frame);
                     frame->layout()->addWidget(wQueen);
                     frame->layout()->setAlignment(wQueen, Qt::AlignCenter);
 
@@ -295,7 +296,7 @@ void MainWindow::setupPiecesGUI() {
                 }
 
                 else if (fieldName[6] == 'E') {
-                    kingWhite *wKing = new kingWhite(frame);
+                    GUI::KingWhite *wKing = new GUI::KingWhite(frame);
                     frame->layout()->addWidget(wKing);
                     frame->layout()->setAlignment(wKing, Qt::AlignCenter);
 
@@ -310,7 +311,7 @@ void MainWindow::setupPiecesGUI() {
             else if (fieldName[7] == '8') {
 
                 if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
-                    rookBlack *bRook = new rookBlack(frame);
+                    GUI::RookBlack *bRook = new GUI::RookBlack(frame);
                     frame->layout()->addWidget(bRook);
                     frame->layout()->setAlignment(bRook, Qt::AlignCenter);
 
@@ -322,7 +323,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
-                    knightBlack *bKnight = new knightBlack(frame);
+                    GUI::KnightBlack *bKnight = new GUI::KnightBlack(frame);
                     frame->layout()->addWidget(bKnight);
                     frame->layout()->setAlignment(bKnight, Qt::AlignCenter);
 
@@ -334,7 +335,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
-                    bishopBlack *bBishop = new bishopBlack(frame);
+                    GUI::BishopBlack *bBishop = new GUI::BishopBlack(frame);
                     frame->layout()->addWidget(bBishop);
                     frame->layout()->setAlignment(bBishop, Qt::AlignCenter);
 
@@ -346,7 +347,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
                 else if (fieldName[6] == 'D') {
-                    queenBlack *bQueen = new queenBlack(frame);
+                    GUI::QueenBlack *bQueen = new GUI::QueenBlack(frame);
                     frame->layout()->addWidget(bQueen);
                     frame->layout()->setAlignment(bQueen, Qt::AlignCenter);
 
@@ -359,7 +360,7 @@ void MainWindow::setupPiecesGUI() {
                 }
 
                 else if (fieldName[6] == 'E') {
-                    kingBlack *bKing = new kingBlack(frame);
+                    GUI::KingBlack *bKing = new GUI::KingBlack(frame);
                     frame->layout()->addWidget(bKing);
                     frame->layout()->setAlignment(bKing, Qt::AlignCenter);
 
