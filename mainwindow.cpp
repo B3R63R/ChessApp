@@ -301,11 +301,21 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     return 0;
 }
 
+void MainWindow::setPieceGUI(QFrame *frame, GUI::Piece *piece) {
+    frame->layout()->addWidget(piece);
+    frame->layout()->setAlignment(piece, Qt::AlignCenter);
+
+    connect(piece, &QPushButton::clicked, this, [=, this]() {
+        QFrame* parentFrame = qobject_cast<QFrame*>(piece->parentWidget());
+        handlePieceClick(parentFrame->objectName().toStdString());
+    });
+}
+
 
 void MainWindow::setupPiecesGUI() {
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
 
-    for (auto frame : SquaresStorage) {
+    for (auto *frame : SquaresStorage) {
         auto fieldName = frame->objectName().toStdString();
         char row = fieldName[7];
         char col = fieldName[6];
@@ -314,14 +324,7 @@ void MainWindow::setupPiecesGUI() {
             if (row == '2') {
 
                 GUI::PawnWhite *wPawn = new GUI::PawnWhite(frame);
-
-                frame->layout()->addWidget(wPawn);
-                frame->layout()->setAlignment(wPawn, Qt::AlignCenter);
-
-                connect(wPawn, &QPushButton::clicked, this, [=, this]() {
-                    QFrame* parentFrame = qobject_cast<QFrame*>(wPawn->parentWidget());
-                    handlePieceClick(parentFrame->objectName().toStdString());
-                });
+                setPieceGUI(frame, wPawn);
 
             }
             else if (row == '7') {

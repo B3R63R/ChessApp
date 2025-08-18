@@ -6,6 +6,7 @@
 #include <QResizeEvent>
 #include "gui_gamedata.h"
 #include <QFrame>
+#include "gui_piece.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -48,5 +49,6 @@ private:
     void updateSquareColor(QFrame* square, int row, int col);
     void reverseBoard();
     void swapGridWidgets(int row1, int col1, int row2, int col2);
+    void setPieceGUI(QFrame *frame, GUI::Piece *piece);
 };
 #endif // MAINWINDOW_H
