@@ -11,11 +11,14 @@ class GameData : public QObject
 public:
     explicit GameData(QObject *parent = nullptr);
     void setMoveMade();
+    std::string lastKingSquareName;
 
 signals:
     void moveMadeChanged();
 
 private:
+
 };
+
 }
 #endif // GUI_GAMEDATA_H

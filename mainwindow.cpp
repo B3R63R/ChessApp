@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QList>
 #include <algorithm>
-#include "gui_gamedata.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,9 +46,22 @@ char convertRowIntToCharIdx(int row) {
     return row + 1 + '0';
 }
 
+void MainWindow::updateSquareColor(QFrame* square, int row, int col)
+{
+    const QString whiteSquareColor = "background-color: lightgreen;";
+    const QString blackSquareColor = "background-color: brown;";
+    //ASCII 'A' numerical value is 65.
+    if ((row % 2) == (col % 2)) {
+        square->setStyleSheet(blackSquareColor);
+    } else {
+        square->setStyleSheet(whiteSquareColor);
+    }
+}
+
 void MainWindow::handleCheck() {
-    _gameData = new GUI::GameData(this);
-    connect(_gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
+    gameData = new GUI::GameData();
+    connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
+
         if(board.examineisKingChecked()) {
             qDebug() << board.getIsWhiteTurn();
             std::string kingColor = (board.getIsWhiteTurn()) ? "w" : "b";
@@ -60,6 +73,20 @@ void MainWindow::handleCheck() {
             std::string kingSquareName = "frame_" + std::string(1, kingColChar) + std::string(1,kingRowChar);
             auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
             kingSquare->setStyleSheet("background-color: blue;");
+            gameData->lastKingSquareName =kingSquareName;
+        }
+        else {
+            if (!(gameData->lastKingSquareName.empty())) {
+                auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(gameData->lastKingSquareName));
+                kingSquare->setStyleSheet("background-color: blue;");
+                int row = int(gameData->lastKingSquareName[7]);
+                int col = int(gameData->lastKingSquareName[6]);
+
+                updateSquareColor(kingSquare, row, col);
+                gameData->lastKingSquareName.clear();
+
+            }
+
         }
 
     });
@@ -147,7 +174,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             targetSquare->layout()->addWidget(lastPiece);
             targetSquare->layout()->setAlignment(lastPiece, Qt::AlignCenter);
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
-             _gameData->setMoveMade();
+            gameData->setMoveMade();
             handleTrasferRookWhenCastling();
 
             clearIndicators();
@@ -179,7 +206,7 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     currentPieceSquareClicked->layout()->addWidget(lastPiece);
     currentPieceSquareClicked->layout()->setAlignment(lastPiece, Qt::AlignCenter);
     board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
-     _gameData->setMoveMade();
+     gameData->setMoveMade();
     lastClickedPieceSquareName.clear();
     lastRowClicked = -1;
     lastColClicked = -1;
@@ -431,104 +458,10 @@ void MainWindow::setupSquaresColors() {
         frame->setStyleSheet("background-color: lightgreen;");
         QString frameName= frame->objectName();
 
-        const QString whiteSquareColor = "background-color: lightgreen;";
-        const QString blackSquareColor = "background-color: brown;";
-        //ASCII 'A' numerical value is 65.
         int col = int(frameName.toStdString()[6]);
         int row = int(frameName.toStdString()[7]);
-        //row: 1, 3, 5, 7,
-        if (!(row % 2 == 0)) {
-            //col: A, C, E, G
-            if (!(col % 2 == 0)) {
-                frame->setStyleSheet(blackSquareColor);
-            }
-            //col: B, D, F, H
-            else {
-                frame->setStyleSheet(whiteSquareColor);
-            }
-        }
-        //row: 2, 4, 6, 8
-        else {
-            //col: A, C, E, G
-            if (!(col % 2 == 0)) {
-                frame->setStyleSheet(whiteSquareColor);
-            }
-            //col: B, D, F, H
-            else {
-                frame->setStyleSheet(blackSquareColor);
-            }
-        }
-        /*
-        switch(frameName.toStdString()[6]) {
-        case 'A':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_1);
-            }
-            else {
-                frame->setStyleSheet(squareType_2);
-            }
-            break;
 
-        case 'B':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_2);
-            }
-            else {
-                frame->setStyleSheet(squareType_1);
-            }
-            break;
-        case 'C':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_1);
-            }
-            else {
-                frame->setStyleSheet(squareType_2);
-            }
-            break;
-        case 'D':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_2);
-            }
-            else {
-                frame->setStyleSheet(squareType_1);
-            }
-            break;
-        case 'E':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_1);
-            }
-            else {
-                frame->setStyleSheet(squareType_2);
-            }
-            break;
-        case 'F':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_2);
-            }
-            else {
-                frame->setStyleSheet(squareType_1);
-            }
-            break;
-        case 'G':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_1);
-            }
-            else {
-                frame->setStyleSheet(squareType_2);
-            }
-            break;
-
-
-        case 'H':
-            if (int(frameName.toStdString()[7]) % 2 == 0) {
-                frame->setStyleSheet(squareType_2);
-            }
-            else {
-                frame->setStyleSheet(squareType_1);
-            }
-            break;
-        }
-        */
+        updateSquareColor(frame, row, col);
     }
 }
 
