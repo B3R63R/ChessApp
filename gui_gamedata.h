@@ -1,5 +1,5 @@
-#ifndef GAMEDATA_H
-#define GAMEDATA_H
+#ifndef GUI_GAMEDATA_H
+#define GUI_GAMEDATA_H
 
 #include <QObject>
 namespace GUI {
@@ -19,4 +19,4 @@ private:
 
 };
 }
-#endif // GAMEDATA_H
+#endif // GUI_GAMEDATA_H

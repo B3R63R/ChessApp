@@ -1,7 +1,7 @@
-#include "moveindicator.h"
-#include "moveindicator.h"
+#include "gui_moveindicator.h"
+#include "gui_moveindicator.h"
 
-moveIndicator::moveIndicator(QWidget *parent)
+GUI::MoveIndicator::MoveIndicator(QWidget *parent)
     : QPushButton(parent)
 {
     this->setFixedSize(30, 30);

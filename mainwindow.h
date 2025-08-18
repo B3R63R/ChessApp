@@ -26,7 +26,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QPushButton *button=NULL;
-    Board board;
+    LOGIC::Board board;
     std::vector<std::tuple<int,int>> availableMovesHistory;
     std::string lastClickedPieceSquareName;
     int lastRowClicked;
@@ -40,5 +40,6 @@ private:
     void handleEmptySquareMove(int row, int col);
     void handleTrasferRookWhenCastling();
     void clearIndicators();
+    void handleCheck();
 };
 #endif // MAINWINDOW_H

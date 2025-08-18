@@ -1,4 +1,4 @@
-#include "gamedata.h"
+#include "gui_gamedata.h"
 
 GUI::GameData::GameData(QObject *parent)
     : QObject{parent}

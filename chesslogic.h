@@ -10,6 +10,7 @@
 #include <vector>
 #include <tuple>
 
+namespace LOGIC {
 class Piece;
 
 class Board {
@@ -108,3 +109,4 @@ public:
     bool isLongCastleAvailable(const Board& board);
     std::vector<std::tuple<int, int>> getAvailableMoves(Board& board) override;
 };
+}

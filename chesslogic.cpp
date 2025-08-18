@@ -8,37 +8,37 @@
 #include <algorithm>
 //#include <QDebug>
 
-Piece::Piece(const std::string& color, int row, int column, const std::string& name)
+LOGIC::Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
 
-std::string Piece::getSymbol() {
+std::string LOGIC::Piece::getSymbol() {
     return color+name;
 }
-std::string Piece::getColor() {
+std::string LOGIC::Piece::getColor() {
     return color;
 }
-std::string Piece::getName() {
+std::string LOGIC::Piece::getName() {
     return name;
 }
-int Piece::getColumn() {
+int LOGIC::Piece::getColumn() {
     return column;
 }
-int Piece::getRow() {
+int LOGIC::Piece::getRow() {
     return row;
 }
-void Piece::setPosition(int Row, int Column) {
+void LOGIC::Piece::setPosition(int Row, int Column) {
     row = Row;
     column = Column;
 
 }
-bool Piece::getIsMoved() {
+bool LOGIC::Piece::getIsMoved() {
     return hasMoved;
 }
-void Piece::setIsMoved() {
+void LOGIC::Piece::setIsMoved() {
     hasMoved = true;
 }
 
-std::vector<std::tuple<int, int>> Piece::getPotentialMovesHelper(const Board& board, std::vector<std::tuple<int, int>>& directions) {
+std::vector<std::tuple<int, int>> LOGIC::Piece::getPotentialMovesHelper(const Board& board, std::vector<std::tuple<int, int>>& directions) {
     std::vector<std::tuple<int, int>> potentialMoves;
     const auto& boardArray = board.getBoard();
     for (const auto& [rowOffset, colOffset] : directions) {
@@ -68,7 +68,7 @@ std::vector<std::tuple<int, int>> Piece::getPotentialMovesHelper(const Board& bo
     }
     return potentialMoves;
 }
-bool Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
     const auto& boardArray = board.getBoard();
     //iterate directions
     for (const auto& [rowOffset, colOffset] : directions) {
@@ -104,7 +104,7 @@ bool Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std:
     }
     return false;
 }
-bool Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+bool LOGIC::Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
     const auto& boardArray = board.getBoard();
     int direction;
     std::string opponentColor;
@@ -146,7 +146,7 @@ bool Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::v
     }
     return false;
 }
-bool Piece::isAttacked(const Board& board, int row, int col) {
+bool LOGIC::Piece::isAttacked(const Board& board, int row, int col) {
     std::vector<std::tuple<int, int>> pawnDirections = {{1, 1}, {1, -1}};
     std::vector<std::tuple<int, int>> knightDirections = {{1, 2}, {1, -2}, {2, 1}, {2, -1},{-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
     std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
@@ -180,7 +180,7 @@ bool Piece::isAttacked(const Board& board, int row, int col) {
         return false;
     }
 }
-bool Piece::CheckisKingInDanger(Board& board, int row, int col) {
+bool LOGIC::Piece::CheckisKingInDanger(Board& board, int row, int col) {
 
     auto& boardArray = board.getBoardModifiable();
     int currentRow = this->getRow();
@@ -208,7 +208,7 @@ bool Piece::CheckisKingInDanger(Board& board, int row, int col) {
     return isKingInDanger;
 }
 
-std::vector<std::tuple<int, int>> Piece::getAvailableMoves(Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Piece::getAvailableMoves(Board& board) {
     std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
     std::vector<std::tuple<int, int>> availableMoves;
 
@@ -222,9 +222,9 @@ std::vector<std::tuple<int, int>> Piece::getAvailableMoves(Board& board) {
     return availableMoves;
 }
 
-Pawn::Pawn(const std::string& color, int row, int column):
+LOGIC::Pawn::Pawn(const std::string& color, int row, int column):
     Piece(color, row, column, "P") {}
-std::vector<std::tuple<int, int>> Pawn::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
     const auto& boardArray = board.getBoard();
     std::vector<std::tuple<int, int>> pawnDirections = {{1, 0 }, {2, 0}, {1, 1}, {1, -1}};
@@ -279,10 +279,10 @@ std::vector<std::tuple<int, int>> Pawn::getPotentialMoves(const Board& board) {
 
 
 
-Knight::Knight(const std::string& color, int row, int column):
+LOGIC::Knight::Knight(const std::string& color, int row, int column):
     Piece(color, row, column, "N") {}
 
-std::vector<std::tuple<int, int>> Knight::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Knight::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
     const auto& boardArray = board.getBoard();
     std::vector<std::tuple<int, int>> knightDirections = {{1, 2}, {1, -2}, {2, 1}, {2, -1},
@@ -307,33 +307,33 @@ std::vector<std::tuple<int, int>> Knight::getPotentialMoves(const Board& board) 
 
 
 
-Rook::Rook(const std::string& color, int row, int column):
+LOGIC::Rook::Rook(const std::string& color, int row, int column):
     Piece(color, row, column, "R") {}
 
-std::vector<std::tuple<int, int>> Rook::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Rook::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
-    return Piece::getPotentialMovesHelper(board, rookDirections);
+    return LOGIC::Piece::getPotentialMovesHelper(board, rookDirections);
 }
 
-Bishop::Bishop(const std::string& color, int row, int column):
+LOGIC::Bishop::Bishop(const std::string& color, int row, int column):
     Piece(color, row, column, "B") {}
 
-std::vector<std::tuple<int, int>> Bishop::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Bishop::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
-    return Piece::getPotentialMovesHelper(board, bishopDirections);
+    return LOGIC::Piece::getPotentialMovesHelper(board, bishopDirections);
 }
-Queen::Queen(const std::string& color, int row, int column):
+LOGIC::Queen::Queen(const std::string& color, int row, int column):
     Piece(color, row, column, "Q") {}
 
-std::vector<std::tuple<int, int>> Queen::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::Queen::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> QueenDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
-    return Piece::getPotentialMovesHelper(board, QueenDirections);
+    return LOGIC::Piece::getPotentialMovesHelper(board, QueenDirections);
 }
 
-King::King(const std::string& color, int row, int column):
+LOGIC::King::King(const std::string& color, int row, int column):
     Piece(color, row, column, "K") {}
 
-std::vector<std::tuple<int, int>> King::getPotentialMoves(const Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::King::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
     const auto& boardArray = board.getBoard();
     std::vector<std::tuple<int, int>> kingDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
@@ -355,7 +355,7 @@ std::vector<std::tuple<int, int>> King::getPotentialMoves(const Board& board) {
     return potentialMoves;
 }
 
-bool King::isShortCastleAvailable(const Board& board) {
+bool LOGIC::King::isShortCastleAvailable(const Board& board) {
     const auto& boardArray = board.getBoard();
     int kingRow = this->getRow();
     int kingCol = this->getColumn();
@@ -399,7 +399,7 @@ bool King::isShortCastleAvailable(const Board& board) {
 
 }
 
-bool King::isLongCastleAvailable(const Board& board) {
+bool LOGIC::King::isLongCastleAvailable(const Board& board) {
     const auto& boardArray = board.getBoard();
     int kingRow = this->getRow();
     int kingCol = this->getColumn();
@@ -442,7 +442,7 @@ bool King::isLongCastleAvailable(const Board& board) {
     return true;
 
 }
-std::vector<std::tuple<int, int>> King::getAvailableMoves(Board& board) {
+std::vector<std::tuple<int, int>> LOGIC::King::getAvailableMoves(Board& board) {
     std::vector<std::tuple<int, int>> potentialMovesStorage = this->getPotentialMoves(board);
     bool isShortCastleAvailableResult = this->isShortCastleAvailable(board);
     bool isLongCastleAvailableResult = this->isLongCastleAvailable(board);
@@ -474,7 +474,7 @@ std::vector<std::tuple<int, int>> King::getAvailableMoves(Board& board) {
     return availableMoves;
 }
 
-Board::Board() {
+LOGIC::Board::Board() {
     isWhiteTurn = true;
     for (int row=0; row<8; row++) {
         for (int col = 0; col <8; col++) {
@@ -482,11 +482,11 @@ Board::Board() {
         }
     }
 }
-const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoard() const {
+const std::array<std::array<std::unique_ptr<LOGIC::Piece>, 8>, 8>& LOGIC::Board::getBoard() const {
     return board;
 }
 
-void Board::display() {
+void LOGIC::Board::display() {
     for (int row = 7; row >= 0; row--) {
         for (int col = 0; col <8; col++) {
             if (board[row][col]) {
@@ -502,7 +502,7 @@ void Board::display() {
     std::cout << std::endl;
 }
 
-void Board::setupPieces() {
+void LOGIC::Board::setupPieces() {
 
     // Pawns
     for (int field = 0; field < 8; field++) {
@@ -526,7 +526,7 @@ void Board::setupPieces() {
 
 }
 
-std::tuple<int,int> Board::getKingLocation(std::string color) const {
+std::tuple<int,int> LOGIC::Board::getKingLocation(std::string color) const {
     int kingRow = -1;
     int kingCol = -1;
     size_t rowIdx = 0;
@@ -545,27 +545,27 @@ std::tuple<int,int> Board::getKingLocation(std::string color) const {
     }
     return {-1, -1};
 }
-void Board::setLastMove(int currentRow, int currentCol, int newRow, int newCol) {
+void LOGIC::Board::setLastMove(int currentRow, int currentCol, int newRow, int newCol) {
     lastMove[0] = currentRow;
     lastMove[1] = currentCol;
     lastMove[2] = newRow;
     lastMove[3] = newCol;
 }
 
-std::array<int, 4> Board::getLastMove() {
+std::array<int, 4> LOGIC::Board::getLastMove() {
     return lastMove;
 }
 
-std::tuple<bool, char, int> Board::getIsCastling() {
+std::tuple<bool, char, int> LOGIC::Board::getIsCastling() {
     return isCastling;
 }
 
-void Board::setIsCastling(bool detector, char type, int row) {
+void LOGIC::Board::setIsCastling(bool detector, char type, int row) {
     isCastling = {detector, type, row};
 }
 
 
-void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol) {
+void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol) {
 
     auto& boardArr = getBoardModifiable();
 
@@ -619,7 +619,7 @@ void Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol
     }
 }
 
-void Board::addPiece(int row, int col, std::string color, std::string name) {
+void LOGIC::Board::addPiece(int row, int col, std::string color, std::string name) {
     if (name == "R") {
         // Wieża (Rook)
         board[row][col] = std::make_unique<Rook>(color, row, col);
@@ -647,19 +647,19 @@ void Board::addPiece(int row, int col, std::string color, std::string name) {
 
 }
 
-std::vector<std::tuple<int,int>> Board::RaisePiece(int currentRow, int currentCol) {
+std::vector<std::tuple<int,int>> LOGIC::Board::RaisePiece(int currentRow, int currentCol) {
     auto const& piece = this->getBoard()[currentRow][currentCol];
     std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
     return availableMovesForPiece;
 }
-std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& Board::getBoardModifiable() {
+std::array<std::array<std::unique_ptr<LOGIC::Piece>, 8>, 8>& LOGIC::Board::getBoardModifiable() {
     return board;
 }
 
-bool Board::getIsWhiteTurn() {
+bool LOGIC::Board::getIsWhiteTurn() {
     return isWhiteTurn;
 }
-bool Board::examineisKingChecked() {
+bool LOGIC::Board::examineisKingChecked() {
     auto& boardArr = this->getBoard();
 
     std::string kingColor = this->getIsWhiteTurn() ? "w" : "b";
@@ -675,7 +675,7 @@ bool Board::examineisKingChecked() {
     return isKingInDanger;
 }
 
-bool Board::examineCheckmate() {
+bool LOGIC::Board::examineCheckmate() {
     std::string pieceColor = this->getIsWhiteTurn() ? "w" : "b";
     auto& boardArr = this->getBoard();
 

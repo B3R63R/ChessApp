@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QList>
 #include <algorithm>
-#include "gamedata.h"
+#include "gui_gamedata.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,6 +43,11 @@ int convertRowCharToIntIdx(char row) {
 char convertRowIntToCharIdx(int row) {
     return row + 1 + '0';
 }
+
+void MainWindow::handleCheck() {
+    //GameData = new GameData(this);
+}
+
 
 void MainWindow::clearIndicators() {
     QList<GUI::MoveIndicator*> indicators = findChildren<GUI::MoveIndicator*>();
@@ -203,10 +208,6 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
 
     handleEmptySquareMove(rowIdx, colIdx);
     return 0;
-}
-
-void MainWindow::handleCheck() {
-    //GameData = new GameData(this);
 }
 
 

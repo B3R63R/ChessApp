@@ -1,7 +1,6 @@
 #include "gui_whitepiececlasses.h"
-#include "Piece.h"
+#include "gui_piece.h"
 
-namespace GUI {
 GUI::PawnWhite::PawnWhite(QWidget *parent)
     : Piece(parent)
 {
@@ -44,4 +43,3 @@ GUI::KingWhite::KingWhite(QWidget *parent)
     this->setStyleSheet("background-image: url(:/resource/img/wK.png) 0 0 0 0 stretch stretch; border: none;");
 }
 
-}
