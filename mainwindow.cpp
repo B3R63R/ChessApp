@@ -46,6 +46,15 @@ char convertRowIntToCharIdx(int row) {
     return row + 1 + '0';
 }
 
+void disconnectAllChildren(QObject *parent) {
+
+    QList<QObject *> children = parent->findChildren<QObject *>();
+
+    for (QObject *child : children) {
+        child->disconnect();
+    }
+}
+
 void MainWindow::updateSquareColor(QFrame* square, int row, int col)
 {
     const QString whiteSquareColor = "background-color: lightgreen;";
@@ -74,6 +83,9 @@ void MainWindow::handleCheck() {
             auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
             kingSquare->setStyleSheet("background-color: blue;");
             gameData->lastKingSquareName =kingSquareName;
+            if (board.examineCheckmate()) {
+                disconnectAllChildren(ui->frame);
+            }
         }
         else {
             if (!(gameData->lastKingSquareName.empty())) {
