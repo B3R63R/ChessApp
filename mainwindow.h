@@ -47,5 +47,6 @@ private:
     void handleCheck();
     void updateSquareColor(QFrame* square, int row, int col);
     void reverseBoard();
+    void swapGridWidgets(int row1, int col1, int row2, int col2);
 };
 #endif // MAINWINDOW_H

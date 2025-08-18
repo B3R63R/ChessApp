@@ -58,37 +58,35 @@ void disconnectAllChildren(QObject *parent) {
     }
 }
 
+void MainWindow::swapGridWidgets(int row1, int col1, int row2, int col2) {
+
+    auto item1 = ui->gridLayout->takeAt(ui->gridLayout->indexOf(ui->gridLayout->itemAtPosition(row1, col1)));
+    auto item2 = ui->gridLayout->takeAt(ui->gridLayout->indexOf(ui->gridLayout->itemAtPosition(row2, col2)));
+
+    ui->gridLayout->addItem(item1, row2, col2);
+    ui->gridLayout->addItem(item2, row1, col1);
+}
+
 void MainWindow::reverseBoard() {
 
-    for (int row = 0; row < 4; row++) {
-        for (int col = 1; col < 9; col++) {
+    int size = 8;
+    int halfSize = size / 2;
 
-        auto *square1 = ui->gridLayout->itemAtPosition(row, col)->widget();
-        ui->gridLayout->removeWidget(square1);
-
-        auto *square2 = ui->gridLayout->itemAtPosition(7-row, col)->widget();
-        ui->gridLayout->layout()->removeWidget(square2);
-        ui->gridLayout->addWidget(square1, 7-row, col);
-        ui->gridLayout->addWidget(square2, row, col);
+    for (int row = 0; row < halfSize; row++) {
+        for (int col = 1; col <= size; col++) {
+            //skip first col for labels - (col = 1)
+            //skip last row for labels - (size -1)
+            swapGridWidgets(row, col, size -1 - row, col);
         }
     }
     //Change position labels
-    for (int i = 0; i < 4; i++) {
-        //Rows
-        auto *labelRow1 = ui->gridLayout->itemAtPosition(i, 0)->widget();
-        auto *labelRow2 = ui->gridLayout->itemAtPosition(7-i, 0)->widget();
-        ui->gridLayout->removeWidget(labelRow1);
-        ui->gridLayout->removeWidget(labelRow2);
-        ui->gridLayout->addWidget(labelRow1, 7-i, 0);
-        ui->gridLayout->addWidget(labelRow2, i, 0);
-        //Columns
-        auto *labelCol1 = ui->gridLayout->itemAtPosition(8, i+1)->widget();
-        auto *labelCol2 = ui->gridLayout->itemAtPosition(8, 8-i)->widget();
-        ui->gridLayout->removeWidget(labelCol1);
-        ui->gridLayout->removeWidget(labelCol2);
-        ui->gridLayout->addWidget(labelCol1, 8, 8-i);
-        ui->gridLayout->addWidget(labelCol2, 8, i+1);
+    for (int col = 0; col < halfSize; col++) {
 
+        //Rows
+        swapGridWidgets(col, 0, size - 1 - col, 0);
+
+        //Columns
+        swapGridWidgets(size, col+1, 8, size - col);
     }
 }
 
