@@ -261,10 +261,11 @@ void MainWindow::setupPiecesGUI() {
 
     for (auto frame : SquaresStorage) {
         auto fieldName = frame->objectName().toStdString();
-
+        char row = fieldName[7];
+        char col = fieldName[6];
         if (fieldName[0] == 'f') {
             //Pawns
-            if (fieldName[7] == '2') {
+            if (row == '2') {
 
                 GUI::PawnWhite *wPawn = new GUI::PawnWhite(frame);
 
@@ -277,7 +278,7 @@ void MainWindow::setupPiecesGUI() {
                 });
 
             }
-            else if (fieldName[7] == '7') {
+            else if (row == '7') {
 
                 GUI::PawnBlack *bPawn = new GUI::PawnBlack(frame);
 
@@ -291,9 +292,9 @@ void MainWindow::setupPiecesGUI() {
 
             }
             //Other pieces
-            else if (fieldName[7] == '1') {
+            else if (row == '1') {
                 //Set white
-                if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
+                if (col == 'A' || col == 'H' ) {
                     GUI::RookWhite *wRook = new GUI::RookWhite(frame);
                     frame->layout()->addWidget(wRook);
                     frame->layout()->setAlignment(wRook, Qt::AlignCenter);
@@ -305,7 +306,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
+                else if (col == 'B' || col == 'G') {
                     GUI::KnightWhite *wKnight = new GUI::KnightWhite(frame);
                     frame->layout()->addWidget(wKnight);
                     frame->layout()->setAlignment(wKnight, Qt::AlignCenter);
@@ -317,7 +318,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
+                else if (col == 'C' || col == 'F'){
                     GUI::BishopWhite*wBishop = new GUI::BishopWhite(frame);
                     frame->layout()->addWidget(wBishop);
                     frame->layout()->setAlignment(wBishop, Qt::AlignCenter);
@@ -329,7 +330,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'D') {
+                else if (col == 'D') {
                     GUI::QueenWhite *wQueen = new GUI::QueenWhite(frame);
                     frame->layout()->addWidget(wQueen);
                     frame->layout()->setAlignment(wQueen, Qt::AlignCenter);
@@ -341,7 +342,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
 
-                else if (fieldName[6] == 'E') {
+                else if (col == 'E') {
                     GUI::KingWhite *wKing = new GUI::KingWhite(frame);
                     frame->layout()->addWidget(wKing);
                     frame->layout()->setAlignment(wKing, Qt::AlignCenter);
@@ -354,9 +355,9 @@ void MainWindow::setupPiecesGUI() {
                 }
             }
             //Set black
-            else if (fieldName[7] == '8') {
+            else if (row == '8') {
 
-                if (fieldName[6] == 'A' || fieldName[6] == 'H' ) {
+                if (col == 'A' || col == 'H' ) {
                     GUI::RookBlack *bRook = new GUI::RookBlack(frame);
                     frame->layout()->addWidget(bRook);
                     frame->layout()->setAlignment(bRook, Qt::AlignCenter);
@@ -368,7 +369,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'B' || fieldName[6] == 'G') {
+                else if (col == 'B' || col == 'G') {
                     GUI::KnightBlack *bKnight = new GUI::KnightBlack(frame);
                     frame->layout()->addWidget(bKnight);
                     frame->layout()->setAlignment(bKnight, Qt::AlignCenter);
@@ -380,7 +381,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'C' || fieldName[6] == 'F'){
+                else if (col == 'C' || col == 'F'){
                     GUI::BishopBlack *bBishop = new GUI::BishopBlack(frame);
                     frame->layout()->addWidget(bBishop);
                     frame->layout()->setAlignment(bBishop, Qt::AlignCenter);
@@ -392,7 +393,7 @@ void MainWindow::setupPiecesGUI() {
 
 
                 }
-                else if (fieldName[6] == 'D') {
+                else if (col == 'D') {
                     GUI::QueenBlack *bQueen = new GUI::QueenBlack(frame);
                     frame->layout()->addWidget(bQueen);
                     frame->layout()->setAlignment(bQueen, Qt::AlignCenter);
@@ -405,7 +406,7 @@ void MainWindow::setupPiecesGUI() {
 
                 }
 
-                else if (fieldName[6] == 'E') {
+                else if (col == 'E') {
                     GUI::KingBlack *bKing = new GUI::KingBlack(frame);
                     frame->layout()->addWidget(bKing);
                     frame->layout()->setAlignment(bKing, Qt::AlignCenter);
