@@ -16,7 +16,6 @@ signals:
     void moveMadeChanged();
 
 private:
-
 };
 }
 #endif // GUI_GAMEDATA_H

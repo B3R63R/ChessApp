@@ -5,5 +5,6 @@ GUI::GameData::GameData(QObject *parent)
 {}
 
 void GUI::GameData::setMoveMade() {
+
     emit moveMadeChanged();
 }

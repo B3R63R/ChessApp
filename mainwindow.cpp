@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
     setupSquaresParameters();
     setupLabelParameters();
     setupPiecesGUI();
+    handleCheck();
+    qDebug() << int('A');
 }
 
 MainWindow::~MainWindow()
@@ -45,7 +47,22 @@ char convertRowIntToCharIdx(int row) {
 }
 
 void MainWindow::handleCheck() {
-    //GameData = new GameData(this);
+    _gameData = new GUI::GameData(this);
+    connect(_gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
+        if(board.examineisKingChecked()) {
+            qDebug() << board.getIsWhiteTurn();
+            std::string kingColor = (board.getIsWhiteTurn()) ? "w" : "b";
+            std::tuple<int, int> kingLocation = board.getKingLocation(kingColor);
+            int kingRowInt = std::get<0>(kingLocation);
+            int kingColInt = std::get<1>(kingLocation);
+            char kingRowChar = convertRowIntToCharIdx(kingRowInt);
+            char kingColChar = convertColIntToCharIdx(kingColInt);
+            std::string kingSquareName = "frame_" + std::string(1, kingColChar) + std::string(1,kingRowChar);
+            auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
+            kingSquare->setStyleSheet("background-color: blue;");
+        }
+
+    });
 }
 
 
@@ -64,14 +81,14 @@ void MainWindow::handleTrasferRookWhenCastling() {
         int colRookInt = (std::get<1>(castlingData) == 'l') ? 0 : 7;
         int newColRookInt = (std::get<1>(castlingData) == 'l') ? 3 : 5;
 
-        char rowRookChar = convertRowIntToCharIdx(rowRookInt);
-        char colRookChar = convertColIntToCharIdx(colRookInt);
-        char newColRookChar = convertColIntToCharIdx(newColRookInt);
+        char rookRowChar = convertRowIntToCharIdx(rowRookInt);
+        char rookColChar = convertColIntToCharIdx(colRookInt);
+        char newRookColChar = convertColIntToCharIdx(newColRookInt);
 
-        std::string rookSquareName = "frame_" + std::string(1, colRookChar) + std::string(1,rowRookChar);
+        std::string rookSquareName = "frame_" + std::string(1, rookColChar) + std::string(1,rookRowChar);
         auto rookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(rookSquareName));
         auto rook = rookSquare->findChild<GUI::Piece*>();
-        std::string newRookSquareName = "frame_" + std::string(1, newColRookChar) + std::string(1,rowRookChar);
+        std::string newRookSquareName = "frame_" + std::string(1, newRookColChar) + std::string(1,rookRowChar);
         auto newRookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(newRookSquareName));
 
         rookSquare->layout()->removeWidget(rook);
@@ -130,7 +147,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             targetSquare->layout()->addWidget(lastPiece);
             targetSquare->layout()->setAlignment(lastPiece, Qt::AlignCenter);
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
-
+             _gameData->setMoveMade();
             handleTrasferRookWhenCastling();
 
             clearIndicators();
@@ -162,6 +179,7 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     currentPieceSquareClicked->layout()->addWidget(lastPiece);
     currentPieceSquareClicked->layout()->setAlignment(lastPiece, Qt::AlignCenter);
     board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
+     _gameData->setMoveMade();
     lastClickedPieceSquareName.clear();
     lastRowClicked = -1;
     lastColClicked = -1;
@@ -413,9 +431,34 @@ void MainWindow::setupSquaresColors() {
         frame->setStyleSheet("background-color: lightgreen;");
         QString frameName= frame->objectName();
 
-        const QString squareType_1 = "background-color: lightgreen;";
-        const QString squareType_2 = "background-color: brown";
-
+        const QString whiteSquareColor = "background-color: lightgreen;";
+        const QString blackSquareColor = "background-color: brown;";
+        //ASCII 'A' numerical value is 65.
+        int col = int(frameName.toStdString()[6]);
+        int row = int(frameName.toStdString()[7]);
+        //row: 1, 3, 5, 7,
+        if (!(row % 2 == 0)) {
+            //col: A, C, E, G
+            if (!(col % 2 == 0)) {
+                frame->setStyleSheet(blackSquareColor);
+            }
+            //col: B, D, F, H
+            else {
+                frame->setStyleSheet(whiteSquareColor);
+            }
+        }
+        //row: 2, 4, 6, 8
+        else {
+            //col: A, C, E, G
+            if (!(col % 2 == 0)) {
+                frame->setStyleSheet(whiteSquareColor);
+            }
+            //col: B, D, F, H
+            else {
+                frame->setStyleSheet(blackSquareColor);
+            }
+        }
+        /*
         switch(frameName.toStdString()[6]) {
         case 'A':
             if (int(frameName.toStdString()[7]) % 2 == 0) {
@@ -485,7 +528,7 @@ void MainWindow::setupSquaresColors() {
             }
             break;
         }
-
+        */
     }
 }
 

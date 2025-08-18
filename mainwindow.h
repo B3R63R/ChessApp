@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QResizeEvent>
+#include "gui_gamedata.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private:
     Ui::MainWindow *ui;
     QPushButton *button=NULL;
     LOGIC::Board board;
+    GUI::GameData *_gameData;
     std::vector<std::tuple<int,int>> availableMovesHistory;
     std::string lastClickedPieceSquareName;
     int lastRowClicked;

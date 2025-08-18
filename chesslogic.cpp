@@ -573,7 +573,7 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
         return;
     }
     auto& piece = boardArr[currentRow][currentCol];
-    std::vector<std::tuple<int,int>> availableMovesForPiece = boardArr[currentRow][currentCol]->getAvailableMoves(*this);
+    std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
     std::tuple<int, int> newMove = {newRow, newCol};
 
     bool isNewMoveInAvailableMoves = (std::find(availableMovesForPiece.begin(), availableMovesForPiece.end(), newMove) != availableMovesForPiece.end());
