@@ -46,5 +46,6 @@ private:
     void clearIndicators();
     void handleCheck();
     void updateSquareColor(QFrame* square, int row, int col);
+    void reverseBoard();
 };
 #endif // MAINWINDOW_H

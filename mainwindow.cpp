@@ -15,14 +15,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     board.setupPieces();
     board.display();
-
     ui->setupUi(this);
+    reverseBoard();
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
     setupPiecesGUI();
     handleCheck();
-    qDebug() << int('A');
+    //auto *labelFrame1 = ui->gridLayout->itemAtPosition(0, 0)->widget();
+    //auto label1 = labelFrame1->findChild<QLabel*>();
+    //qDebug() << labelFrame1->objectName();
+
 }
 
 MainWindow::~MainWindow()
@@ -55,6 +58,40 @@ void disconnectAllChildren(QObject *parent) {
     }
 }
 
+void MainWindow::reverseBoard() {
+
+    for (int row = 0; row < 4; row++) {
+        for (int col = 1; col < 9; col++) {
+
+        auto *square1 = ui->gridLayout->itemAtPosition(row, col)->widget();
+        ui->gridLayout->removeWidget(square1);
+
+        auto *square2 = ui->gridLayout->itemAtPosition(7-row, col)->widget();
+        ui->gridLayout->layout()->removeWidget(square2);
+        ui->gridLayout->addWidget(square1, 7-row, col);
+        ui->gridLayout->addWidget(square2, row, col);
+        }
+    }
+    //Change position labels
+    for (int i = 0; i < 4; i++) {
+        //Rows
+        auto *labelRow1 = ui->gridLayout->itemAtPosition(i, 0)->widget();
+        auto *labelRow2 = ui->gridLayout->itemAtPosition(7-i, 0)->widget();
+        ui->gridLayout->removeWidget(labelRow1);
+        ui->gridLayout->removeWidget(labelRow2);
+        ui->gridLayout->addWidget(labelRow1, 7-i, 0);
+        ui->gridLayout->addWidget(labelRow2, i, 0);
+        //Columns
+        auto *labelCol1 = ui->gridLayout->itemAtPosition(8, i+1)->widget();
+        auto *labelCol2 = ui->gridLayout->itemAtPosition(8, 8-i)->widget();
+        ui->gridLayout->removeWidget(labelCol1);
+        ui->gridLayout->removeWidget(labelCol2);
+        ui->gridLayout->addWidget(labelCol1, 8, 8-i);
+        ui->gridLayout->addWidget(labelCol2, 8, i+1);
+
+    }
+}
+
 void MainWindow::updateSquareColor(QFrame* square, int row, int col)
 {
     const QString whiteSquareColor = "background-color: lightgreen;";
@@ -72,7 +109,6 @@ void MainWindow::handleCheck() {
     connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
 
         if(board.examineisKingChecked()) {
-            qDebug() << board.getIsWhiteTurn();
             std::string kingColor = (board.getIsWhiteTurn()) ? "w" : "b";
             std::tuple<int, int> kingLocation = board.getKingLocation(kingColor);
             int kingRowInt = std::get<0>(kingLocation);
@@ -232,7 +268,7 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     int rowIdx = convertRowCharToIntIdx(fieldName[7]);
     int colIdx = convertColCharToIntIdx(fieldName[6]);
     std::tuple<int, int> move = {rowIdx, colIdx};
-
+    qDebug() << fieldName;
 
     //Check if it right color to move
     if ((board.getBoard()[rowIdx][colIdx]->getColor() == "w" && !board.getIsWhiteTurn()) ||
