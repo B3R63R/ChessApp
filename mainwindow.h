@@ -38,5 +38,7 @@ private:
     int handlePieceClick(const std::string& fieldName);
     int handleBeatingMove(int row, int col, std::string fieldName);
     void handleEmptySquareMove(int row, int col);
+    void handleTrasferRookWhenCastling();
+    void clearIndicators();
 };
 #endif // MAINWINDOW_H

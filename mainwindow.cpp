@@ -43,6 +43,37 @@ char convertRowIntToCharIdx(int row) {
     return row + 1 + '0';
 }
 
+void MainWindow::clearIndicators() {
+    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
+    for (auto indicator : indicators) {
+        indicator->deleteLater();
+    }
+}
+
+void MainWindow::handleTrasferRookWhenCastling() {
+    std::tuple<bool, char, int> castlingData = board.getIsCastling();
+    if (std::get<0>(castlingData)) {
+
+        char rowRookInt = std::get<2>(castlingData);
+        int colRookInt = (std::get<1>(castlingData) == 'l') ? 0 : 7;
+        int newColRookInt = (std::get<1>(castlingData) == 'l') ? 3 : 5;
+
+        char rowRookChar = convertRowIntToCharIdx(rowRookInt);
+        char colRookChar = convertColIntToCharIdx(colRookInt);
+        char newColRookChar = convertColIntToCharIdx(newColRookInt);
+
+        std::string rookSquareName = "frame_" + std::string(1, colRookChar) + std::string(1,rowRookChar);
+        auto rookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(rookSquareName));
+        auto rook = rookSquare->findChild<piece*>();
+        std::string newRookSquareName = "frame_" + std::string(1, newColRookChar) + std::string(1,rowRookChar);
+        auto newRookSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(newRookSquareName));
+
+        rookSquare->layout()->removeWidget(rook);
+        newRookSquare->layout()->addWidget(rook);
+        newRookSquare->layout()->setAlignment(rook, Qt::AlignCenter);
+    }
+}
+
 void MainWindow::handleEmptySquareMove(int row, int col) {
     //Download available moves
     std::vector<std::tuple<int,int>> availableMovesStorage = board.RaisePiece(row, col);
@@ -92,15 +123,11 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 
             targetSquare->layout()->addWidget(lastPiece);
             targetSquare->layout()->setAlignment(lastPiece, Qt::AlignCenter);
-
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
 
+            handleTrasferRookWhenCastling();
 
-            QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
-            for (auto indicator : indicators) {
-                indicator->deleteLater();
-            }
-
+            clearIndicators();
 
             lastClickedPieceSquareName.clear();
             lastRowClicked = -1;
@@ -113,10 +140,8 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 }
 
 int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
-    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
-    for (auto indicator : indicators) {
-        indicator->deleteLater();
-    }
+
+    clearIndicators();
 
     auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
     auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
@@ -168,10 +193,8 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     }
 
     //Clear previous indicators from board
-    QList<moveIndicator*> indicators = findChildren<moveIndicator*>();
-    for (auto indicator : indicators) {
-        indicator->deleteLater();
-    }
+    clearIndicators();
+
     //Set variables to store last click history
     lastClickedPieceSquareName = fieldName;
     lastRowClicked = rowIdx;

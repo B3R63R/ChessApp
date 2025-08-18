@@ -17,7 +17,7 @@ public:
     std::array<int, 4> lastMove = {-1, -1, -1, -1};
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
     bool isWhiteTurn;
-    std::tuple<bool, char> isCastling;
+    std::tuple<bool, char, int> isCastling;
     Board();
 
     void display();
@@ -33,8 +33,8 @@ public:
     std::vector<std::tuple<int,int>>RaisePiece(int currentRow, int currentCol);
     bool examineisKingChecked();
     bool examineCheckmate();
-    std::tuple<bool, char> getIsCastling();
-    void setIsCastling(bool detector, char type);
+    std::tuple<bool, char, int> getIsCastling();
+    void setIsCastling(bool detector, char type, int row);
 
 };
 
