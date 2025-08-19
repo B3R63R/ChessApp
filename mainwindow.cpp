@@ -193,7 +193,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
         //Load indicator
         GUI::MoveIndicator *mIndicator = new GUI::MoveIndicator(targetSquare);
         targetSquare->layout()->addWidget(mIndicator);
-        targetSquare->layout()->setAlignment(mIndicator, Qt::AlignCenter);
+        //targetSquare->layout()->setAlignment(mIndicator, Qt::AlignCenter);
 
         //handling move on empty square
         connect(mIndicator, &QPushButton::clicked, this, [=, this]() {

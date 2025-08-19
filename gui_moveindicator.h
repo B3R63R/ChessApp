@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QWidget>
+#include <QFrame>
 
 namespace GUI {
 
@@ -11,6 +12,9 @@ class  MoveIndicator: public QPushButton
     Q_OBJECT
 public:
     explicit MoveIndicator(QWidget *parent = nullptr);
+
+private:
+    QFrame *visualCircle;
 };
 
 }
