@@ -22,10 +22,6 @@ MainWindow::MainWindow(QWidget *parent)
     setupLabelParameters();
     setupPieces();
     handleCheck();
-    //auto *labelFrame1 = ui->gridLayout->itemAtPosition(0, 0)->widget();
-    //auto label1 = labelFrame1->findChild<QLabel*>();
-    //qDebug() << labelFrame1->objectName();
-
 }
 
 MainWindow::~MainWindow()
@@ -166,7 +162,6 @@ void MainWindow::handleTransferRookWhenCastling() {
 
         rookSquare->layout()->removeWidget(rook);
         newRookSquare->layout()->addWidget(rook);
-        newRookSquare->layout()->setAlignment(rook, Qt::AlignCenter);
     }
 }
 
@@ -218,7 +213,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 
 
             targetSquare->layout()->addWidget(lastPiece);
-            targetSquare->layout()->setAlignment(lastPiece, Qt::AlignCenter);
+
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
             gameData->setMoveMade();
             handleTransferRookWhenCastling();
@@ -250,7 +245,6 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
         currentPiece->deleteLater();
     }
     currentPieceSquareClicked->layout()->addWidget(lastPiece);
-    currentPieceSquareClicked->layout()->setAlignment(lastPiece, Qt::AlignCenter);
     board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
      gameData->setMoveMade();
     lastClickedPieceSquareName.clear();
@@ -266,7 +260,6 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     int rowIdx = convertRowCharToIntIdx(fieldName[7]);
     int colIdx = convertColCharToIntIdx(fieldName[6]);
     std::tuple<int, int> move = {rowIdx, colIdx};
-    qDebug() << fieldName;
 
     //Check if it right color to move
     if ((board.getBoard()[rowIdx][colIdx]->getColor() == "w" && !board.getIsWhiteTurn()) ||
@@ -303,7 +296,6 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
 
 void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
     frame->layout()->addWidget(piece);
-    frame->layout()->setAlignment(piece, Qt::AlignCenter);
 
     connect(piece, &QPushButton::clicked, this, [=, this]() {
         QFrame* parentFrame = qobject_cast<QFrame*>(piece->parentWidget());
@@ -378,82 +370,6 @@ void MainWindow::setupPieces() {
     }
 
 }
-        /*
-        if (fieldName[0] == 'f') {
-            //Pawns
-            if (row == '2') {
-
-                GUI::PawnWhite *wPawn = new GUI::PawnWhite(frame);
-                setPieceGUI(frame, wPawn);
-
-            }
-            else if (row == '7') {
-
-                GUI::PawnBlack *bPawn = new GUI::PawnBlack(frame);
-                setPieceGUI(frame, bPawn);
-       }
-            //Other pieces
-            else if (row == '1') {
-                //Set white
-                if (col == 'A' || col == 'H' ) {
-                    GUI::RookWhite *wRook = new GUI::RookWhite(frame);
-                    setPieceGUI(frame, wRook);
-                }
-
-                else if (col == 'B' || col == 'G') {
-                    GUI::KnightWhite *wKnight = new GUI::KnightWhite(frame);
-                    setPieceGUI(frame, wKnight);
-
-                }
-
-                else if (col == 'C' || col == 'F'){
-                    GUI::BishopWhite*wBishop = new GUI::BishopWhite(frame);
-                    setPieceGUI(frame, wBishop);
-                }
-
-                else if (col == 'D') {
-                    GUI::QueenWhite *wQueen = new GUI::QueenWhite(frame);
-                    setPieceGUI(frame, wQueen);
-                }
-
-                else if (col == 'E') {
-                    GUI::KingWhite *wKing = new GUI::KingWhite(frame);
-                    setPieceGUI(frame, wKing);
-                }
-            }
-            //Set black
-            else if (row == '8') {
-
-                if (col == 'A' || col == 'H' ) {
-                    GUI::RookBlack *bRook = new GUI::RookBlack(frame);
-                    setPieceGUI(frame, bRook);
-                }
-
-                else if (col == 'B' || col == 'G') {
-                    GUI::KnightBlack *bKnight = new GUI::KnightBlack(frame);
-                    setPieceGUI(frame, bKnight);
-                }
-
-                else if (col == 'C' || col == 'F'){
-                    GUI::BishopBlack *bBishop = new GUI::BishopBlack(frame);
-                    setPieceGUI(frame, bBishop);
-                }
-
-                else if (col == 'D') {
-                    GUI::QueenBlack *bQueen = new GUI::QueenBlack(frame);
-                    setPieceGUI(frame, bQueen);
-                }
-
-                else if (col == 'E') {
-                    GUI::KingBlack *bKing = new GUI::KingBlack(frame);
-                    setPieceGUI(frame, bKing);
-                }
-            }
-
-        }
-        */
-
-
 
 void MainWindow::setupLabelParameters() {
     QList<QLabel*> labelsStorage = ui->frame->findChildren<QLabel*>();

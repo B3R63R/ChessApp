@@ -3,9 +3,6 @@
 GUI::Piece::Piece(QWidget *parent)
     : QPushButton(parent)
 {
-    this->setFixedSize(60, 60);
-    this->setStyleSheet("border: none;");
-
-
+    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
