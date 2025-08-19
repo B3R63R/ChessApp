@@ -39,16 +39,17 @@ private:
     void setupSquaresColors();
     void setupSquaresParameters();
     void setupLabelParameters();
-    void setupPiecesGUI();
+    void setupPieces();
     int handlePieceClick(const std::string& fieldName);
     int handleBeatingMove(int row, int col, std::string fieldName);
     void handleEmptySquareMove(int row, int col);
-    void handleTrasferRookWhenCastling();
+    void handleTransferRookWhenCastling();
     void clearIndicators();
     void handleCheck();
     void updateSquareColor(QFrame* square, int row, int col);
     void reverseBoard();
     void swapGridWidgets(int row1, int col1, int row2, int col2);
-    void setPieceGUI(QFrame *frame, GUI::Piece *piece);
+    void setPiece(QFrame *frame, GUI::Piece *piece);
+    GUI::Piece* choosePiece(char color, char pieceType, QFrame *frame);
 };
 #endif // MAINWINDOW_H
