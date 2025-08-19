@@ -4,42 +4,36 @@
 GUI::PawnWhite::PawnWhite(QWidget *parent)
     : Piece(parent)
 {
-    this->setStyleSheet("background-image: url(:/resource/img/wP.png); border: none; background-repeat: no-repeat; background-position: center;");
-    //this->setGeometry(80,80);
-    //QIcon icon(":/resource/img/wP.png");
-    //this->setIcon(icon);
-    //this->setIconSize(QSize(50,50));
-    //this->setStyleSheet("background-color: transparent; border: none;");
-
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wP.png);");
 }
 
 GUI::RookWhite::RookWhite(QWidget *parent)
     : Piece(parent)
 {
-    this->setStyleSheet("background-image: url(:/resource/img/wR.png); border: none; background-repeat: no-repeat; background-position: center;");
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wR.png);");
 }
 
 GUI::BishopWhite::BishopWhite(QWidget *parent)
     : Piece(parent)
 { 
-    this->setStyleSheet("background-image: url(:/resource/img/wB.png); border: none; background-repeat: no-repeat; background-position: center;");
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wB.png);");
 }
 
 GUI::KnightWhite::KnightWhite(QWidget *parent)
     : Piece(parent)
 {   
-    this->setStyleSheet("background-image: url(:/resource/img/wN.png); border: none; background-repeat: no-repeat; background-position: center;");
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wN.png);");
 }
 
 GUI::QueenWhite::QueenWhite(QWidget *parent)
     : Piece(parent)
 {  
-    this->setStyleSheet("background-image: url(:/resource/img/wQ.png); border: none; background-repeat: no-repeat; background-position: center;");
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wQ.png);");
 }
 
 GUI::KingWhite::KingWhite(QWidget *parent)
     : Piece(parent)
 { 
-    this->setStyleSheet("background-image: url(:/resource/img/wK.png); border: none; background-repeat: no-repeat; background-position: center;");
+    this->setStyleSheet(this->styleSheet() + "background-image: url(:/resource/img/wK.png);");
 }
 
