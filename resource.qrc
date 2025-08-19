@@ -14,4 +14,7 @@
         <file>img/wQ.png</file>
         <file>img/wR.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/Cardot-nAal4.otf</file>
+    </qresource>
 </RCC>

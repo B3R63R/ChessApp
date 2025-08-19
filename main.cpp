@@ -1,11 +1,14 @@
 #include "mainwindow.h"
-
+#include "startmenu.h"
 #include <QApplication>
+#include <QFontDatabase>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    QFontDatabase::addApplicationFont(":/fonts/fonts/Cardot-nAal4.otf");
+
+    StartMenu w;
     w.show();
     return a.exec();
 }

@@ -16,7 +16,8 @@ SOURCES += \
     gui_piece.cpp \
     gui_whitepiececlasses.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    startmenu.cpp
 
 HEADERS += \
     chesslogic.h \
@@ -25,10 +26,12 @@ HEADERS += \
     gui_moveindicator.h \
     gui_piece.h \
     gui_whitepiececlasses.h \
-    mainwindow.h
+    mainwindow.h \
+    startmenu.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    startmenu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
