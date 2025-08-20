@@ -22,6 +22,7 @@ private slots:
 private:
     void setStartButton();
     Ui::StartMenu *ui;
+
 };
 
 #endif // STARTMENU_H

@@ -51,5 +51,6 @@ private:
     void swapGridWidgets(int row1, int col1, int row2, int col2);
     void setPiece(QFrame *frame, GUI::Piece *piece);
     GUI::Piece* choosePiece(char color, char pieceType, QFrame *frame);
+    void setupBoardBorder();
 };
 #endif // MAINWINDOW_H

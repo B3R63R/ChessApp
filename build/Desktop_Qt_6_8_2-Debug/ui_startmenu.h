@@ -40,11 +40,12 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         startButton = new QPushButton(centralwidget);
         startButton->setObjectName("startButton");
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(startButton->sizePolicy().hasHeightForWidth());
         startButton->setSizePolicy(sizePolicy);
+        startButton->setMaximumSize(QSize(400, 125));
         QFont font;
         font.setFamilies({QString::fromUtf8("URW Bookman [urw]")});
         startButton->setFont(font);

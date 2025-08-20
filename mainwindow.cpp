@@ -20,8 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
+    setupBoardBorder();
     setupPieces();
     handleCheck();
+
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -82,19 +87,7 @@ void MainWindow::reverseBoard() {
         swapGridWidgets(col, 0, size - 1 - col, 0);
 
         //Columns
-        swapGridWidgets(size, col+1, 8, size - col);
-    }
-}
-
-void MainWindow::updateSquareColor(QFrame* square, int row, int col)
-{
-    const QString whiteSquareColor = "background-color: lightgreen;";
-    const QString blackSquareColor = "background-color: brown;";
-    //ASCII 'A' numerical value is 65.
-    if ((row % 2) == (col % 2)) {
-        square->setStyleSheet(blackSquareColor);
-    } else {
-        square->setStyleSheet(whiteSquareColor);
+        swapGridWidgets(size, col+1, size, size - col);
     }
 }
 
@@ -297,9 +290,8 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
 void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
     frame->layout()->addWidget(piece);
 
-    connect(piece, &QPushButton::clicked, this, [=, this]() {
-        QFrame* parentFrame = qobject_cast<QFrame*>(piece->parentWidget());
-        handlePieceClick(parentFrame->objectName().toStdString());
+    connect(piece, &QPushButton::clicked, this, [this, frame]() {
+        handlePieceClick(frame->objectName().toStdString());
     });
 }
 
@@ -371,10 +363,53 @@ void MainWindow::setupPieces() {
 
 }
 
+
+
 void MainWindow::setupLabelParameters() {
     QList<QLabel*> labelsStorage = ui->frame->findChildren<QLabel*>();
     for (auto label : labelsStorage) {
-        label->setStyleSheet("background-color: white;");
+
+        label->setStyleSheet(
+                "font-family: 'CARDOT';"
+                "font-size: 11pt;"
+                );
+    }
+
+}
+
+void MainWindow::setupBoardBorder() {
+    ui->frame->setStyleSheet("#frame {padding-top: 0.5em; border: none;}");
+
+    QList<QWidget*> widgetStorage = ui->frame->findChildren<QWidget*>();
+    for (auto widget : widgetStorage) {
+
+        int widgetIdx = ui->gridLayout->indexOf(widget);
+        QString currentStyle = widget->styleSheet();
+        QString style;
+        if (widgetIdx == -1) continue;
+        int row, col, _;
+        ui->gridLayout->getItemPosition(widgetIdx,  &row, &col, &_, &_);
+        qDebug() << widget->objectName();
+        if (col == 0) {
+            style += (row == 8) ? "border-left: 3px solid black;" : "border-right: 3px solid black;"
+                                                                    "border-left: 3px solid black;";
+        }
+        if (col == 8) style += "border-right: 3px solid black;";
+
+
+        if (row == 7) {
+            if (col != 0) style = "border-bottom: 3px solid black;";
+        }
+
+        if (row == 8) style += "border-bottom: 3px solid black;";
+
+
+        if (row == 0) style += "border-top: 3px solid black;";
+
+
+        if (!style.isEmpty()) {
+            widget->setStyleSheet(currentStyle + style + "border-style: solid;");
+        }
 
     }
 }
@@ -399,10 +434,21 @@ void MainWindow::setupSquaresParameters() {
 
 }
 
+void MainWindow::updateSquareColor(QFrame* square, int row, int col)
+{
+    const QString whiteSquareColor = "background-color: #FFCC99;";
+    const QString blackSquareColor = "background-color: #37210A;";
+    //ASCII 'A' numerical value is 65.
+    if ((row % 2) == (col % 2)) {
+        square->setStyleSheet(blackSquareColor);
+    } else {
+        square->setStyleSheet(whiteSquareColor);
+    }
+}
+
 void MainWindow::setupSquaresColors() {
     QList<QFrame*> chessSquaresList = ui->frame->findChildren<QFrame*>();
     for (auto frame : chessSquaresList) {
-        frame->setStyleSheet("background-color: lightgreen;");
         QString frameName= frame->objectName();
 
         int col = int(frameName.toStdString()[6]);

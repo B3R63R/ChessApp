@@ -1,20 +1,62 @@
 <RCC>
-    <qresource prefix="/resource">
-        <file>img/board.png</file>
-        <file>img/bB.png</file>
-        <file>img/bK.png</file>
-        <file>img/bN.png</file>
-        <file>img/bP.png</file>
-        <file>img/bQ.png</file>
-        <file>img/bR.png</file>
-        <file>img/wB.png</file>
-        <file>img/wK.png</file>
-        <file>img/wN.png</file>
-        <file>img/wP.png</file>
-        <file>img/wQ.png</file>
-        <file>img/wR.png</file>
-    </qresource>
+    <qresource prefix="/resource"/>
     <qresource prefix="/fonts">
         <file>fonts/Cardot-nAal4.otf</file>
+    </qresource>
+    <qresource prefix="/chessfontgioco">
+        <file>chessfonts/gioco/bB.svg</file>
+        <file>chessfonts/gioco/bK.svg</file>
+        <file>chessfonts/gioco/bN.svg</file>
+        <file>chessfonts/gioco/bP.svg</file>
+        <file>chessfonts/gioco/bQ.svg</file>
+        <file>chessfonts/gioco/bR.svg</file>
+        <file>chessfonts/gioco/wB.svg</file>
+        <file>chessfonts/gioco/wK.svg</file>
+        <file>chessfonts/gioco/wN.svg</file>
+        <file>chessfonts/gioco/wP.svg</file>
+        <file>chessfonts/gioco/wQ.svg</file>
+        <file>chessfonts/gioco/wR.svg</file>
+    </qresource>
+    <qresource prefix="/chessfontmaestro">
+        <file>chessfonts/maestro/bB.svg</file>
+        <file>chessfonts/maestro/bK.svg</file>
+        <file>chessfonts/maestro/bN.svg</file>
+        <file>chessfonts/maestro/bP.svg</file>
+        <file>chessfonts/maestro/bQ.svg</file>
+        <file>chessfonts/maestro/bR.svg</file>
+        <file>chessfonts/maestro/wB.svg</file>
+        <file>chessfonts/maestro/wK.svg</file>
+        <file>chessfonts/maestro/wN.svg</file>
+        <file>chessfonts/maestro/wP.svg</file>
+        <file>chessfonts/maestro/wQ.svg</file>
+        <file>chessfonts/maestro/wR.svg</file>
+    </qresource>
+    <qresource prefix="/chessfontcardinal">
+        <file>chessfonts/cardinal/bB.svg</file>
+        <file>chessfonts/cardinal/bK.svg</file>
+        <file>chessfonts/cardinal/bN.svg</file>
+        <file>chessfonts/cardinal/bP.svg</file>
+        <file>chessfonts/cardinal/bQ.svg</file>
+        <file>chessfonts/cardinal/bR.svg</file>
+        <file>chessfonts/cardinal/wB.svg</file>
+        <file>chessfonts/cardinal/wK.svg</file>
+        <file>chessfonts/cardinal/wN.svg</file>
+        <file>chessfonts/cardinal/wP.svg</file>
+        <file>chessfonts/cardinal/wQ.svg</file>
+        <file>chessfonts/cardinal/wR.svg</file>
+    </qresource>
+    <qresource prefix="/chessfontstandard">
+        <file>chessfonts/standard/bB.png</file>
+        <file>chessfonts/standard/bK.png</file>
+        <file>chessfonts/standard/bN.png</file>
+        <file>chessfonts/standard/bP.png</file>
+        <file>chessfonts/standard/bQ.png</file>
+        <file>chessfonts/standard/bR.png</file>
+        <file>chessfonts/standard/wB.png</file>
+        <file>chessfonts/standard/wK.png</file>
+        <file>chessfonts/standard/wN.png</file>
+        <file>chessfonts/standard/wP.png</file>
+        <file>chessfonts/standard/wQ.png</file>
+        <file>chessfonts/standard/wR.png</file>
     </qresource>
 </RCC>

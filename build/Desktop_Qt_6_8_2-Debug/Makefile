@@ -865,38 +865,108 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp qrc_resource.cpp
 qrc_resource.cpp: ../../resource.qrc \
 		../../../../Qt/6.8.2/gcc_64/libexec/rcc \
-		../../img/bN.png \
-		../../img/wP.png \
-		../../img/bP.png \
-		../../img/bQ.png \
-		../../img/wQ.png \
-		../../img/board.png \
-		../../img/wB.png \
-		../../img/bK.png \
-		../../img/bB.png \
-		../../img/wN.png \
-		../../img/wR.png \
-		../../img/bR.png \
-		../../img/wK.png \
-		../../fonts/Cardot-nAal4.otf
+		../../chessfonts/cardinal/bP.svg \
+		../../chessfonts/cardinal/wR.svg \
+		../../chessfonts/cardinal/wB.svg \
+		../../chessfonts/cardinal/wK.svg \
+		../../chessfonts/cardinal/bB.svg \
+		../../chessfonts/cardinal/bN.svg \
+		../../chessfonts/cardinal/bQ.svg \
+		../../chessfonts/cardinal/bK.svg \
+		../../chessfonts/cardinal/bR.svg \
+		../../chessfonts/cardinal/wP.svg \
+		../../chessfonts/cardinal/wN.svg \
+		../../chessfonts/cardinal/wQ.svg \
+		../../chessfonts/gioco/bP.svg \
+		../../chessfonts/gioco/wR.svg \
+		../../chessfonts/gioco/wB.svg \
+		../../chessfonts/gioco/wK.svg \
+		../../chessfonts/gioco/bB.svg \
+		../../chessfonts/gioco/bN.svg \
+		../../chessfonts/gioco/bQ.svg \
+		../../chessfonts/gioco/bK.svg \
+		../../chessfonts/gioco/bR.svg \
+		../../chessfonts/gioco/wP.svg \
+		../../chessfonts/gioco/wN.svg \
+		../../chessfonts/gioco/wQ.svg \
+		../../fonts/Cardot-nAal4.otf \
+		../../chessfonts/standard/bN.png \
+		../../chessfonts/standard/wP.png \
+		../../chessfonts/standard/bP.png \
+		../../chessfonts/standard/bQ.png \
+		../../chessfonts/standard/wQ.png \
+		../../chessfonts/standard/wB.png \
+		../../chessfonts/standard/bK.png \
+		../../chessfonts/standard/bB.png \
+		../../chessfonts/standard/wN.png \
+		../../chessfonts/standard/wR.png \
+		../../chessfonts/standard/bR.png \
+		../../chessfonts/standard/wK.png \
+		../../chessfonts/maestro/bP.svg \
+		../../chessfonts/maestro/wR.svg \
+		../../chessfonts/maestro/wB.svg \
+		../../chessfonts/maestro/wK.svg \
+		../../chessfonts/maestro/bB.svg \
+		../../chessfonts/maestro/bN.svg \
+		../../chessfonts/maestro/bQ.svg \
+		../../chessfonts/maestro/bK.svg \
+		../../chessfonts/maestro/bR.svg \
+		../../chessfonts/maestro/wP.svg \
+		../../chessfonts/maestro/wN.svg \
+		../../chessfonts/maestro/wQ.svg
 	/home/daro/Qt/6.8.2/gcc_64/libexec/rcc -name resource ../../resource.qrc -o qrc_resource.cpp
 
 qrc_resource.cpp: ../../resource.qrc \
 		../../../../Qt/6.8.2/gcc_64/libexec/rcc \
-		../../img/bN.png \
-		../../img/wP.png \
-		../../img/bP.png \
-		../../img/bQ.png \
-		../../img/wQ.png \
-		../../img/board.png \
-		../../img/wB.png \
-		../../img/bK.png \
-		../../img/bB.png \
-		../../img/wN.png \
-		../../img/wR.png \
-		../../img/bR.png \
-		../../img/wK.png \
-		../../fonts/Cardot-nAal4.otf
+		../../chessfonts/cardinal/bP.svg \
+		../../chessfonts/cardinal/wR.svg \
+		../../chessfonts/cardinal/wB.svg \
+		../../chessfonts/cardinal/wK.svg \
+		../../chessfonts/cardinal/bB.svg \
+		../../chessfonts/cardinal/bN.svg \
+		../../chessfonts/cardinal/bQ.svg \
+		../../chessfonts/cardinal/bK.svg \
+		../../chessfonts/cardinal/bR.svg \
+		../../chessfonts/cardinal/wP.svg \
+		../../chessfonts/cardinal/wN.svg \
+		../../chessfonts/cardinal/wQ.svg \
+		../../chessfonts/gioco/bP.svg \
+		../../chessfonts/gioco/wR.svg \
+		../../chessfonts/gioco/wB.svg \
+		../../chessfonts/gioco/wK.svg \
+		../../chessfonts/gioco/bB.svg \
+		../../chessfonts/gioco/bN.svg \
+		../../chessfonts/gioco/bQ.svg \
+		../../chessfonts/gioco/bK.svg \
+		../../chessfonts/gioco/bR.svg \
+		../../chessfonts/gioco/wP.svg \
+		../../chessfonts/gioco/wN.svg \
+		../../chessfonts/gioco/wQ.svg \
+		../../fonts/Cardot-nAal4.otf \
+		../../chessfonts/standard/bN.png \
+		../../chessfonts/standard/wP.png \
+		../../chessfonts/standard/bP.png \
+		../../chessfonts/standard/bQ.png \
+		../../chessfonts/standard/wQ.png \
+		../../chessfonts/standard/wB.png \
+		../../chessfonts/standard/bK.png \
+		../../chessfonts/standard/bB.png \
+		../../chessfonts/standard/wN.png \
+		../../chessfonts/standard/wR.png \
+		../../chessfonts/standard/bR.png \
+		../../chessfonts/standard/wK.png \
+		../../chessfonts/maestro/bP.svg \
+		../../chessfonts/maestro/wR.svg \
+		../../chessfonts/maestro/wB.svg \
+		../../chessfonts/maestro/wK.svg \
+		../../chessfonts/maestro/bB.svg \
+		../../chessfonts/maestro/bN.svg \
+		../../chessfonts/maestro/bQ.svg \
+		../../chessfonts/maestro/bK.svg \
+		../../chessfonts/maestro/bR.svg \
+		../../chessfonts/maestro/wP.svg \
+		../../chessfonts/maestro/wN.svg \
+		../../chessfonts/maestro/wQ.svg
 	/home/daro/Qt/6.8.2/gcc_64/libexec/rcc -name resource ../../resource.qrc -o qrc_resource.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -3355,6 +3425,11 @@ startmenu.o: ../../startmenu.cpp ../../startmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/QVariant \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QMenuBar \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenu.h \
