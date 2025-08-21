@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1169</width>
-    <height>700</height>
+    <width>1291</width>
+    <height>866</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,14 +29,20 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>960</width>
-        <height>960</height>
+        <width>150000</width>
+        <height>150000</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>635</width>
+        <height>635</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -48,23 +54,8 @@
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
         <layout class="QGridLayout" name="gridLayout">
          <property name="spacing">
           <number>0</number>
@@ -73,14 +64,20 @@
           <widget class="QFrame" name="frame_A5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -95,14 +92,20 @@
           <widget class="QFrame" name="frame_C3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -117,14 +120,20 @@
           <widget class="QFrame" name="frame_F8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -139,14 +148,20 @@
           <widget class="QFrame" name="frame_G2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -217,14 +232,20 @@
           <widget class="QFrame" name="frame_E8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -239,14 +260,20 @@
           <widget class="QFrame" name="frame_G3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -261,14 +288,20 @@
           <widget class="QFrame" name="frame_C5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -283,14 +316,20 @@
           <widget class="QFrame" name="frame_A7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -305,14 +344,20 @@
           <widget class="QFrame" name="frame_E5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -327,14 +372,20 @@
           <widget class="QFrame" name="frame_B2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -433,14 +484,20 @@
           <widget class="QFrame" name="frame_G7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -455,14 +512,20 @@
           <widget class="QFrame" name="frame_D3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -477,14 +540,20 @@
           <widget class="QFrame" name="frame_B1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -499,14 +568,20 @@
           <widget class="QFrame" name="frame_A8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -549,14 +624,20 @@
           <widget class="QFrame" name="frame_C1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -571,14 +652,20 @@
           <widget class="QFrame" name="frame_E1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -593,14 +680,20 @@
           <widget class="QFrame" name="frame_B8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -615,14 +708,20 @@
           <widget class="QFrame" name="frame_F6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -637,14 +736,20 @@
           <widget class="QFrame" name="frame_B4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -659,14 +764,20 @@
           <widget class="QFrame" name="frame_F2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -681,14 +792,20 @@
           <widget class="QFrame" name="frame_D4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -703,14 +820,20 @@
           <widget class="QFrame" name="frame_D6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -725,14 +848,20 @@
           <widget class="QFrame" name="frame_F3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -747,14 +876,20 @@
           <widget class="QFrame" name="frame_F7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -769,14 +904,20 @@
           <widget class="QFrame" name="frame_C7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -791,14 +932,20 @@
           <widget class="QFrame" name="frame_D2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -841,14 +988,20 @@
           <widget class="QFrame" name="frame_H3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -863,14 +1016,20 @@
           <widget class="QFrame" name="frame_B5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -885,14 +1044,20 @@
           <widget class="QFrame" name="frame_D7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -907,14 +1072,20 @@
           <widget class="QFrame" name="frame_C2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -929,14 +1100,20 @@
           <widget class="QFrame" name="frame_H7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -951,14 +1128,20 @@
           <widget class="QFrame" name="frame_E3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -973,14 +1156,20 @@
           <widget class="QFrame" name="frame_E7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1023,14 +1212,20 @@
           <widget class="QFrame" name="frame_F5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1045,14 +1240,20 @@
           <widget class="QFrame" name="frame_G4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1067,14 +1268,20 @@
           <widget class="QFrame" name="frame_A2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1117,14 +1324,20 @@
           <widget class="QFrame" name="frame_E4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1139,14 +1352,20 @@
           <widget class="QFrame" name="frame_H6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1161,14 +1380,20 @@
           <widget class="QFrame" name="frame_H8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1211,14 +1436,20 @@
           <widget class="QFrame" name="frame_F4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1261,14 +1492,20 @@
           <widget class="QFrame" name="frame_A4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1311,14 +1548,20 @@
           <widget class="QFrame" name="frame_H1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1333,14 +1576,20 @@
           <widget class="QFrame" name="frame_D1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1355,14 +1604,20 @@
           <widget class="QFrame" name="frame_D8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1377,14 +1632,20 @@
           <widget class="QFrame" name="frame_H5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1399,14 +1660,20 @@
           <widget class="QFrame" name="frame_A1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1441,14 +1708,20 @@
           <widget class="QFrame" name="frame_F1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1491,14 +1764,20 @@
           <widget class="QFrame" name="frame_E2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1513,14 +1792,20 @@
           <widget class="QFrame" name="frame_C8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1535,14 +1820,20 @@
           <widget class="QFrame" name="frame_B3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1557,14 +1848,20 @@
           <widget class="QFrame" name="frame_B7">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1607,14 +1904,20 @@
           <widget class="QFrame" name="frame_A3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1629,14 +1932,20 @@
           <widget class="QFrame" name="frame_G6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1651,14 +1960,20 @@
           <widget class="QFrame" name="frame_G1">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1701,14 +2016,20 @@
           <widget class="QFrame" name="frame_G5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1723,14 +2044,20 @@
           <widget class="QFrame" name="frame_H4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1745,14 +2072,20 @@
           <widget class="QFrame" name="frame_E6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1767,14 +2100,20 @@
           <widget class="QFrame" name="frame_A6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1817,14 +2156,20 @@
           <widget class="QFrame" name="frame_C4">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1839,14 +2184,20 @@
           <widget class="QFrame" name="frame_C6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1861,14 +2212,20 @@
           <widget class="QFrame" name="frame_H2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1883,14 +2240,20 @@
           <widget class="QFrame" name="frame_G8">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1905,14 +2268,20 @@
           <widget class="QFrame" name="frame_D5">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1927,14 +2296,20 @@
           <widget class="QFrame" name="frame_B6">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>5</horstretch>
-             <verstretch>5</verstretch>
+             <horstretch>1</horstretch>
+             <verstretch>1</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
              <width>0</width>
              <height>0</height>
+            </size>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>75</width>
+             <height>75</height>
             </size>
            </property>
            <property name="frameShape">
@@ -1957,7 +2332,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1169</width>
+     <width>1291</width>
      <height>22</height>
     </rect>
    </property>

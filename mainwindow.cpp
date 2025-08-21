@@ -509,22 +509,20 @@ void MainWindow::setupSquaresColors() {
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    int labelSize = 35;
     QMainWindow::resizeEvent(event);
+    int labelSize = 35;
     //Access window size
     int w = ui->centralwidget->width();
     int h = ui->centralwidget->height();
-
     //Check which smaller
     int side = qMin(w, h) - labelSize;
     side = (side/8)*8 + labelSize;
-    // Oblicz pozycję (x, y), aby wyśrodkować kwadrat w oknie
+    // Calculate new position cords
     int x = (w - side) / 2;
     int y = (h - side) / 2;
 
-    // Ustaw nową geometrię dla ramki z szachownicą
+    // Set new geometry
     ui->frame->setGeometry(x, y, side, side);
 }
-
 
 
