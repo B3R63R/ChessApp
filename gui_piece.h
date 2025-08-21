@@ -2,7 +2,7 @@
 #define GUI_PIECE_H
 #include <QPushButton>
 #include <QWidget>
-
+#include <QFrame>
 namespace GUI {
 
 class Piece : public QPushButton
@@ -15,6 +15,7 @@ private:
 
 };
 }
+
 #endif // GUI_PIECE_H
 
 

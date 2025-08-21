@@ -16,11 +16,13 @@ MainWindow::MainWindow(QWidget *parent)
     board.setupPieces();
     board.display();
     ui->setupUi(this);
+    ui->gridLayout->setContentsMargins(0, 0, 0, 0);
+    ui->gridLayout->setSpacing(0);
     reverseBoard();
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
-    setupBoardBorder();
+    //setupBoardBorder();
     setupPieces();
     handleCheck();
 
@@ -389,16 +391,16 @@ void MainWindow::setupBoardBorder() {
         if (widgetIdx == -1) continue;
         int row, col, _;
         ui->gridLayout->getItemPosition(widgetIdx,  &row, &col, &_, &_);
-        qDebug() << widget->objectName();
+
         if (col == 0) {
             style += (row == 8) ? "border-left: 3px solid black;" : "border-right: 3px solid black;"
                                                                     "border-left: 3px solid black;";
         }
         if (col == 8) style += "border-right: 3px solid black;";
-
+        if (col == 8) qDebug() << widget->objectName();
 
         if (row == 7) {
-            if (col != 0) style = "border-bottom: 3px solid black;";
+            if (col != 0) style += "border-bottom: 3px solid black;";
         }
 
         if (row == 8) style += "border-bottom: 3px solid black;";
@@ -417,12 +419,34 @@ void MainWindow::setupBoardBorder() {
 void MainWindow::setupSquaresParameters() {
     ui->frame->setMinimumSize(660,660);
     ui->frame->setMaximumSize(960,960);
-    for (std::size_t i = 0; i<9; i++ ) {
+
+    int labelSize = 35;
+    ui->gridLayout->setColumnMinimumWidth(0, labelSize);
+    ui->gridLayout->setColumnStretch(0, 0);
+
+
+
+
+    ui->gridLayout->setRowMinimumHeight(0, 85);
+    ui->gridLayout->setRowStretch(0, 1);
+
+    for (std::size_t i = 1; i<9; i++ ) {
+
+        if (i == 8) {
+            ui->gridLayout->setRowMinimumHeight(8, labelSize);
+            ui->gridLayout->setRowStretch(8, 0);
+            ui->gridLayout->setColumnStretch(i, 1);
+            ui->gridLayout->setColumnMinimumWidth(i, 85);
+            continue;
+        }
+        ui->gridLayout->setColumnStretch(i, 1);
+        ui->gridLayout->setRowStretch(i, 1);
+
         ui->gridLayout->setRowMinimumHeight(i, 85);
         ui->gridLayout->setColumnMinimumWidth(i, 85);
+
     }
-    ui->gridLayout->setRowMinimumHeight(8, 35);
-    ui->gridLayout->setColumnMinimumWidth(0, 35);
+
 
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     for (auto frame : SquaresStorage) {
@@ -436,8 +460,8 @@ void MainWindow::setupSquaresParameters() {
 
 void MainWindow::updateSquareColor(QFrame* square, int row, int col)
 {
-    const QString whiteSquareColor = "background-color: #FFCC99;";
-    const QString blackSquareColor = "background-color: #37210A;";
+    const QString whiteSquareColor = "background-color: #D6D6D6; border: none;";
+    const QString blackSquareColor = "background-color: #8C8C8C; border: none;";
     //ASCII 'A' numerical value is 65.
     if ((row % 2) == (col % 2)) {
         square->setStyleSheet(blackSquareColor);
@@ -460,15 +484,15 @@ void MainWindow::setupSquaresColors() {
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-
+    int labelSize = 35;
     QMainWindow::resizeEvent(event);
     //Access window size
     int w = ui->centralwidget->width();
     int h = ui->centralwidget->height();
 
     //Check which smaller
-    int side = qMin(w, h);
-
+    int side = qMin(w, h) - labelSize;
+    side = (side/8)*8 + labelSize;
     // Oblicz pozycję (x, y), aby wyśrodkować kwadrat w oknie
     int x = (w - side) / 2;
     int y = (h - side) / 2;
