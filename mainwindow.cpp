@@ -22,10 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
-    //setupBoardBorder();
+    setupBoardBorder();
     setupPieces();
     handleCheck();
-
 
 
 
@@ -373,8 +372,9 @@ void MainWindow::setupLabelParameters() {
 
         label->setStyleSheet(
                 "font-family: 'CARDOT';"
-                "font-size: 11pt;"
-                );
+                "font-size: 15pt;"
+            "color: #EAEAEA;"
+            "background-color: #151515;"   );
     }
 
 }
@@ -382,6 +382,7 @@ void MainWindow::setupLabelParameters() {
 void MainWindow::setupBoardBorder() {
     ui->frame->setStyleSheet("#frame {padding-top: 0.5em; border: none;}");
 
+    QString borderStyle = "1.5px solid #7f7f7f;";
     QList<QWidget*> widgetStorage = ui->frame->findChildren<QWidget*>();
     for (auto widget : widgetStorage) {
 
@@ -392,28 +393,56 @@ void MainWindow::setupBoardBorder() {
         int row, col, _;
         ui->gridLayout->getItemPosition(widgetIdx,  &row, &col, &_, &_);
 
-        if (col == 0) {
-            style += (row == 8) ? "border-left: 3px solid black;" : "border-right: 3px solid black;"
-                                                                    "border-left: 3px solid black;";
+        //Left side
+        if (col == 0 && row != 8) {
+            style += "border-right: " + borderStyle;
+
         }
-        if (col == 8) style += "border-right: 3px solid black;";
-        if (col == 8) qDebug() << widget->objectName();
+        //right side
+        if (col == 8 && row !=8) style += "border-right: " + borderStyle;
+
 
         if (row == 7) {
-            if (col != 0) style += "border-bottom: 3px solid black;";
+            if (col != 0) style += "border-bottom: " + borderStyle;
         }
 
-        if (row == 8) style += "border-bottom: 3px solid black;";
+        //bottom side
+        //if (row == 8) style += "border-bottom: " + borderStyle;
 
-
-        if (row == 0) style += "border-top: 3px solid black;";
+        //top side
+        if (row == 0 && col != 0) style += "border-top: " + borderStyle;
 
 
         if (!style.isEmpty()) {
             widget->setStyleSheet(currentStyle + style + "border-style: solid;");
         }
+        /*
+        //Left side
+        if (col == 0) {
+            style += (row == 8) ? "border-left: " + borderStyle :  "border-right: " + borderStyle + "border-left: " + borderStyle;
 
+        }
+        //right side
+        if (col == 8) style += "border-right: " + borderStyle;
+
+
+        if (row == 7) {
+            if (col != 0) style += "border-bottom: " + borderStyle;
+        }
+
+        //bottom side
+        if (row == 8) style += "border-bottom: " + borderStyle;
+
+        //top side
+        if (row == 0) style += "border-top: " + borderStyle;
+
+
+        if (!style.isEmpty()) {
+            widget->setStyleSheet(currentStyle + style + "border-style: solid;");
+        }
+        */
     }
+
 }
 
 void MainWindow::setupSquaresParameters() {
@@ -423,10 +452,6 @@ void MainWindow::setupSquaresParameters() {
     int labelSize = 35;
     ui->gridLayout->setColumnMinimumWidth(0, labelSize);
     ui->gridLayout->setColumnStretch(0, 0);
-
-
-
-
     ui->gridLayout->setRowMinimumHeight(0, 85);
     ui->gridLayout->setRowStretch(0, 1);
 
@@ -460,8 +485,8 @@ void MainWindow::setupSquaresParameters() {
 
 void MainWindow::updateSquareColor(QFrame* square, int row, int col)
 {
-    const QString whiteSquareColor = "background-color: #D6D6D6; border: none;";
-    const QString blackSquareColor = "background-color: #8C8C8C; border: none;";
+    const QString whiteSquareColor = "background-color: #3d3d3d; border: none;";
+    const QString blackSquareColor = "background-color: #7f7f7f; border: none;";
     //ASCII 'A' numerical value is 65.
     if ((row % 2) == (col % 2)) {
         square->setStyleSheet(blackSquareColor);

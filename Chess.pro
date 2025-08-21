@@ -10,6 +10,7 @@ CONFIG += c++20
 
 SOURCES += \
     chesslogic.cpp \
+    gui_background.cpp \
     gui_blackpiececlasses.cpp \
     gui_gamedata.cpp \
     gui_moveindicator.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     chesslogic.h \
+    gui_background.h \
     gui_blackpiececlasses.h \
     gui_gamedata.h \
     gui_moveindicator.h \

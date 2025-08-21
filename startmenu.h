@@ -2,7 +2,7 @@
 #define STARTMENU_H
 
 #include <QMainWindow>
-
+#include "gui_background.h"
 namespace Ui {
 class StartMenu;
 }
@@ -14,6 +14,7 @@ class StartMenu : public QMainWindow
 public:
     explicit StartMenu(QWidget *parent = nullptr);
     ~StartMenu();
+    Background _Background;
 
 private slots:
 

@@ -120,6 +120,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(1169, 700);
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color:  #151515;\n"
+""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         gridLayout_2 = new QGridLayout(centralwidget);
@@ -736,6 +738,7 @@ public:
         sizePolicy2.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy2);
         widget->setMinimumSize(QSize(35, 35));
+        widget->setStyleSheet(QString::fromUtf8(""));
 
         gridLayout->addWidget(widget, 8, 0, 1, 1);
 
@@ -982,7 +985,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        MainWindow->setStyleSheet(QString());
         label_V0->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         label_V6->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
         label_V3->setText(QCoreApplication::translate("MainWindow", "4", nullptr));

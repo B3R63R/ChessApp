@@ -59,4 +59,8 @@
         <file>chessfonts/standard/wQ.png</file>
         <file>chessfonts/standard/wR.png</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>img/startmenubackground.png</file>
+        <file>img/startmenubackgroundHover.jpg</file>
+    </qresource>
 </RCC>
