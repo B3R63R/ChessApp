@@ -78,9 +78,11 @@ void MainWindow::reverseBoard() {
         for (int col = 1; col <= size; col++) {
             //skip first col for labels - (col = 1)
             //skip last row for labels - (size -1)
-            swapGridWidgets(row, col, size -1 - row, col);
+            swapGridWidgets(row, col, size -1 - row, size-col+1);
+            qDebug() << row << ", " << col << " -> " << size -1 - row << ", " << size-col+1;
         }
     }
+
     //Change position labels
     for (int col = 0; col < halfSize; col++) {
 
@@ -90,6 +92,7 @@ void MainWindow::reverseBoard() {
         //Columns
         swapGridWidgets(size, col+1, size, size - col);
     }
+
 }
 
 void MainWindow::handleCheck() {
