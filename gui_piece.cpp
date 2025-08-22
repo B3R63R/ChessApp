@@ -12,3 +12,10 @@ GUI::Piece::Piece(QWidget *parent)
 
 }
 
+void GUI::Piece::setCurrentFrame(QFrame* frame) {
+    currentFrame = frame;
+}
+QFrame* GUI::Piece::getCurrentFrame() {
+    return currentFrame;
+}
+

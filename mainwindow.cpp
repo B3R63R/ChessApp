@@ -95,7 +95,6 @@ void MainWindow::reverseBoard() {
 void MainWindow::handleCheck() {
     gameData = new GUI::GameData();
     connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
-
         if(board.examineisKingChecked()) {
             std::string kingColor = (board.getIsWhiteTurn()) ? "w" : "b";
             std::tuple<int, int> kingLocation = board.getKingLocation(kingColor);
@@ -202,13 +201,15 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             GUI::Piece* lastPiece = lastPieceSquareClicked->findChild<GUI::Piece*>();
             if (!lastPiece) return;
 
-
+            //Raise piece from board
             lastPieceSquareClicked->layout()->removeWidget(lastPiece);
 
-
+            //Place raised piece on new square
             targetSquare->layout()->addWidget(lastPiece);
-
+            lastPiece->setCurrentFrame(targetSquare);
+            //Update logic program
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
+
             gameData->setMoveMade();
             handleTransferRookWhenCastling();
 
@@ -235,12 +236,18 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
     lastPieceSquareClicked->layout()->removeWidget(lastPiece);
     if (currentPiece) {
+        //delete taken piece
         currentPieceSquareClicked->layout()->removeWidget(currentPiece);
         currentPiece->deleteLater();
     }
+    //add piece to new square
     currentPieceSquareClicked->layout()->addWidget(lastPiece);
+    lastPiece->setCurrentFrame(currentPieceSquareClicked);
+
+    //update logic program
     board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
-     gameData->setMoveMade();
+
+    gameData->setMoveMade();
     lastClickedPieceSquareName.clear();
     lastRowClicked = -1;
     lastColClicked = -1;
@@ -249,13 +256,12 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
 
 
 int MainWindow::handlePieceClick(const std::string& fieldName) {
-
     //Download coordinates
     int rowIdx = convertRowCharToIntIdx(fieldName[7]);
     int colIdx = convertColCharToIntIdx(fieldName[6]);
     std::tuple<int, int> move = {rowIdx, colIdx};
-
     //Check if it right color to move
+
     if ((board.getBoard()[rowIdx][colIdx]->getColor() == "w" && !board.getIsWhiteTurn()) ||
         (board.getBoard()[rowIdx][colIdx]->getColor() == "b" && board.getIsWhiteTurn())) {
 
@@ -266,16 +272,11 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
             else {
                 if (std::find(availableMovesHistory.begin(), availableMovesHistory.end(), move) != availableMovesHistory.end()) {
                     handleBeatingMove(rowIdx, colIdx, fieldName);
-                    return 0;
                 }
-
-                else {
-                    return 0;
-                }
+                return 0;
             }
 
     }
-
     //Clear previous indicators from board
     clearIndicators();
 
@@ -286,13 +287,17 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
 
     handleEmptySquareMove(rowIdx, colIdx);
     return 0;
+
 }
 
 void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
-    frame->layout()->addWidget(piece);
 
-    connect(piece, &QPushButton::clicked, this, [this, frame]() {
-        handlePieceClick(frame->objectName().toStdString());
+    frame->layout()->addWidget(piece);
+    piece->setCurrentFrame(frame);
+    connect(piece, &QPushButton::clicked, this, [=, this]() {
+        //qDebug() << frame->objectName();
+        handlePieceClick(piece->getCurrentFrame()->objectName().toStdString());
+
     });
 }
 

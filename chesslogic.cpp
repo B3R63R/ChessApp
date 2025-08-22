@@ -670,7 +670,7 @@ bool LOGIC::Board::examineisKingChecked() {
         return false;
     }
     //Check if king is exposed
-    auto& king = boardArr[get<0>(kingLocation)][std::get<1>(kingLocation)];
+    auto& king = boardArr[std::get<0>(kingLocation)][std::get<1>(kingLocation)];
     bool isKingInDanger = king->isAttacked(*this, std::get<0>(kingLocation), std::get<1>(kingLocation));
     return isKingInDanger;
 }
@@ -694,14 +694,14 @@ bool LOGIC::Board::examineCheckmate() {
 
 /*
 int main() {
-    Board b;
+    LOGIC::Board b;
     b.setupPieces();
     //b.addPiece(4, 3, "b", "R");
     //b.addPiece(5, 6, "b", "R");
     //b.addPiece(4, 6, "w", "K");
-    b.addPiece(3, 6, "w", "K");
-    b.addPiece(5, 6, "b", "P");
-    b.display();
+    //b.addPiece(3, 6, "w", "K");
+    //b.addPiece(5, 6, "b", "P");
+    //b.display();
 
     //auto [row, col] = b.getKingLocation("w");
 
@@ -710,7 +710,11 @@ int main() {
     for (const auto& t : b.getBoard()[1][0]->getAvailableMoves(b)) {
         std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")\n";
     }
+
     b.makeLegalMove(1, 0, 2, 0);
+    b.makeLegalMove(6, 0, 5, 0);
+    b.makeLegalMove(2, 0, 3, 0);
+    b.makeLegalMove(5, 0, 4, 0);
     b.display();
     return 0;
 

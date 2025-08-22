@@ -10,9 +10,11 @@ class Piece : public QPushButton
     Q_OBJECT
 public:
     explicit Piece(QWidget *parent = nullptr);
+    void setCurrentFrame(QFrame* frame);
+    QFrame* getCurrentFrame();
 
 private:
-
+    QFrame* currentFrame;
 };
 }
 

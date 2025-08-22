@@ -259,7 +259,7 @@ QPushButton:hover {
 }</string>
            </property>
            <property name="text">
-            <string>Credits</string>
+            <string>Quit</string>
            </property>
           </widget>
          </item>

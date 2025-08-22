@@ -62,5 +62,7 @@
     <qresource prefix="/images">
         <file>img/startmenubackground.png</file>
         <file>img/startmenubackgroundHover.jpg</file>
+        <file>img/piecesicon.svg</file>
+        <file>img/piecesicon.png</file>
     </qresource>
 </RCC>

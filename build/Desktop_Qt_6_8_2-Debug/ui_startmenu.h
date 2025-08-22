@@ -247,7 +247,7 @@ public:
         StartMenu->setWindowTitle(QCoreApplication::translate("StartMenu", "MainWindow", nullptr));
         startButton->setText(QCoreApplication::translate("StartMenu", " Start game ", nullptr));
         pushButton->setText(QCoreApplication::translate("StartMenu", "Options", nullptr));
-        startButton_2->setText(QCoreApplication::translate("StartMenu", "Credits", nullptr));
+        startButton_2->setText(QCoreApplication::translate("StartMenu", "Quit", nullptr));
     } // retranslateUi
 
 };
