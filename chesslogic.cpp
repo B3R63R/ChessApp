@@ -659,6 +659,8 @@ void LOGIC::Board::addPiece(int row, int col, std::string color, std::string nam
 
 std::vector<std::tuple<int,int>> LOGIC::Board::RaisePiece(int currentRow, int currentCol) {
     auto const& piece = this->getBoard()[currentRow][currentCol];
+    //Protection from nullptr
+    if (!piece) return {};
     std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
     return availableMovesForPiece;
 }

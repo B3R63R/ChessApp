@@ -317,10 +317,14 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     int rowIdx = convertRowCharToIntIdx(fieldName[7]);
     int colIdx = convertColCharToIntIdx(fieldName[6]);
     std::tuple<int, int> move = {rowIdx, colIdx};
-    //Check if it right color to move
+    const auto& piece = board.getBoard()[rowIdx][colIdx];
 
-    if ((board.getBoard()[rowIdx][colIdx]->getColor() == "w" && !board.getIsWhiteTurn()) ||
-        (board.getBoard()[rowIdx][colIdx]->getColor() == "b" && board.getIsWhiteTurn())) {
+    //protection from nullptr
+    if (!piece) return 0;
+
+    //Check if it right color to move
+    if ((piece->getColor() == "w" && !board.getIsWhiteTurn()) ||
+        (piece->getColor() == "b" && board.getIsWhiteTurn())) {
 
         if (availableMovesHistory.empty()) {
             return 0;
