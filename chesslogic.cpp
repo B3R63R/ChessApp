@@ -6,8 +6,7 @@
 #include <map>
 #include <tuple>
 #include <algorithm>
-//#include <QDebug>
-
+#include <QDebug>
 LOGIC::Piece::Piece(const std::string& color, int row, int column, const std::string& name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
 
@@ -88,15 +87,20 @@ bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int co
             if (boardArray[examinedRow][examinedCol] == nullptr) {
                 continue;
             }
-            //finish scanning direction if king is covered
+            //finish scanning direction if king is covered by allies color pieces
             else if (boardArray[examinedRow][examinedCol]->getColor() == this->getColor() && boardArray[examinedRow][examinedCol]->getName() != "K") {
                 break;
             }
+
             //Scanner reached other color piece
             else if (boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
                 //pointed piece attacks (or Queen) attacks king
                 if (boardArray[examinedRow][examinedCol]->getName() == pieceName || boardArray[examinedRow][examinedCol]->getName() == "Q") {
                     return true;
+                }
+                //Enemy color covers king from danger
+                else {
+                    break;
                 }
 
             }
@@ -160,23 +164,29 @@ bool LOGIC::Piece::isAttacked(const Board& board, int row, int col) {
     bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, kingDirections, "K");
 
     if (isKingAttackedByBishop) {
+        if (col == 5 && row == 2) qDebug() << "B";
         return true;
     }
     else if (isKingAttackedByKnight) {
+        if (col == 5 && row == 2) qDebug() << "N";
         return true;
     }
     else if (isKingAttackedByPawn) {
+        if (col == 5 && row == 2) qDebug() << "P";
         return true;
     }
 
     else if (isKingAttackedByRook) {
+        if (col == 5 && row == 2) qDebug() << "R";
         return true;
     }
 
     else if (isKingAttackedByKing) {
+        if (col == 5 && row == 2) qDebug() << "K";
         return true;
     }
     else {
+        if (col == 5 && row == 2) qDebug() << "False";
         return false;
     }
 }

@@ -30,88 +30,88 @@ public:
     QFrame *frame;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout;
-    QFrame *frame_A5;
-    QFrame *frame_C3;
-    QFrame *frame_F8;
-    QFrame *frame_G2;
-    QLabel *label_V0;
-    QLabel *label_V6;
-    QFrame *frame_E8;
-    QFrame *frame_G3;
-    QFrame *frame_C5;
-    QFrame *frame_A7;
-    QFrame *frame_E5;
-    QFrame *frame_B2;
     QLabel *label_V3;
-    QLabel *label_V1;
-    QLabel *label_V7;
+    QFrame *frame_D5;
     QFrame *frame_G7;
-    QFrame *frame_D3;
-    QFrame *frame_B1;
-    QFrame *frame_A8;
-    QLabel *label_V4;
-    QFrame *frame_C1;
-    QFrame *frame_E1;
-    QFrame *frame_B8;
-    QFrame *frame_F6;
-    QFrame *frame_B4;
-    QFrame *frame_F2;
-    QFrame *frame_D4;
-    QFrame *frame_D6;
-    QFrame *frame_F3;
-    QFrame *frame_F7;
-    QFrame *frame_C7;
-    QFrame *frame_D2;
-    QLabel *label_H1;
-    QFrame *frame_H3;
     QFrame *frame_B5;
-    QFrame *frame_D7;
-    QFrame *frame_C2;
-    QFrame *frame_H7;
-    QFrame *frame_E3;
-    QFrame *frame_E7;
-    QLabel *label_H6;
-    QFrame *frame_F5;
-    QFrame *frame_G4;
-    QFrame *frame_A2;
-    QLabel *label_H5;
-    QFrame *frame_E4;
-    QFrame *frame_H6;
     QFrame *frame_H8;
-    QLabel *label_H2;
-    QFrame *frame_F4;
-    QLabel *label_H0;
     QFrame *frame_A4;
-    QLabel *label_V5;
-    QFrame *frame_H1;
+    QLabel *label_V4;
+    QFrame *frame_E4;
+    QFrame *frame_A6;
+    QFrame *frame_F6;
+    QFrame *frame_E8;
+    QFrame *frame_F8;
     QFrame *frame_D1;
-    QFrame *frame_D8;
-    QFrame *frame_H5;
+    QFrame *frame_F1;
+    QFrame *frame_D7;
+    QLabel *label_H1;
+    QFrame *frame_E2;
+    QFrame *frame_H2;
+    QFrame *frame_C4;
+    QFrame *frame_F5;
+    QFrame *frame_G6;
+    QFrame *frame_A2;
+    QFrame *frame_B1;
+    QFrame *frame_C8;
+    QFrame *frame_H1;
+    QFrame *frame_C1;
+    QLabel *label_H5;
+    QLabel *label_H4;
+    QFrame *frame_B8;
+    QFrame *frame_H6;
+    QFrame *frame_G3;
+    QFrame *frame_B7;
+    QFrame *frame_B3;
+    QFrame *frame_G1;
+    QFrame *frame_E5;
     QFrame *frame_A1;
     QHBoxLayout *horizontalLayout_3;
-    QWidget *widget;
-    QFrame *frame_F1;
-    QLabel *label_V2;
-    QFrame *frame_E2;
-    QFrame *frame_C8;
-    QFrame *frame_B3;
-    QFrame *frame_B7;
-    QLabel *label_H7;
-    QFrame *frame_A3;
-    QFrame *frame_G6;
-    QFrame *frame_G1;
-    QLabel *label_H4;
-    QFrame *frame_G5;
-    QFrame *frame_H4;
     QFrame *frame_E6;
-    QFrame *frame_A6;
-    QLabel *label_H3;
-    QFrame *frame_C4;
-    QFrame *frame_C6;
-    QFrame *frame_H2;
+    QFrame *frame_D4;
+    QFrame *frame_G2;
+    QFrame *frame_H3;
+    QLabel *label_V1;
+    QLabel *label_H0;
     QFrame *frame_G8;
-    QFrame *frame_D5;
+    QFrame *frame_F4;
+    QFrame *frame_D6;
+    QLabel *label_V0;
+    QFrame *frame_F3;
+    QFrame *frame_F2;
+    QFrame *frame_C7;
+    QFrame *frame_H7;
+    QLabel *label_V5;
+    QLabel *label_V2;
+    QFrame *frame_D2;
+    QFrame *frame_C3;
+    QFrame *frame_D3;
+    QFrame *frame_C2;
+    QFrame *frame_A7;
+    QLabel *label_V6;
+    QLabel *label_V7;
+    QFrame *frame_A5;
+    QFrame *frame_F7;
+    QFrame *frame_H4;
+    QFrame *frame_G5;
+    QFrame *frame_E3;
+    QFrame *frame_A3;
+    QFrame *frame_H5;
+    QFrame *frame_C5;
+    QFrame *frame_G4;
+    QFrame *frame_E1;
+    QFrame *frame_D8;
+    QLabel *label_H3;
+    QFrame *frame_E7;
+    QFrame *frame_A8;
+    QFrame *frame_B4;
+    QLabel *label_H7;
+    QFrame *frame_B2;
+    QLabel *label_H6;
+    QFrame *frame_C6;
     QFrame *frame_B6;
+    QLabel *label_H2;
+    QWidget *widget;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -133,9 +133,9 @@ public:
         sizePolicy.setVerticalStretch(1);
         sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy);
-        frame->setMinimumSize(QSize(0, 0));
+        frame->setMinimumSize(QSize(715, 715));
         frame->setMaximumSize(QSize(150000, 150000));
-        frame->setBaseSize(QSize(635, 635));
+        frame->setBaseSize(QSize(715, 715));
         frame->setStyleSheet(QString::fromUtf8(""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
@@ -144,629 +144,424 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(0);
         gridLayout->setObjectName("gridLayout");
-        frame_A5 = new QFrame(frame);
-        frame_A5->setObjectName("frame_A5");
-        sizePolicy.setHeightForWidth(frame_A5->sizePolicy().hasHeightForWidth());
-        frame_A5->setSizePolicy(sizePolicy);
-        frame_A5->setMinimumSize(QSize(0, 0));
-        frame_A5->setBaseSize(QSize(75, 75));
-        frame_A5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A5->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_A5, 3, 1, 1, 1);
-
-        frame_C3 = new QFrame(frame);
-        frame_C3->setObjectName("frame_C3");
-        sizePolicy.setHeightForWidth(frame_C3->sizePolicy().hasHeightForWidth());
-        frame_C3->setSizePolicy(sizePolicy);
-        frame_C3->setMinimumSize(QSize(0, 0));
-        frame_C3->setBaseSize(QSize(75, 75));
-        frame_C3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C3, 5, 3, 1, 1);
-
-        frame_F8 = new QFrame(frame);
-        frame_F8->setObjectName("frame_F8");
-        sizePolicy.setHeightForWidth(frame_F8->sizePolicy().hasHeightForWidth());
-        frame_F8->setSizePolicy(sizePolicy);
-        frame_F8->setMinimumSize(QSize(0, 0));
-        frame_F8->setBaseSize(QSize(75, 75));
-        frame_F8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F8->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F8, 0, 6, 1, 1);
-
-        frame_G2 = new QFrame(frame);
-        frame_G2->setObjectName("frame_G2");
-        sizePolicy.setHeightForWidth(frame_G2->sizePolicy().hasHeightForWidth());
-        frame_G2->setSizePolicy(sizePolicy);
-        frame_G2->setMinimumSize(QSize(0, 0));
-        frame_G2->setBaseSize(QSize(75, 75));
-        frame_G2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G2, 6, 7, 1, 1);
-
-        label_V0 = new QLabel(frame);
-        label_V0->setObjectName("label_V0");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_V0->sizePolicy().hasHeightForWidth());
-        label_V0->setSizePolicy(sizePolicy1);
-        label_V0->setMinimumSize(QSize(35, 0));
-        label_V0->setSizeIncrement(QSize(35, 0));
-        label_V0->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_V0, 7, 0, 1, 1);
-
-        label_V6 = new QLabel(frame);
-        label_V6->setObjectName("label_V6");
-        sizePolicy1.setHeightForWidth(label_V6->sizePolicy().hasHeightForWidth());
-        label_V6->setSizePolicy(sizePolicy1);
-        label_V6->setMinimumSize(QSize(35, 0));
-        label_V6->setSizeIncrement(QSize(35, 0));
-        label_V6->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_V6, 1, 0, 1, 1);
-
-        frame_E8 = new QFrame(frame);
-        frame_E8->setObjectName("frame_E8");
-        sizePolicy.setHeightForWidth(frame_E8->sizePolicy().hasHeightForWidth());
-        frame_E8->setSizePolicy(sizePolicy);
-        frame_E8->setMinimumSize(QSize(0, 0));
-        frame_E8->setBaseSize(QSize(75, 75));
-        frame_E8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E8->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E8, 0, 5, 1, 1);
-
-        frame_G3 = new QFrame(frame);
-        frame_G3->setObjectName("frame_G3");
-        sizePolicy.setHeightForWidth(frame_G3->sizePolicy().hasHeightForWidth());
-        frame_G3->setSizePolicy(sizePolicy);
-        frame_G3->setMinimumSize(QSize(0, 0));
-        frame_G3->setBaseSize(QSize(75, 75));
-        frame_G3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G3, 5, 7, 1, 1);
-
-        frame_C5 = new QFrame(frame);
-        frame_C5->setObjectName("frame_C5");
-        sizePolicy.setHeightForWidth(frame_C5->sizePolicy().hasHeightForWidth());
-        frame_C5->setSizePolicy(sizePolicy);
-        frame_C5->setMinimumSize(QSize(0, 0));
-        frame_C5->setBaseSize(QSize(75, 75));
-        frame_C5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C5->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C5, 3, 3, 1, 1);
-
-        frame_A7 = new QFrame(frame);
-        frame_A7->setObjectName("frame_A7");
-        sizePolicy.setHeightForWidth(frame_A7->sizePolicy().hasHeightForWidth());
-        frame_A7->setSizePolicy(sizePolicy);
-        frame_A7->setMinimumSize(QSize(0, 0));
-        frame_A7->setBaseSize(QSize(75, 75));
-        frame_A7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_A7, 1, 1, 1, 1);
-
-        frame_E5 = new QFrame(frame);
-        frame_E5->setObjectName("frame_E5");
-        sizePolicy.setHeightForWidth(frame_E5->sizePolicy().hasHeightForWidth());
-        frame_E5->setSizePolicy(sizePolicy);
-        frame_E5->setMinimumSize(QSize(0, 0));
-        frame_E5->setBaseSize(QSize(75, 75));
-        frame_E5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E5->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E5, 3, 5, 1, 1);
-
-        frame_B2 = new QFrame(frame);
-        frame_B2->setObjectName("frame_B2");
-        sizePolicy.setHeightForWidth(frame_B2->sizePolicy().hasHeightForWidth());
-        frame_B2->setSizePolicy(sizePolicy);
-        frame_B2->setMinimumSize(QSize(0, 0));
-        frame_B2->setBaseSize(QSize(75, 75));
-        frame_B2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B2, 6, 2, 1, 1);
-
         label_V3 = new QLabel(frame);
         label_V3->setObjectName("label_V3");
-        sizePolicy1.setHeightForWidth(label_V3->sizePolicy().hasHeightForWidth());
-        label_V3->setSizePolicy(sizePolicy1);
-        label_V3->setMinimumSize(QSize(35, 0));
+        sizePolicy.setHeightForWidth(label_V3->sizePolicy().hasHeightForWidth());
+        label_V3->setSizePolicy(sizePolicy);
+        label_V3->setMinimumSize(QSize(35, 85));
+        label_V3->setMaximumSize(QSize(35, 85));
         label_V3->setSizeIncrement(QSize(35, 0));
         label_V3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_V3, 4, 0, 1, 1);
 
-        label_V1 = new QLabel(frame);
-        label_V1->setObjectName("label_V1");
-        sizePolicy1.setHeightForWidth(label_V1->sizePolicy().hasHeightForWidth());
-        label_V1->setSizePolicy(sizePolicy1);
-        label_V1->setMinimumSize(QSize(35, 0));
-        label_V1->setSizeIncrement(QSize(35, 0));
-        label_V1->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        frame_D5 = new QFrame(frame);
+        frame_D5->setObjectName("frame_D5");
+        sizePolicy.setHeightForWidth(frame_D5->sizePolicy().hasHeightForWidth());
+        frame_D5->setSizePolicy(sizePolicy);
+        frame_D5->setMinimumSize(QSize(85, 85));
+        frame_D5->setMaximumSize(QSize(85, 85));
+        frame_D5->setBaseSize(QSize(75, 75));
+        frame_D5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D5->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(label_V1, 6, 0, 1, 1);
-
-        label_V7 = new QLabel(frame);
-        label_V7->setObjectName("label_V7");
-        sizePolicy1.setHeightForWidth(label_V7->sizePolicy().hasHeightForWidth());
-        label_V7->setSizePolicy(sizePolicy1);
-        label_V7->setMinimumSize(QSize(35, 0));
-        label_V7->setSizeIncrement(QSize(35, 0));
-        label_V7->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_V7, 0, 0, 1, 1);
+        gridLayout->addWidget(frame_D5, 3, 4, 1, 1);
 
         frame_G7 = new QFrame(frame);
         frame_G7->setObjectName("frame_G7");
         sizePolicy.setHeightForWidth(frame_G7->sizePolicy().hasHeightForWidth());
         frame_G7->setSizePolicy(sizePolicy);
-        frame_G7->setMinimumSize(QSize(0, 0));
+        frame_G7->setMinimumSize(QSize(85, 85));
+        frame_G7->setMaximumSize(QSize(85, 85));
         frame_G7->setBaseSize(QSize(75, 75));
         frame_G7->setFrameShape(QFrame::Shape::StyledPanel);
         frame_G7->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_G7, 1, 7, 1, 1);
 
-        frame_D3 = new QFrame(frame);
-        frame_D3->setObjectName("frame_D3");
-        sizePolicy.setHeightForWidth(frame_D3->sizePolicy().hasHeightForWidth());
-        frame_D3->setSizePolicy(sizePolicy);
-        frame_D3->setMinimumSize(QSize(0, 0));
-        frame_D3->setBaseSize(QSize(75, 75));
-        frame_D3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_D3, 5, 4, 1, 1);
-
-        frame_B1 = new QFrame(frame);
-        frame_B1->setObjectName("frame_B1");
-        sizePolicy.setHeightForWidth(frame_B1->sizePolicy().hasHeightForWidth());
-        frame_B1->setSizePolicy(sizePolicy);
-        frame_B1->setMinimumSize(QSize(0, 0));
-        frame_B1->setBaseSize(QSize(75, 75));
-        frame_B1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B1->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B1, 7, 2, 1, 1);
-
-        frame_A8 = new QFrame(frame);
-        frame_A8->setObjectName("frame_A8");
-        sizePolicy.setHeightForWidth(frame_A8->sizePolicy().hasHeightForWidth());
-        frame_A8->setSizePolicy(sizePolicy);
-        frame_A8->setMinimumSize(QSize(0, 0));
-        frame_A8->setBaseSize(QSize(75, 75));
-        frame_A8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A8->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_A8, 0, 1, 1, 1);
-
-        label_V4 = new QLabel(frame);
-        label_V4->setObjectName("label_V4");
-        sizePolicy1.setHeightForWidth(label_V4->sizePolicy().hasHeightForWidth());
-        label_V4->setSizePolicy(sizePolicy1);
-        label_V4->setMinimumSize(QSize(35, 0));
-        label_V4->setSizeIncrement(QSize(35, 0));
-        label_V4->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_V4, 3, 0, 1, 1);
-
-        frame_C1 = new QFrame(frame);
-        frame_C1->setObjectName("frame_C1");
-        sizePolicy.setHeightForWidth(frame_C1->sizePolicy().hasHeightForWidth());
-        frame_C1->setSizePolicy(sizePolicy);
-        frame_C1->setMinimumSize(QSize(0, 0));
-        frame_C1->setBaseSize(QSize(75, 75));
-        frame_C1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C1->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C1, 7, 3, 1, 1);
-
-        frame_E1 = new QFrame(frame);
-        frame_E1->setObjectName("frame_E1");
-        sizePolicy.setHeightForWidth(frame_E1->sizePolicy().hasHeightForWidth());
-        frame_E1->setSizePolicy(sizePolicy);
-        frame_E1->setMinimumSize(QSize(0, 0));
-        frame_E1->setBaseSize(QSize(75, 75));
-        frame_E1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E1->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E1, 7, 5, 1, 1);
-
-        frame_B8 = new QFrame(frame);
-        frame_B8->setObjectName("frame_B8");
-        sizePolicy.setHeightForWidth(frame_B8->sizePolicy().hasHeightForWidth());
-        frame_B8->setSizePolicy(sizePolicy);
-        frame_B8->setMinimumSize(QSize(0, 0));
-        frame_B8->setBaseSize(QSize(75, 75));
-        frame_B8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B8->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B8, 0, 2, 1, 1);
-
-        frame_F6 = new QFrame(frame);
-        frame_F6->setObjectName("frame_F6");
-        sizePolicy.setHeightForWidth(frame_F6->sizePolicy().hasHeightForWidth());
-        frame_F6->setSizePolicy(sizePolicy);
-        frame_F6->setMinimumSize(QSize(0, 0));
-        frame_F6->setBaseSize(QSize(75, 75));
-        frame_F6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F6->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F6, 2, 6, 1, 1);
-
-        frame_B4 = new QFrame(frame);
-        frame_B4->setObjectName("frame_B4");
-        sizePolicy.setHeightForWidth(frame_B4->sizePolicy().hasHeightForWidth());
-        frame_B4->setSizePolicy(sizePolicy);
-        frame_B4->setMinimumSize(QSize(0, 0));
-        frame_B4->setBaseSize(QSize(75, 75));
-        frame_B4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B4, 4, 2, 1, 1);
-
-        frame_F2 = new QFrame(frame);
-        frame_F2->setObjectName("frame_F2");
-        sizePolicy.setHeightForWidth(frame_F2->sizePolicy().hasHeightForWidth());
-        frame_F2->setSizePolicy(sizePolicy);
-        frame_F2->setMinimumSize(QSize(0, 0));
-        frame_F2->setBaseSize(QSize(75, 75));
-        frame_F2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F2, 6, 6, 1, 1);
-
-        frame_D4 = new QFrame(frame);
-        frame_D4->setObjectName("frame_D4");
-        sizePolicy.setHeightForWidth(frame_D4->sizePolicy().hasHeightForWidth());
-        frame_D4->setSizePolicy(sizePolicy);
-        frame_D4->setMinimumSize(QSize(0, 0));
-        frame_D4->setBaseSize(QSize(75, 75));
-        frame_D4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_D4, 4, 4, 1, 1);
-
-        frame_D6 = new QFrame(frame);
-        frame_D6->setObjectName("frame_D6");
-        sizePolicy.setHeightForWidth(frame_D6->sizePolicy().hasHeightForWidth());
-        frame_D6->setSizePolicy(sizePolicy);
-        frame_D6->setMinimumSize(QSize(0, 0));
-        frame_D6->setBaseSize(QSize(75, 75));
-        frame_D6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D6->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_D6, 2, 4, 1, 1);
-
-        frame_F3 = new QFrame(frame);
-        frame_F3->setObjectName("frame_F3");
-        sizePolicy.setHeightForWidth(frame_F3->sizePolicy().hasHeightForWidth());
-        frame_F3->setSizePolicy(sizePolicy);
-        frame_F3->setMinimumSize(QSize(0, 0));
-        frame_F3->setBaseSize(QSize(75, 75));
-        frame_F3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F3, 5, 6, 1, 1);
-
-        frame_F7 = new QFrame(frame);
-        frame_F7->setObjectName("frame_F7");
-        sizePolicy.setHeightForWidth(frame_F7->sizePolicy().hasHeightForWidth());
-        frame_F7->setSizePolicy(sizePolicy);
-        frame_F7->setMinimumSize(QSize(0, 0));
-        frame_F7->setBaseSize(QSize(75, 75));
-        frame_F7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F7, 1, 6, 1, 1);
-
-        frame_C7 = new QFrame(frame);
-        frame_C7->setObjectName("frame_C7");
-        sizePolicy.setHeightForWidth(frame_C7->sizePolicy().hasHeightForWidth());
-        frame_C7->setSizePolicy(sizePolicy);
-        frame_C7->setMinimumSize(QSize(0, 0));
-        frame_C7->setBaseSize(QSize(75, 75));
-        frame_C7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C7, 1, 3, 1, 1);
-
-        frame_D2 = new QFrame(frame);
-        frame_D2->setObjectName("frame_D2");
-        sizePolicy.setHeightForWidth(frame_D2->sizePolicy().hasHeightForWidth());
-        frame_D2->setSizePolicy(sizePolicy);
-        frame_D2->setMinimumSize(QSize(0, 0));
-        frame_D2->setBaseSize(QSize(75, 75));
-        frame_D2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_D2, 6, 4, 1, 1);
-
-        label_H1 = new QLabel(frame);
-        label_H1->setObjectName("label_H1");
-        sizePolicy1.setHeightForWidth(label_H1->sizePolicy().hasHeightForWidth());
-        label_H1->setSizePolicy(sizePolicy1);
-        label_H1->setMinimumSize(QSize(35, 35));
-        label_H1->setMaximumSize(QSize(16777215, 35));
-        label_H1->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H1, 8, 2, 1, 1);
-
-        frame_H3 = new QFrame(frame);
-        frame_H3->setObjectName("frame_H3");
-        sizePolicy.setHeightForWidth(frame_H3->sizePolicy().hasHeightForWidth());
-        frame_H3->setSizePolicy(sizePolicy);
-        frame_H3->setMinimumSize(QSize(0, 0));
-        frame_H3->setBaseSize(QSize(75, 75));
-        frame_H3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_H3, 5, 8, 1, 1);
-
         frame_B5 = new QFrame(frame);
         frame_B5->setObjectName("frame_B5");
         sizePolicy.setHeightForWidth(frame_B5->sizePolicy().hasHeightForWidth());
         frame_B5->setSizePolicy(sizePolicy);
-        frame_B5->setMinimumSize(QSize(0, 0));
+        frame_B5->setMinimumSize(QSize(85, 85));
+        frame_B5->setMaximumSize(QSize(85, 85));
         frame_B5->setBaseSize(QSize(75, 75));
         frame_B5->setFrameShape(QFrame::Shape::StyledPanel);
         frame_B5->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_B5, 3, 2, 1, 1);
 
-        frame_D7 = new QFrame(frame);
-        frame_D7->setObjectName("frame_D7");
-        sizePolicy.setHeightForWidth(frame_D7->sizePolicy().hasHeightForWidth());
-        frame_D7->setSizePolicy(sizePolicy);
-        frame_D7->setMinimumSize(QSize(0, 0));
-        frame_D7->setBaseSize(QSize(75, 75));
-        frame_D7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_D7, 1, 4, 1, 1);
-
-        frame_C2 = new QFrame(frame);
-        frame_C2->setObjectName("frame_C2");
-        sizePolicy.setHeightForWidth(frame_C2->sizePolicy().hasHeightForWidth());
-        frame_C2->setSizePolicy(sizePolicy);
-        frame_C2->setMinimumSize(QSize(0, 0));
-        frame_C2->setBaseSize(QSize(75, 75));
-        frame_C2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C2, 6, 3, 1, 1);
-
-        frame_H7 = new QFrame(frame);
-        frame_H7->setObjectName("frame_H7");
-        sizePolicy.setHeightForWidth(frame_H7->sizePolicy().hasHeightForWidth());
-        frame_H7->setSizePolicy(sizePolicy);
-        frame_H7->setMinimumSize(QSize(0, 0));
-        frame_H7->setBaseSize(QSize(75, 75));
-        frame_H7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_H7, 1, 8, 1, 1);
-
-        frame_E3 = new QFrame(frame);
-        frame_E3->setObjectName("frame_E3");
-        sizePolicy.setHeightForWidth(frame_E3->sizePolicy().hasHeightForWidth());
-        frame_E3->setSizePolicy(sizePolicy);
-        frame_E3->setMinimumSize(QSize(0, 0));
-        frame_E3->setBaseSize(QSize(75, 75));
-        frame_E3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E3, 5, 5, 1, 1);
-
-        frame_E7 = new QFrame(frame);
-        frame_E7->setObjectName("frame_E7");
-        sizePolicy.setHeightForWidth(frame_E7->sizePolicy().hasHeightForWidth());
-        frame_E7->setSizePolicy(sizePolicy);
-        frame_E7->setMinimumSize(QSize(0, 0));
-        frame_E7->setBaseSize(QSize(75, 75));
-        frame_E7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E7, 1, 5, 1, 1);
-
-        label_H6 = new QLabel(frame);
-        label_H6->setObjectName("label_H6");
-        sizePolicy1.setHeightForWidth(label_H6->sizePolicy().hasHeightForWidth());
-        label_H6->setSizePolicy(sizePolicy1);
-        label_H6->setMinimumSize(QSize(35, 35));
-        label_H6->setMaximumSize(QSize(16777215, 35));
-        label_H6->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H6, 8, 7, 1, 1);
-
-        frame_F5 = new QFrame(frame);
-        frame_F5->setObjectName("frame_F5");
-        sizePolicy.setHeightForWidth(frame_F5->sizePolicy().hasHeightForWidth());
-        frame_F5->setSizePolicy(sizePolicy);
-        frame_F5->setMinimumSize(QSize(0, 0));
-        frame_F5->setBaseSize(QSize(75, 75));
-        frame_F5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F5->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F5, 3, 6, 1, 1);
-
-        frame_G4 = new QFrame(frame);
-        frame_G4->setObjectName("frame_G4");
-        sizePolicy.setHeightForWidth(frame_G4->sizePolicy().hasHeightForWidth());
-        frame_G4->setSizePolicy(sizePolicy);
-        frame_G4->setMinimumSize(QSize(0, 0));
-        frame_G4->setBaseSize(QSize(75, 75));
-        frame_G4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G4, 4, 7, 1, 1);
-
-        frame_A2 = new QFrame(frame);
-        frame_A2->setObjectName("frame_A2");
-        sizePolicy.setHeightForWidth(frame_A2->sizePolicy().hasHeightForWidth());
-        frame_A2->setSizePolicy(sizePolicy);
-        frame_A2->setMinimumSize(QSize(0, 0));
-        frame_A2->setBaseSize(QSize(75, 75));
-        frame_A2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_A2, 6, 1, 1, 1);
-
-        label_H5 = new QLabel(frame);
-        label_H5->setObjectName("label_H5");
-        sizePolicy1.setHeightForWidth(label_H5->sizePolicy().hasHeightForWidth());
-        label_H5->setSizePolicy(sizePolicy1);
-        label_H5->setMinimumSize(QSize(35, 35));
-        label_H5->setMaximumSize(QSize(16777215, 35));
-        label_H5->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H5, 8, 6, 1, 1);
-
-        frame_E4 = new QFrame(frame);
-        frame_E4->setObjectName("frame_E4");
-        sizePolicy.setHeightForWidth(frame_E4->sizePolicy().hasHeightForWidth());
-        frame_E4->setSizePolicy(sizePolicy);
-        frame_E4->setMinimumSize(QSize(0, 0));
-        frame_E4->setBaseSize(QSize(75, 75));
-        frame_E4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E4, 4, 5, 1, 1);
-
-        frame_H6 = new QFrame(frame);
-        frame_H6->setObjectName("frame_H6");
-        sizePolicy.setHeightForWidth(frame_H6->sizePolicy().hasHeightForWidth());
-        frame_H6->setSizePolicy(sizePolicy);
-        frame_H6->setMinimumSize(QSize(0, 0));
-        frame_H6->setBaseSize(QSize(75, 75));
-        frame_H6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H6->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_H6, 2, 8, 1, 1);
-
         frame_H8 = new QFrame(frame);
         frame_H8->setObjectName("frame_H8");
         sizePolicy.setHeightForWidth(frame_H8->sizePolicy().hasHeightForWidth());
         frame_H8->setSizePolicy(sizePolicy);
-        frame_H8->setMinimumSize(QSize(0, 0));
+        frame_H8->setMinimumSize(QSize(85, 85));
+        frame_H8->setMaximumSize(QSize(85, 85));
         frame_H8->setBaseSize(QSize(75, 75));
         frame_H8->setFrameShape(QFrame::Shape::StyledPanel);
         frame_H8->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_H8, 0, 8, 1, 1);
 
-        label_H2 = new QLabel(frame);
-        label_H2->setObjectName("label_H2");
-        sizePolicy1.setHeightForWidth(label_H2->sizePolicy().hasHeightForWidth());
-        label_H2->setSizePolicy(sizePolicy1);
-        label_H2->setMinimumSize(QSize(35, 35));
-        label_H2->setMaximumSize(QSize(16777215, 35));
-        label_H2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H2, 8, 3, 1, 1);
-
-        frame_F4 = new QFrame(frame);
-        frame_F4->setObjectName("frame_F4");
-        sizePolicy.setHeightForWidth(frame_F4->sizePolicy().hasHeightForWidth());
-        frame_F4->setSizePolicy(sizePolicy);
-        frame_F4->setMinimumSize(QSize(0, 0));
-        frame_F4->setBaseSize(QSize(75, 75));
-        frame_F4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F4, 4, 6, 1, 1);
-
-        label_H0 = new QLabel(frame);
-        label_H0->setObjectName("label_H0");
-        sizePolicy1.setHeightForWidth(label_H0->sizePolicy().hasHeightForWidth());
-        label_H0->setSizePolicy(sizePolicy1);
-        label_H0->setMinimumSize(QSize(35, 35));
-        label_H0->setMaximumSize(QSize(16777215, 35));
-        label_H0->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H0, 8, 1, 1, 1);
-
         frame_A4 = new QFrame(frame);
         frame_A4->setObjectName("frame_A4");
         sizePolicy.setHeightForWidth(frame_A4->sizePolicy().hasHeightForWidth());
         frame_A4->setSizePolicy(sizePolicy);
-        frame_A4->setMinimumSize(QSize(0, 0));
+        frame_A4->setMinimumSize(QSize(85, 85));
+        frame_A4->setMaximumSize(QSize(85, 85));
         frame_A4->setBaseSize(QSize(75, 75));
         frame_A4->setFrameShape(QFrame::Shape::StyledPanel);
         frame_A4->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_A4, 4, 1, 1, 1);
 
-        label_V5 = new QLabel(frame);
-        label_V5->setObjectName("label_V5");
-        sizePolicy1.setHeightForWidth(label_V5->sizePolicy().hasHeightForWidth());
-        label_V5->setSizePolicy(sizePolicy1);
-        label_V5->setMinimumSize(QSize(35, 0));
-        label_V5->setSizeIncrement(QSize(35, 0));
-        label_V5->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_V4 = new QLabel(frame);
+        label_V4->setObjectName("label_V4");
+        sizePolicy.setHeightForWidth(label_V4->sizePolicy().hasHeightForWidth());
+        label_V4->setSizePolicy(sizePolicy);
+        label_V4->setMinimumSize(QSize(35, 85));
+        label_V4->setMaximumSize(QSize(35, 85));
+        label_V4->setSizeIncrement(QSize(35, 0));
+        label_V4->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(label_V5, 2, 0, 1, 1);
+        gridLayout->addWidget(label_V4, 3, 0, 1, 1);
 
-        frame_H1 = new QFrame(frame);
-        frame_H1->setObjectName("frame_H1");
-        sizePolicy.setHeightForWidth(frame_H1->sizePolicy().hasHeightForWidth());
-        frame_H1->setSizePolicy(sizePolicy);
-        frame_H1->setMinimumSize(QSize(0, 0));
-        frame_H1->setBaseSize(QSize(75, 75));
-        frame_H1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H1->setFrameShadow(QFrame::Shadow::Raised);
+        frame_E4 = new QFrame(frame);
+        frame_E4->setObjectName("frame_E4");
+        sizePolicy.setHeightForWidth(frame_E4->sizePolicy().hasHeightForWidth());
+        frame_E4->setSizePolicy(sizePolicy);
+        frame_E4->setMinimumSize(QSize(85, 85));
+        frame_E4->setMaximumSize(QSize(85, 85));
+        frame_E4->setBaseSize(QSize(75, 75));
+        frame_E4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_H1, 7, 8, 1, 1);
+        gridLayout->addWidget(frame_E4, 4, 5, 1, 1);
+
+        frame_A6 = new QFrame(frame);
+        frame_A6->setObjectName("frame_A6");
+        sizePolicy.setHeightForWidth(frame_A6->sizePolicy().hasHeightForWidth());
+        frame_A6->setSizePolicy(sizePolicy);
+        frame_A6->setMinimumSize(QSize(85, 85));
+        frame_A6->setMaximumSize(QSize(85, 85));
+        frame_A6->setBaseSize(QSize(75, 75));
+        frame_A6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A6, 2, 1, 1, 1);
+
+        frame_F6 = new QFrame(frame);
+        frame_F6->setObjectName("frame_F6");
+        sizePolicy.setHeightForWidth(frame_F6->sizePolicy().hasHeightForWidth());
+        frame_F6->setSizePolicy(sizePolicy);
+        frame_F6->setMinimumSize(QSize(85, 85));
+        frame_F6->setMaximumSize(QSize(85, 85));
+        frame_F6->setBaseSize(QSize(75, 75));
+        frame_F6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F6, 2, 6, 1, 1);
+
+        frame_E8 = new QFrame(frame);
+        frame_E8->setObjectName("frame_E8");
+        sizePolicy.setHeightForWidth(frame_E8->sizePolicy().hasHeightForWidth());
+        frame_E8->setSizePolicy(sizePolicy);
+        frame_E8->setMinimumSize(QSize(85, 85));
+        frame_E8->setMaximumSize(QSize(85, 85));
+        frame_E8->setBaseSize(QSize(75, 75));
+        frame_E8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E8, 0, 5, 1, 1);
+
+        frame_F8 = new QFrame(frame);
+        frame_F8->setObjectName("frame_F8");
+        sizePolicy.setHeightForWidth(frame_F8->sizePolicy().hasHeightForWidth());
+        frame_F8->setSizePolicy(sizePolicy);
+        frame_F8->setMinimumSize(QSize(85, 85));
+        frame_F8->setMaximumSize(QSize(85, 85));
+        frame_F8->setBaseSize(QSize(75, 75));
+        frame_F8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F8, 0, 6, 1, 1);
 
         frame_D1 = new QFrame(frame);
         frame_D1->setObjectName("frame_D1");
         sizePolicy.setHeightForWidth(frame_D1->sizePolicy().hasHeightForWidth());
         frame_D1->setSizePolicy(sizePolicy);
-        frame_D1->setMinimumSize(QSize(0, 0));
+        frame_D1->setMinimumSize(QSize(85, 85));
+        frame_D1->setMaximumSize(QSize(85, 85));
         frame_D1->setBaseSize(QSize(75, 75));
         frame_D1->setFrameShape(QFrame::Shape::StyledPanel);
         frame_D1->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_D1, 7, 4, 1, 1);
 
-        frame_D8 = new QFrame(frame);
-        frame_D8->setObjectName("frame_D8");
-        sizePolicy.setHeightForWidth(frame_D8->sizePolicy().hasHeightForWidth());
-        frame_D8->setSizePolicy(sizePolicy);
-        frame_D8->setMinimumSize(QSize(0, 0));
-        frame_D8->setBaseSize(QSize(75, 75));
-        frame_D8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D8->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F1 = new QFrame(frame);
+        frame_F1->setObjectName("frame_F1");
+        sizePolicy.setHeightForWidth(frame_F1->sizePolicy().hasHeightForWidth());
+        frame_F1->setSizePolicy(sizePolicy);
+        frame_F1->setMinimumSize(QSize(85, 85));
+        frame_F1->setMaximumSize(QSize(85, 85));
+        frame_F1->setBaseSize(QSize(75, 75));
+        frame_F1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F1->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_D8, 0, 4, 1, 1);
+        gridLayout->addWidget(frame_F1, 7, 6, 1, 1);
 
-        frame_H5 = new QFrame(frame);
-        frame_H5->setObjectName("frame_H5");
-        sizePolicy.setHeightForWidth(frame_H5->sizePolicy().hasHeightForWidth());
-        frame_H5->setSizePolicy(sizePolicy);
-        frame_H5->setMinimumSize(QSize(0, 0));
-        frame_H5->setBaseSize(QSize(75, 75));
-        frame_H5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H5->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D7 = new QFrame(frame);
+        frame_D7->setObjectName("frame_D7");
+        sizePolicy.setHeightForWidth(frame_D7->sizePolicy().hasHeightForWidth());
+        frame_D7->setSizePolicy(sizePolicy);
+        frame_D7->setMinimumSize(QSize(85, 85));
+        frame_D7->setMaximumSize(QSize(85, 85));
+        frame_D7->setBaseSize(QSize(75, 75));
+        frame_D7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D7->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_H5, 3, 8, 1, 1);
+        gridLayout->addWidget(frame_D7, 1, 4, 1, 1);
+
+        label_H1 = new QLabel(frame);
+        label_H1->setObjectName("label_H1");
+        sizePolicy.setHeightForWidth(label_H1->sizePolicy().hasHeightForWidth());
+        label_H1->setSizePolicy(sizePolicy);
+        label_H1->setMinimumSize(QSize(85, 35));
+        label_H1->setMaximumSize(QSize(85, 35));
+        label_H1->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H1, 8, 2, 1, 1);
+
+        frame_E2 = new QFrame(frame);
+        frame_E2->setObjectName("frame_E2");
+        sizePolicy.setHeightForWidth(frame_E2->sizePolicy().hasHeightForWidth());
+        frame_E2->setSizePolicy(sizePolicy);
+        frame_E2->setMinimumSize(QSize(85, 85));
+        frame_E2->setMaximumSize(QSize(85, 85));
+        frame_E2->setBaseSize(QSize(75, 75));
+        frame_E2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E2, 6, 5, 1, 1);
+
+        frame_H2 = new QFrame(frame);
+        frame_H2->setObjectName("frame_H2");
+        sizePolicy.setHeightForWidth(frame_H2->sizePolicy().hasHeightForWidth());
+        frame_H2->setSizePolicy(sizePolicy);
+        frame_H2->setMinimumSize(QSize(85, 85));
+        frame_H2->setMaximumSize(QSize(85, 85));
+        frame_H2->setBaseSize(QSize(75, 75));
+        frame_H2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H2, 6, 8, 1, 1);
+
+        frame_C4 = new QFrame(frame);
+        frame_C4->setObjectName("frame_C4");
+        sizePolicy.setHeightForWidth(frame_C4->sizePolicy().hasHeightForWidth());
+        frame_C4->setSizePolicy(sizePolicy);
+        frame_C4->setMinimumSize(QSize(85, 85));
+        frame_C4->setMaximumSize(QSize(85, 85));
+        frame_C4->setBaseSize(QSize(75, 75));
+        frame_C4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C4->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C4, 4, 3, 1, 1);
+
+        frame_F5 = new QFrame(frame);
+        frame_F5->setObjectName("frame_F5");
+        sizePolicy.setHeightForWidth(frame_F5->sizePolicy().hasHeightForWidth());
+        frame_F5->setSizePolicy(sizePolicy);
+        frame_F5->setMinimumSize(QSize(85, 85));
+        frame_F5->setMaximumSize(QSize(85, 85));
+        frame_F5->setBaseSize(QSize(75, 75));
+        frame_F5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F5, 3, 6, 1, 1);
+
+        frame_G6 = new QFrame(frame);
+        frame_G6->setObjectName("frame_G6");
+        sizePolicy.setHeightForWidth(frame_G6->sizePolicy().hasHeightForWidth());
+        frame_G6->setSizePolicy(sizePolicy);
+        frame_G6->setMinimumSize(QSize(85, 85));
+        frame_G6->setMaximumSize(QSize(85, 85));
+        frame_G6->setBaseSize(QSize(75, 75));
+        frame_G6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G6, 2, 7, 1, 1);
+
+        frame_A2 = new QFrame(frame);
+        frame_A2->setObjectName("frame_A2");
+        sizePolicy.setHeightForWidth(frame_A2->sizePolicy().hasHeightForWidth());
+        frame_A2->setSizePolicy(sizePolicy);
+        frame_A2->setMinimumSize(QSize(85, 85));
+        frame_A2->setMaximumSize(QSize(85, 85));
+        frame_A2->setBaseSize(QSize(75, 75));
+        frame_A2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A2, 6, 1, 1, 1);
+
+        frame_B1 = new QFrame(frame);
+        frame_B1->setObjectName("frame_B1");
+        sizePolicy.setHeightForWidth(frame_B1->sizePolicy().hasHeightForWidth());
+        frame_B1->setSizePolicy(sizePolicy);
+        frame_B1->setMinimumSize(QSize(85, 85));
+        frame_B1->setMaximumSize(QSize(85, 85));
+        frame_B1->setBaseSize(QSize(75, 75));
+        frame_B1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B1, 7, 2, 1, 1);
+
+        frame_C8 = new QFrame(frame);
+        frame_C8->setObjectName("frame_C8");
+        sizePolicy.setHeightForWidth(frame_C8->sizePolicy().hasHeightForWidth());
+        frame_C8->setSizePolicy(sizePolicy);
+        frame_C8->setMinimumSize(QSize(85, 85));
+        frame_C8->setMaximumSize(QSize(85, 85));
+        frame_C8->setBaseSize(QSize(75, 75));
+        frame_C8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C8, 0, 3, 1, 1);
+
+        frame_H1 = new QFrame(frame);
+        frame_H1->setObjectName("frame_H1");
+        sizePolicy.setHeightForWidth(frame_H1->sizePolicy().hasHeightForWidth());
+        frame_H1->setSizePolicy(sizePolicy);
+        frame_H1->setMinimumSize(QSize(85, 85));
+        frame_H1->setMaximumSize(QSize(85, 85));
+        frame_H1->setBaseSize(QSize(75, 75));
+        frame_H1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H1, 7, 8, 1, 1);
+
+        frame_C1 = new QFrame(frame);
+        frame_C1->setObjectName("frame_C1");
+        sizePolicy.setHeightForWidth(frame_C1->sizePolicy().hasHeightForWidth());
+        frame_C1->setSizePolicy(sizePolicy);
+        frame_C1->setMinimumSize(QSize(85, 85));
+        frame_C1->setMaximumSize(QSize(85, 85));
+        frame_C1->setBaseSize(QSize(75, 75));
+        frame_C1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C1, 7, 3, 1, 1);
+
+        label_H5 = new QLabel(frame);
+        label_H5->setObjectName("label_H5");
+        sizePolicy.setHeightForWidth(label_H5->sizePolicy().hasHeightForWidth());
+        label_H5->setSizePolicy(sizePolicy);
+        label_H5->setMinimumSize(QSize(85, 35));
+        label_H5->setMaximumSize(QSize(85, 35));
+        label_H5->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H5, 8, 6, 1, 1);
+
+        label_H4 = new QLabel(frame);
+        label_H4->setObjectName("label_H4");
+        sizePolicy.setHeightForWidth(label_H4->sizePolicy().hasHeightForWidth());
+        label_H4->setSizePolicy(sizePolicy);
+        label_H4->setMinimumSize(QSize(85, 35));
+        label_H4->setMaximumSize(QSize(85, 35));
+        label_H4->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H4, 8, 5, 1, 1);
+
+        frame_B8 = new QFrame(frame);
+        frame_B8->setObjectName("frame_B8");
+        sizePolicy.setHeightForWidth(frame_B8->sizePolicy().hasHeightForWidth());
+        frame_B8->setSizePolicy(sizePolicy);
+        frame_B8->setMinimumSize(QSize(85, 85));
+        frame_B8->setMaximumSize(QSize(85, 85));
+        frame_B8->setBaseSize(QSize(75, 75));
+        frame_B8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B8, 0, 2, 1, 1);
+
+        frame_H6 = new QFrame(frame);
+        frame_H6->setObjectName("frame_H6");
+        sizePolicy.setHeightForWidth(frame_H6->sizePolicy().hasHeightForWidth());
+        frame_H6->setSizePolicy(sizePolicy);
+        frame_H6->setMinimumSize(QSize(85, 85));
+        frame_H6->setMaximumSize(QSize(85, 85));
+        frame_H6->setBaseSize(QSize(75, 75));
+        frame_H6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H6, 2, 8, 1, 1);
+
+        frame_G3 = new QFrame(frame);
+        frame_G3->setObjectName("frame_G3");
+        sizePolicy.setHeightForWidth(frame_G3->sizePolicy().hasHeightForWidth());
+        frame_G3->setSizePolicy(sizePolicy);
+        frame_G3->setMinimumSize(QSize(85, 85));
+        frame_G3->setMaximumSize(QSize(85, 85));
+        frame_G3->setBaseSize(QSize(75, 75));
+        frame_G3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G3, 5, 7, 1, 1);
+
+        frame_B7 = new QFrame(frame);
+        frame_B7->setObjectName("frame_B7");
+        sizePolicy.setHeightForWidth(frame_B7->sizePolicy().hasHeightForWidth());
+        frame_B7->setSizePolicy(sizePolicy);
+        frame_B7->setMinimumSize(QSize(85, 85));
+        frame_B7->setMaximumSize(QSize(85, 85));
+        frame_B7->setBaseSize(QSize(75, 75));
+        frame_B7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B7, 1, 2, 1, 1);
+
+        frame_B3 = new QFrame(frame);
+        frame_B3->setObjectName("frame_B3");
+        sizePolicy.setHeightForWidth(frame_B3->sizePolicy().hasHeightForWidth());
+        frame_B3->setSizePolicy(sizePolicy);
+        frame_B3->setMinimumSize(QSize(85, 85));
+        frame_B3->setMaximumSize(QSize(85, 85));
+        frame_B3->setBaseSize(QSize(75, 75));
+        frame_B3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B3, 5, 2, 1, 1);
+
+        frame_G1 = new QFrame(frame);
+        frame_G1->setObjectName("frame_G1");
+        sizePolicy.setHeightForWidth(frame_G1->sizePolicy().hasHeightForWidth());
+        frame_G1->setSizePolicy(sizePolicy);
+        frame_G1->setMinimumSize(QSize(85, 85));
+        frame_G1->setMaximumSize(QSize(85, 85));
+        frame_G1->setBaseSize(QSize(75, 75));
+        frame_G1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G1, 7, 7, 1, 1);
+
+        frame_E5 = new QFrame(frame);
+        frame_E5->setObjectName("frame_E5");
+        sizePolicy.setHeightForWidth(frame_E5->sizePolicy().hasHeightForWidth());
+        frame_E5->setSizePolicy(sizePolicy);
+        frame_E5->setMinimumSize(QSize(85, 85));
+        frame_E5->setMaximumSize(QSize(85, 85));
+        frame_E5->setBaseSize(QSize(75, 75));
+        frame_E5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E5, 3, 5, 1, 1);
 
         frame_A1 = new QFrame(frame);
         frame_A1->setObjectName("frame_A1");
         sizePolicy.setHeightForWidth(frame_A1->sizePolicy().hasHeightForWidth());
         frame_A1->setSizePolicy(sizePolicy);
-        frame_A1->setMinimumSize(QSize(0, 0));
+        frame_A1->setMinimumSize(QSize(85, 85));
+        frame_A1->setMaximumSize(QSize(85, 85));
         frame_A1->setBaseSize(QSize(75, 75));
         frame_A1->setFrameShape(QFrame::Shape::StyledPanel);
         frame_A1->setFrameShadow(QFrame::Shadow::Raised);
@@ -775,252 +570,526 @@ public:
 
         gridLayout->addWidget(frame_A1, 7, 1, 1, 1);
 
-        widget = new QWidget(frame);
-        widget->setObjectName("widget");
-        sizePolicy1.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
-        widget->setSizePolicy(sizePolicy1);
-        widget->setMinimumSize(QSize(35, 35));
-        widget->setStyleSheet(QString::fromUtf8(""));
-
-        gridLayout->addWidget(widget, 8, 0, 1, 1);
-
-        frame_F1 = new QFrame(frame);
-        frame_F1->setObjectName("frame_F1");
-        sizePolicy.setHeightForWidth(frame_F1->sizePolicy().hasHeightForWidth());
-        frame_F1->setSizePolicy(sizePolicy);
-        frame_F1->setMinimumSize(QSize(0, 0));
-        frame_F1->setBaseSize(QSize(75, 75));
-        frame_F1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_F1->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_F1, 7, 6, 1, 1);
-
-        label_V2 = new QLabel(frame);
-        label_V2->setObjectName("label_V2");
-        sizePolicy1.setHeightForWidth(label_V2->sizePolicy().hasHeightForWidth());
-        label_V2->setSizePolicy(sizePolicy1);
-        label_V2->setMinimumSize(QSize(35, 0));
-        label_V2->setSizeIncrement(QSize(35, 0));
-        label_V2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_V2, 5, 0, 1, 1);
-
-        frame_E2 = new QFrame(frame);
-        frame_E2->setObjectName("frame_E2");
-        sizePolicy.setHeightForWidth(frame_E2->sizePolicy().hasHeightForWidth());
-        frame_E2->setSizePolicy(sizePolicy);
-        frame_E2->setMinimumSize(QSize(0, 0));
-        frame_E2->setBaseSize(QSize(75, 75));
-        frame_E2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_E2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_E2, 6, 5, 1, 1);
-
-        frame_C8 = new QFrame(frame);
-        frame_C8->setObjectName("frame_C8");
-        sizePolicy.setHeightForWidth(frame_C8->sizePolicy().hasHeightForWidth());
-        frame_C8->setSizePolicy(sizePolicy);
-        frame_C8->setMinimumSize(QSize(0, 0));
-        frame_C8->setBaseSize(QSize(75, 75));
-        frame_C8->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C8->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_C8, 0, 3, 1, 1);
-
-        frame_B3 = new QFrame(frame);
-        frame_B3->setObjectName("frame_B3");
-        sizePolicy.setHeightForWidth(frame_B3->sizePolicy().hasHeightForWidth());
-        frame_B3->setSizePolicy(sizePolicy);
-        frame_B3->setMinimumSize(QSize(0, 0));
-        frame_B3->setBaseSize(QSize(75, 75));
-        frame_B3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B3, 5, 2, 1, 1);
-
-        frame_B7 = new QFrame(frame);
-        frame_B7->setObjectName("frame_B7");
-        sizePolicy.setHeightForWidth(frame_B7->sizePolicy().hasHeightForWidth());
-        frame_B7->setSizePolicy(sizePolicy);
-        frame_B7->setMinimumSize(QSize(0, 0));
-        frame_B7->setBaseSize(QSize(75, 75));
-        frame_B7->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_B7->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_B7, 1, 2, 1, 1);
-
-        label_H7 = new QLabel(frame);
-        label_H7->setObjectName("label_H7");
-        sizePolicy1.setHeightForWidth(label_H7->sizePolicy().hasHeightForWidth());
-        label_H7->setSizePolicy(sizePolicy1);
-        label_H7->setMinimumSize(QSize(35, 35));
-        label_H7->setMaximumSize(QSize(16777215, 35));
-        label_H7->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H7, 8, 8, 1, 1);
-
-        frame_A3 = new QFrame(frame);
-        frame_A3->setObjectName("frame_A3");
-        sizePolicy.setHeightForWidth(frame_A3->sizePolicy().hasHeightForWidth());
-        frame_A3->setSizePolicy(sizePolicy);
-        frame_A3->setMinimumSize(QSize(0, 0));
-        frame_A3->setBaseSize(QSize(75, 75));
-        frame_A3->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A3->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_A3, 5, 1, 1, 1);
-
-        frame_G6 = new QFrame(frame);
-        frame_G6->setObjectName("frame_G6");
-        sizePolicy.setHeightForWidth(frame_G6->sizePolicy().hasHeightForWidth());
-        frame_G6->setSizePolicy(sizePolicy);
-        frame_G6->setMinimumSize(QSize(0, 0));
-        frame_G6->setBaseSize(QSize(75, 75));
-        frame_G6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G6->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G6, 2, 7, 1, 1);
-
-        frame_G1 = new QFrame(frame);
-        frame_G1->setObjectName("frame_G1");
-        sizePolicy.setHeightForWidth(frame_G1->sizePolicy().hasHeightForWidth());
-        frame_G1->setSizePolicy(sizePolicy);
-        frame_G1->setMinimumSize(QSize(0, 0));
-        frame_G1->setBaseSize(QSize(75, 75));
-        frame_G1->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G1->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G1, 7, 7, 1, 1);
-
-        label_H4 = new QLabel(frame);
-        label_H4->setObjectName("label_H4");
-        sizePolicy1.setHeightForWidth(label_H4->sizePolicy().hasHeightForWidth());
-        label_H4->setSizePolicy(sizePolicy1);
-        label_H4->setMinimumSize(QSize(35, 35));
-        label_H4->setMaximumSize(QSize(16777215, 35));
-        label_H4->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout->addWidget(label_H4, 8, 5, 1, 1);
-
-        frame_G5 = new QFrame(frame);
-        frame_G5->setObjectName("frame_G5");
-        sizePolicy.setHeightForWidth(frame_G5->sizePolicy().hasHeightForWidth());
-        frame_G5->setSizePolicy(sizePolicy);
-        frame_G5->setMinimumSize(QSize(0, 0));
-        frame_G5->setBaseSize(QSize(75, 75));
-        frame_G5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_G5->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_G5, 3, 7, 1, 1);
-
-        frame_H4 = new QFrame(frame);
-        frame_H4->setObjectName("frame_H4");
-        sizePolicy.setHeightForWidth(frame_H4->sizePolicy().hasHeightForWidth());
-        frame_H4->setSizePolicy(sizePolicy);
-        frame_H4->setMinimumSize(QSize(0, 0));
-        frame_H4->setBaseSize(QSize(75, 75));
-        frame_H4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H4->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout->addWidget(frame_H4, 4, 8, 1, 1);
-
         frame_E6 = new QFrame(frame);
         frame_E6->setObjectName("frame_E6");
         sizePolicy.setHeightForWidth(frame_E6->sizePolicy().hasHeightForWidth());
         frame_E6->setSizePolicy(sizePolicy);
-        frame_E6->setMinimumSize(QSize(0, 0));
+        frame_E6->setMinimumSize(QSize(85, 85));
+        frame_E6->setMaximumSize(QSize(85, 85));
         frame_E6->setBaseSize(QSize(75, 75));
         frame_E6->setFrameShape(QFrame::Shape::StyledPanel);
         frame_E6->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_E6, 2, 5, 1, 1);
 
-        frame_A6 = new QFrame(frame);
-        frame_A6->setObjectName("frame_A6");
-        sizePolicy.setHeightForWidth(frame_A6->sizePolicy().hasHeightForWidth());
-        frame_A6->setSizePolicy(sizePolicy);
-        frame_A6->setMinimumSize(QSize(0, 0));
-        frame_A6->setBaseSize(QSize(75, 75));
-        frame_A6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_A6->setFrameShadow(QFrame::Shadow::Raised);
+        frame_D4 = new QFrame(frame);
+        frame_D4->setObjectName("frame_D4");
+        sizePolicy.setHeightForWidth(frame_D4->sizePolicy().hasHeightForWidth());
+        frame_D4->setSizePolicy(sizePolicy);
+        frame_D4->setMinimumSize(QSize(85, 85));
+        frame_D4->setMaximumSize(QSize(85, 85));
+        frame_D4->setBaseSize(QSize(75, 75));
+        frame_D4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_A6, 2, 1, 1, 1);
+        gridLayout->addWidget(frame_D4, 4, 4, 1, 1);
 
-        label_H3 = new QLabel(frame);
-        label_H3->setObjectName("label_H3");
-        sizePolicy1.setHeightForWidth(label_H3->sizePolicy().hasHeightForWidth());
-        label_H3->setSizePolicy(sizePolicy1);
-        label_H3->setMinimumSize(QSize(35, 35));
-        label_H3->setMaximumSize(QSize(16777215, 35));
-        label_H3->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        frame_G2 = new QFrame(frame);
+        frame_G2->setObjectName("frame_G2");
+        sizePolicy.setHeightForWidth(frame_G2->sizePolicy().hasHeightForWidth());
+        frame_G2->setSizePolicy(sizePolicy);
+        frame_G2->setMinimumSize(QSize(85, 85));
+        frame_G2->setMaximumSize(QSize(85, 85));
+        frame_G2->setBaseSize(QSize(75, 75));
+        frame_G2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G2->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(label_H3, 8, 4, 1, 1);
+        gridLayout->addWidget(frame_G2, 6, 7, 1, 1);
 
-        frame_C4 = new QFrame(frame);
-        frame_C4->setObjectName("frame_C4");
-        sizePolicy.setHeightForWidth(frame_C4->sizePolicy().hasHeightForWidth());
-        frame_C4->setSizePolicy(sizePolicy);
-        frame_C4->setMinimumSize(QSize(0, 0));
-        frame_C4->setBaseSize(QSize(75, 75));
-        frame_C4->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C4->setFrameShadow(QFrame::Shadow::Raised);
+        frame_H3 = new QFrame(frame);
+        frame_H3->setObjectName("frame_H3");
+        sizePolicy.setHeightForWidth(frame_H3->sizePolicy().hasHeightForWidth());
+        frame_H3->setSizePolicy(sizePolicy);
+        frame_H3->setMinimumSize(QSize(85, 85));
+        frame_H3->setMaximumSize(QSize(85, 85));
+        frame_H3->setBaseSize(QSize(75, 75));
+        frame_H3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H3->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_C4, 4, 3, 1, 1);
+        gridLayout->addWidget(frame_H3, 5, 8, 1, 1);
 
-        frame_C6 = new QFrame(frame);
-        frame_C6->setObjectName("frame_C6");
-        sizePolicy.setHeightForWidth(frame_C6->sizePolicy().hasHeightForWidth());
-        frame_C6->setSizePolicy(sizePolicy);
-        frame_C6->setMinimumSize(QSize(0, 0));
-        frame_C6->setBaseSize(QSize(75, 75));
-        frame_C6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_C6->setFrameShadow(QFrame::Shadow::Raised);
+        label_V1 = new QLabel(frame);
+        label_V1->setObjectName("label_V1");
+        sizePolicy.setHeightForWidth(label_V1->sizePolicy().hasHeightForWidth());
+        label_V1->setSizePolicy(sizePolicy);
+        label_V1->setMinimumSize(QSize(35, 85));
+        label_V1->setMaximumSize(QSize(35, 85));
+        label_V1->setSizeIncrement(QSize(35, 0));
+        label_V1->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_C6, 2, 3, 1, 1);
+        gridLayout->addWidget(label_V1, 6, 0, 1, 1);
 
-        frame_H2 = new QFrame(frame);
-        frame_H2->setObjectName("frame_H2");
-        sizePolicy.setHeightForWidth(frame_H2->sizePolicy().hasHeightForWidth());
-        frame_H2->setSizePolicy(sizePolicy);
-        frame_H2->setMinimumSize(QSize(0, 0));
-        frame_H2->setBaseSize(QSize(75, 75));
-        frame_H2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_H2->setFrameShadow(QFrame::Shadow::Raised);
+        label_H0 = new QLabel(frame);
+        label_H0->setObjectName("label_H0");
+        sizePolicy.setHeightForWidth(label_H0->sizePolicy().hasHeightForWidth());
+        label_H0->setSizePolicy(sizePolicy);
+        label_H0->setMinimumSize(QSize(85, 35));
+        label_H0->setMaximumSize(QSize(85, 35));
+        label_H0->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(frame_H2, 6, 8, 1, 1);
+        gridLayout->addWidget(label_H0, 8, 1, 1, 1);
 
         frame_G8 = new QFrame(frame);
         frame_G8->setObjectName("frame_G8");
         sizePolicy.setHeightForWidth(frame_G8->sizePolicy().hasHeightForWidth());
         frame_G8->setSizePolicy(sizePolicy);
-        frame_G8->setMinimumSize(QSize(0, 0));
+        frame_G8->setMinimumSize(QSize(85, 85));
+        frame_G8->setMaximumSize(QSize(85, 85));
         frame_G8->setBaseSize(QSize(75, 75));
         frame_G8->setFrameShape(QFrame::Shape::StyledPanel);
         frame_G8->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_G8, 0, 7, 1, 1);
 
-        frame_D5 = new QFrame(frame);
-        frame_D5->setObjectName("frame_D5");
-        sizePolicy.setHeightForWidth(frame_D5->sizePolicy().hasHeightForWidth());
-        frame_D5->setSizePolicy(sizePolicy);
-        frame_D5->setMinimumSize(QSize(0, 0));
-        frame_D5->setBaseSize(QSize(75, 75));
-        frame_D5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_D5->setFrameShadow(QFrame::Shadow::Raised);
+        frame_F4 = new QFrame(frame);
+        frame_F4->setObjectName("frame_F4");
+        sizePolicy.setHeightForWidth(frame_F4->sizePolicy().hasHeightForWidth());
+        frame_F4->setSizePolicy(sizePolicy);
+        frame_F4->setMinimumSize(QSize(85, 85));
+        frame_F4->setMaximumSize(QSize(85, 85));
+        frame_F4->setBaseSize(QSize(75, 75));
+        frame_F4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F4->setFrameShadow(QFrame::Shadow::Raised);
 
-        gridLayout->addWidget(frame_D5, 3, 4, 1, 1);
+        gridLayout->addWidget(frame_F4, 4, 6, 1, 1);
+
+        frame_D6 = new QFrame(frame);
+        frame_D6->setObjectName("frame_D6");
+        sizePolicy.setHeightForWidth(frame_D6->sizePolicy().hasHeightForWidth());
+        frame_D6->setSizePolicy(sizePolicy);
+        frame_D6->setMinimumSize(QSize(85, 85));
+        frame_D6->setMaximumSize(QSize(85, 85));
+        frame_D6->setBaseSize(QSize(75, 75));
+        frame_D6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_D6, 2, 4, 1, 1);
+
+        label_V0 = new QLabel(frame);
+        label_V0->setObjectName("label_V0");
+        sizePolicy.setHeightForWidth(label_V0->sizePolicy().hasHeightForWidth());
+        label_V0->setSizePolicy(sizePolicy);
+        label_V0->setMinimumSize(QSize(35, 85));
+        label_V0->setMaximumSize(QSize(35, 85));
+        label_V0->setSizeIncrement(QSize(35, 0));
+        label_V0->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_V0, 7, 0, 1, 1);
+
+        frame_F3 = new QFrame(frame);
+        frame_F3->setObjectName("frame_F3");
+        sizePolicy.setHeightForWidth(frame_F3->sizePolicy().hasHeightForWidth());
+        frame_F3->setSizePolicy(sizePolicy);
+        frame_F3->setMinimumSize(QSize(85, 85));
+        frame_F3->setMaximumSize(QSize(85, 85));
+        frame_F3->setBaseSize(QSize(75, 75));
+        frame_F3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F3, 5, 6, 1, 1);
+
+        frame_F2 = new QFrame(frame);
+        frame_F2->setObjectName("frame_F2");
+        sizePolicy.setHeightForWidth(frame_F2->sizePolicy().hasHeightForWidth());
+        frame_F2->setSizePolicy(sizePolicy);
+        frame_F2->setMinimumSize(QSize(85, 85));
+        frame_F2->setMaximumSize(QSize(85, 85));
+        frame_F2->setBaseSize(QSize(75, 75));
+        frame_F2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F2, 6, 6, 1, 1);
+
+        frame_C7 = new QFrame(frame);
+        frame_C7->setObjectName("frame_C7");
+        sizePolicy.setHeightForWidth(frame_C7->sizePolicy().hasHeightForWidth());
+        frame_C7->setSizePolicy(sizePolicy);
+        frame_C7->setMinimumSize(QSize(85, 85));
+        frame_C7->setMaximumSize(QSize(85, 85));
+        frame_C7->setBaseSize(QSize(75, 75));
+        frame_C7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C7, 1, 3, 1, 1);
+
+        frame_H7 = new QFrame(frame);
+        frame_H7->setObjectName("frame_H7");
+        sizePolicy.setHeightForWidth(frame_H7->sizePolicy().hasHeightForWidth());
+        frame_H7->setSizePolicy(sizePolicy);
+        frame_H7->setMinimumSize(QSize(85, 85));
+        frame_H7->setMaximumSize(QSize(85, 85));
+        frame_H7->setBaseSize(QSize(75, 75));
+        frame_H7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H7, 1, 8, 1, 1);
+
+        label_V5 = new QLabel(frame);
+        label_V5->setObjectName("label_V5");
+        sizePolicy.setHeightForWidth(label_V5->sizePolicy().hasHeightForWidth());
+        label_V5->setSizePolicy(sizePolicy);
+        label_V5->setMinimumSize(QSize(35, 85));
+        label_V5->setMaximumSize(QSize(35, 85));
+        label_V5->setSizeIncrement(QSize(35, 0));
+        label_V5->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_V5, 2, 0, 1, 1);
+
+        label_V2 = new QLabel(frame);
+        label_V2->setObjectName("label_V2");
+        sizePolicy.setHeightForWidth(label_V2->sizePolicy().hasHeightForWidth());
+        label_V2->setSizePolicy(sizePolicy);
+        label_V2->setMinimumSize(QSize(35, 85));
+        label_V2->setMaximumSize(QSize(35, 85));
+        label_V2->setSizeIncrement(QSize(35, 0));
+        label_V2->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_V2, 5, 0, 1, 1);
+
+        frame_D2 = new QFrame(frame);
+        frame_D2->setObjectName("frame_D2");
+        sizePolicy.setHeightForWidth(frame_D2->sizePolicy().hasHeightForWidth());
+        frame_D2->setSizePolicy(sizePolicy);
+        frame_D2->setMinimumSize(QSize(85, 85));
+        frame_D2->setMaximumSize(QSize(85, 85));
+        frame_D2->setBaseSize(QSize(75, 75));
+        frame_D2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_D2, 6, 4, 1, 1);
+
+        frame_C3 = new QFrame(frame);
+        frame_C3->setObjectName("frame_C3");
+        sizePolicy.setHeightForWidth(frame_C3->sizePolicy().hasHeightForWidth());
+        frame_C3->setSizePolicy(sizePolicy);
+        frame_C3->setMinimumSize(QSize(85, 85));
+        frame_C3->setMaximumSize(QSize(85, 85));
+        frame_C3->setBaseSize(QSize(75, 75));
+        frame_C3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C3, 5, 3, 1, 1);
+
+        frame_D3 = new QFrame(frame);
+        frame_D3->setObjectName("frame_D3");
+        sizePolicy.setHeightForWidth(frame_D3->sizePolicy().hasHeightForWidth());
+        frame_D3->setSizePolicy(sizePolicy);
+        frame_D3->setMinimumSize(QSize(85, 85));
+        frame_D3->setMaximumSize(QSize(85, 85));
+        frame_D3->setBaseSize(QSize(75, 75));
+        frame_D3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_D3, 5, 4, 1, 1);
+
+        frame_C2 = new QFrame(frame);
+        frame_C2->setObjectName("frame_C2");
+        sizePolicy.setHeightForWidth(frame_C2->sizePolicy().hasHeightForWidth());
+        frame_C2->setSizePolicy(sizePolicy);
+        frame_C2->setMinimumSize(QSize(85, 85));
+        frame_C2->setMaximumSize(QSize(85, 85));
+        frame_C2->setBaseSize(QSize(75, 75));
+        frame_C2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C2, 6, 3, 1, 1);
+
+        frame_A7 = new QFrame(frame);
+        frame_A7->setObjectName("frame_A7");
+        sizePolicy.setHeightForWidth(frame_A7->sizePolicy().hasHeightForWidth());
+        frame_A7->setSizePolicy(sizePolicy);
+        frame_A7->setMinimumSize(QSize(85, 85));
+        frame_A7->setMaximumSize(QSize(85, 85));
+        frame_A7->setBaseSize(QSize(75, 75));
+        frame_A7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A7, 1, 1, 1, 1);
+
+        label_V6 = new QLabel(frame);
+        label_V6->setObjectName("label_V6");
+        sizePolicy.setHeightForWidth(label_V6->sizePolicy().hasHeightForWidth());
+        label_V6->setSizePolicy(sizePolicy);
+        label_V6->setMinimumSize(QSize(35, 85));
+        label_V6->setMaximumSize(QSize(35, 85));
+        label_V6->setSizeIncrement(QSize(35, 0));
+        label_V6->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_V6, 1, 0, 1, 1);
+
+        label_V7 = new QLabel(frame);
+        label_V7->setObjectName("label_V7");
+        sizePolicy.setHeightForWidth(label_V7->sizePolicy().hasHeightForWidth());
+        label_V7->setSizePolicy(sizePolicy);
+        label_V7->setMinimumSize(QSize(35, 85));
+        label_V7->setMaximumSize(QSize(35, 85));
+        label_V7->setSizeIncrement(QSize(35, 0));
+        label_V7->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_V7, 0, 0, 1, 1);
+
+        frame_A5 = new QFrame(frame);
+        frame_A5->setObjectName("frame_A5");
+        sizePolicy.setHeightForWidth(frame_A5->sizePolicy().hasHeightForWidth());
+        frame_A5->setSizePolicy(sizePolicy);
+        frame_A5->setMinimumSize(QSize(85, 85));
+        frame_A5->setMaximumSize(QSize(85, 85));
+        frame_A5->setBaseSize(QSize(75, 75));
+        frame_A5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A5, 3, 1, 1, 1);
+
+        frame_F7 = new QFrame(frame);
+        frame_F7->setObjectName("frame_F7");
+        sizePolicy.setHeightForWidth(frame_F7->sizePolicy().hasHeightForWidth());
+        frame_F7->setSizePolicy(sizePolicy);
+        frame_F7->setMinimumSize(QSize(85, 85));
+        frame_F7->setMaximumSize(QSize(85, 85));
+        frame_F7->setBaseSize(QSize(75, 75));
+        frame_F7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_F7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_F7, 1, 6, 1, 1);
+
+        frame_H4 = new QFrame(frame);
+        frame_H4->setObjectName("frame_H4");
+        sizePolicy.setHeightForWidth(frame_H4->sizePolicy().hasHeightForWidth());
+        frame_H4->setSizePolicy(sizePolicy);
+        frame_H4->setMinimumSize(QSize(85, 85));
+        frame_H4->setMaximumSize(QSize(85, 85));
+        frame_H4->setBaseSize(QSize(75, 75));
+        frame_H4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H4->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H4, 4, 8, 1, 1);
+
+        frame_G5 = new QFrame(frame);
+        frame_G5->setObjectName("frame_G5");
+        sizePolicy.setHeightForWidth(frame_G5->sizePolicy().hasHeightForWidth());
+        frame_G5->setSizePolicy(sizePolicy);
+        frame_G5->setMinimumSize(QSize(85, 85));
+        frame_G5->setMaximumSize(QSize(85, 85));
+        frame_G5->setBaseSize(QSize(75, 75));
+        frame_G5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G5, 3, 7, 1, 1);
+
+        frame_E3 = new QFrame(frame);
+        frame_E3->setObjectName("frame_E3");
+        sizePolicy.setHeightForWidth(frame_E3->sizePolicy().hasHeightForWidth());
+        frame_E3->setSizePolicy(sizePolicy);
+        frame_E3->setMinimumSize(QSize(85, 85));
+        frame_E3->setMaximumSize(QSize(85, 85));
+        frame_E3->setBaseSize(QSize(75, 75));
+        frame_E3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E3, 5, 5, 1, 1);
+
+        frame_A3 = new QFrame(frame);
+        frame_A3->setObjectName("frame_A3");
+        sizePolicy.setHeightForWidth(frame_A3->sizePolicy().hasHeightForWidth());
+        frame_A3->setSizePolicy(sizePolicy);
+        frame_A3->setMinimumSize(QSize(85, 85));
+        frame_A3->setMaximumSize(QSize(85, 85));
+        frame_A3->setBaseSize(QSize(75, 75));
+        frame_A3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A3->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A3, 5, 1, 1, 1);
+
+        frame_H5 = new QFrame(frame);
+        frame_H5->setObjectName("frame_H5");
+        sizePolicy.setHeightForWidth(frame_H5->sizePolicy().hasHeightForWidth());
+        frame_H5->setSizePolicy(sizePolicy);
+        frame_H5->setMinimumSize(QSize(85, 85));
+        frame_H5->setMaximumSize(QSize(85, 85));
+        frame_H5->setBaseSize(QSize(75, 75));
+        frame_H5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_H5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_H5, 3, 8, 1, 1);
+
+        frame_C5 = new QFrame(frame);
+        frame_C5->setObjectName("frame_C5");
+        sizePolicy.setHeightForWidth(frame_C5->sizePolicy().hasHeightForWidth());
+        frame_C5->setSizePolicy(sizePolicy);
+        frame_C5->setMinimumSize(QSize(85, 85));
+        frame_C5->setMaximumSize(QSize(85, 85));
+        frame_C5->setBaseSize(QSize(75, 75));
+        frame_C5->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C5->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C5, 3, 3, 1, 1);
+
+        frame_G4 = new QFrame(frame);
+        frame_G4->setObjectName("frame_G4");
+        sizePolicy.setHeightForWidth(frame_G4->sizePolicy().hasHeightForWidth());
+        frame_G4->setSizePolicy(sizePolicy);
+        frame_G4->setMinimumSize(QSize(85, 85));
+        frame_G4->setMaximumSize(QSize(85, 85));
+        frame_G4->setBaseSize(QSize(75, 75));
+        frame_G4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_G4->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_G4, 4, 7, 1, 1);
+
+        frame_E1 = new QFrame(frame);
+        frame_E1->setObjectName("frame_E1");
+        sizePolicy.setHeightForWidth(frame_E1->sizePolicy().hasHeightForWidth());
+        frame_E1->setSizePolicy(sizePolicy);
+        frame_E1->setMinimumSize(QSize(85, 85));
+        frame_E1->setMaximumSize(QSize(85, 85));
+        frame_E1->setBaseSize(QSize(75, 75));
+        frame_E1->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E1->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E1, 7, 5, 1, 1);
+
+        frame_D8 = new QFrame(frame);
+        frame_D8->setObjectName("frame_D8");
+        sizePolicy.setHeightForWidth(frame_D8->sizePolicy().hasHeightForWidth());
+        frame_D8->setSizePolicy(sizePolicy);
+        frame_D8->setMinimumSize(QSize(85, 85));
+        frame_D8->setMaximumSize(QSize(85, 85));
+        frame_D8->setBaseSize(QSize(75, 75));
+        frame_D8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_D8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_D8, 0, 4, 1, 1);
+
+        label_H3 = new QLabel(frame);
+        label_H3->setObjectName("label_H3");
+        sizePolicy.setHeightForWidth(label_H3->sizePolicy().hasHeightForWidth());
+        label_H3->setSizePolicy(sizePolicy);
+        label_H3->setMinimumSize(QSize(85, 35));
+        label_H3->setMaximumSize(QSize(85, 35));
+        label_H3->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H3, 8, 4, 1, 1);
+
+        frame_E7 = new QFrame(frame);
+        frame_E7->setObjectName("frame_E7");
+        sizePolicy.setHeightForWidth(frame_E7->sizePolicy().hasHeightForWidth());
+        frame_E7->setSizePolicy(sizePolicy);
+        frame_E7->setMinimumSize(QSize(85, 85));
+        frame_E7->setMaximumSize(QSize(85, 85));
+        frame_E7->setBaseSize(QSize(75, 75));
+        frame_E7->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_E7->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_E7, 1, 5, 1, 1);
+
+        frame_A8 = new QFrame(frame);
+        frame_A8->setObjectName("frame_A8");
+        sizePolicy.setHeightForWidth(frame_A8->sizePolicy().hasHeightForWidth());
+        frame_A8->setSizePolicy(sizePolicy);
+        frame_A8->setMinimumSize(QSize(85, 85));
+        frame_A8->setMaximumSize(QSize(85, 85));
+        frame_A8->setBaseSize(QSize(75, 75));
+        frame_A8->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_A8->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_A8, 0, 1, 1, 1);
+
+        frame_B4 = new QFrame(frame);
+        frame_B4->setObjectName("frame_B4");
+        sizePolicy.setHeightForWidth(frame_B4->sizePolicy().hasHeightForWidth());
+        frame_B4->setSizePolicy(sizePolicy);
+        frame_B4->setMinimumSize(QSize(85, 85));
+        frame_B4->setMaximumSize(QSize(85, 85));
+        frame_B4->setBaseSize(QSize(75, 75));
+        frame_B4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B4->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B4, 4, 2, 1, 1);
+
+        label_H7 = new QLabel(frame);
+        label_H7->setObjectName("label_H7");
+        sizePolicy.setHeightForWidth(label_H7->sizePolicy().hasHeightForWidth());
+        label_H7->setSizePolicy(sizePolicy);
+        label_H7->setMinimumSize(QSize(85, 35));
+        label_H7->setMaximumSize(QSize(85, 35));
+        label_H7->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H7, 8, 8, 1, 1);
+
+        frame_B2 = new QFrame(frame);
+        frame_B2->setObjectName("frame_B2");
+        sizePolicy.setHeightForWidth(frame_B2->sizePolicy().hasHeightForWidth());
+        frame_B2->setSizePolicy(sizePolicy);
+        frame_B2->setMinimumSize(QSize(85, 85));
+        frame_B2->setMaximumSize(QSize(85, 85));
+        frame_B2->setBaseSize(QSize(75, 75));
+        frame_B2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_B2->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_B2, 6, 2, 1, 1);
+
+        label_H6 = new QLabel(frame);
+        label_H6->setObjectName("label_H6");
+        sizePolicy.setHeightForWidth(label_H6->sizePolicy().hasHeightForWidth());
+        label_H6->setSizePolicy(sizePolicy);
+        label_H6->setMinimumSize(QSize(85, 35));
+        label_H6->setMaximumSize(QSize(85, 35));
+        label_H6->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H6, 8, 7, 1, 1);
+
+        frame_C6 = new QFrame(frame);
+        frame_C6->setObjectName("frame_C6");
+        sizePolicy.setHeightForWidth(frame_C6->sizePolicy().hasHeightForWidth());
+        frame_C6->setSizePolicy(sizePolicy);
+        frame_C6->setMinimumSize(QSize(85, 85));
+        frame_C6->setMaximumSize(QSize(85, 85));
+        frame_C6->setBaseSize(QSize(75, 75));
+        frame_C6->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_C6->setFrameShadow(QFrame::Shadow::Raised);
+
+        gridLayout->addWidget(frame_C6, 2, 3, 1, 1);
 
         frame_B6 = new QFrame(frame);
         frame_B6->setObjectName("frame_B6");
         sizePolicy.setHeightForWidth(frame_B6->sizePolicy().hasHeightForWidth());
         frame_B6->setSizePolicy(sizePolicy);
-        frame_B6->setMinimumSize(QSize(0, 0));
+        frame_B6->setMinimumSize(QSize(85, 85));
+        frame_B6->setMaximumSize(QSize(85, 85));
         frame_B6->setBaseSize(QSize(75, 75));
         frame_B6->setFrameShape(QFrame::Shape::StyledPanel);
         frame_B6->setFrameShadow(QFrame::Shadow::Raised);
 
         gridLayout->addWidget(frame_B6, 2, 2, 1, 1);
+
+        label_H2 = new QLabel(frame);
+        label_H2->setObjectName("label_H2");
+        sizePolicy.setHeightForWidth(label_H2->sizePolicy().hasHeightForWidth());
+        label_H2->setSizePolicy(sizePolicy);
+        label_H2->setMinimumSize(QSize(85, 35));
+        label_H2->setMaximumSize(QSize(85, 35));
+        label_H2->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(label_H2, 8, 3, 1, 1);
+
+        widget = new QWidget(frame);
+        widget->setObjectName("widget");
+        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy);
+        widget->setMinimumSize(QSize(35, 35));
+        widget->setStyleSheet(QString::fromUtf8(""));
+
+        gridLayout->addWidget(widget, 8, 0, 1, 1);
 
 
         gridLayout_3->addLayout(gridLayout, 0, 0, 1, 1);
@@ -1045,22 +1114,22 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_V0->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
-        label_V6->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
         label_V3->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
-        label_V1->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
-        label_V7->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
         label_V4->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
         label_H1->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
-        label_H6->setText(QCoreApplication::translate("MainWindow", "G", nullptr));
         label_H5->setText(QCoreApplication::translate("MainWindow", "F", nullptr));
-        label_H2->setText(QCoreApplication::translate("MainWindow", "C", nullptr));
+        label_H4->setText(QCoreApplication::translate("MainWindow", "E", nullptr));
+        label_V1->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         label_H0->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
+        label_V0->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         label_V5->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
         label_V2->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
-        label_H7->setText(QCoreApplication::translate("MainWindow", "H", nullptr));
-        label_H4->setText(QCoreApplication::translate("MainWindow", "E", nullptr));
+        label_V6->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
+        label_V7->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
         label_H3->setText(QCoreApplication::translate("MainWindow", "D", nullptr));
+        label_H7->setText(QCoreApplication::translate("MainWindow", "H", nullptr));
+        label_H6->setText(QCoreApplication::translate("MainWindow", "G", nullptr));
+        label_H2->setText(QCoreApplication::translate("MainWindow", "C", nullptr));
     } // retranslateUi
 
 };

@@ -6,6 +6,7 @@ GUI::MoveIndicator::MoveIndicator(QWidget *parent)
     : QPushButton(parent)
 {   //Fill whole area of parent
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
     //make invisible
     this->setFlat(true);
     //Remove spherical border

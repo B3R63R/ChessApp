@@ -4,7 +4,7 @@ GUI::Piece::Piece(QWidget *parent)
     : QPushButton(parent)
 {
 
-    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     this->setStyleSheet("border: none; "
                         "background-repeat: no-repeat; "
                         "background-position: center;"

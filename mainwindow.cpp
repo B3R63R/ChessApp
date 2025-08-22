@@ -14,11 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     board.setupPieces();
-    board.display();
     ui->setupUi(this);
     ui->gridLayout->setContentsMargins(0, 0, 0, 0);
     ui->gridLayout->setSpacing(0);
-    reverseBoard();
+    //reverseBoard();
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
@@ -79,7 +78,6 @@ void MainWindow::reverseBoard() {
             //skip first col for labels - (col = 1)
             //skip last row for labels - (size -1)
             swapGridWidgets(row, col, size -1 - row, size-col+1);
-            qDebug() << row << ", " << col << " -> " << size -1 - row << ", " << size-col+1;
         }
     }
 
@@ -188,7 +186,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 
         //Load indicator
         GUI::MoveIndicator *mIndicator = new GUI::MoveIndicator(targetSquare);
-        targetSquare->layout()->addWidget(mIndicator);
+        targetSquare->layout()->addWidget(mIndicator);  
         //targetSquare->layout()->setAlignment(mIndicator, Qt::AlignCenter);
 
         //handling move on empty square
@@ -212,7 +210,7 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             lastPiece->setCurrentFrame(targetSquare);
             //Update logic program
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
-
+            board.display();
             gameData->setMoveMade();
             handleTransferRookWhenCastling();
 
@@ -275,6 +273,7 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
             else {
                 if (std::find(availableMovesHistory.begin(), availableMovesHistory.end(), move) != availableMovesHistory.end()) {
                     handleBeatingMove(rowIdx, colIdx, fieldName);
+                    board.display();
                 }
                 return 0;
             }
@@ -289,6 +288,7 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     lastColClicked = colIdx;
 
     handleEmptySquareMove(rowIdx, colIdx);
+
     return 0;
 
 }
@@ -298,7 +298,7 @@ void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
     frame->layout()->addWidget(piece);
     piece->setCurrentFrame(frame);
     connect(piece, &QPushButton::clicked, this, [=, this]() {
-        //qDebug() << frame->objectName();
+
         handlePieceClick(piece->getCurrentFrame()->objectName().toStdString());
 
     });
@@ -377,7 +377,7 @@ void MainWindow::setupPieces() {
 void MainWindow::setupLabelParameters() {
     QList<QLabel*> labelsStorage = ui->frame->findChildren<QLabel*>();
     for (auto label : labelsStorage) {
-
+        label->setAlignment(Qt::AlignCenter);
         label->setStyleSheet(
                 "font-family: 'CARDOT';"
                 "font-size: 15pt;"
@@ -402,8 +402,8 @@ void MainWindow::setupBoardBorder() {
         ui->gridLayout->getItemPosition(widgetIdx,  &row, &col, &_, &_);
 
         //Left side
-        if (col == 0 && row != 8) {
-            style += "border-right: " + borderStyle;
+        if (col == 1 && row != 8) {
+            style += "border-left: " + borderStyle;
 
         }
         //right side
@@ -454,10 +454,12 @@ void MainWindow::setupBoardBorder() {
 }
 
 void MainWindow::setupSquaresParameters() {
-    ui->frame->setMinimumSize(660,660);
-    ui->frame->setMaximumSize(960,960);
+    //ui->frame->setMinimumSize(660,660);
+    //ui->frame->setMaximumSize(960,960);
+    /*
 
     int labelSize = 35;
+
     ui->gridLayout->setColumnMinimumWidth(0, labelSize);
     ui->gridLayout->setColumnStretch(0, 0);
     ui->gridLayout->setRowMinimumHeight(0, 85);
@@ -466,10 +468,12 @@ void MainWindow::setupSquaresParameters() {
     for (std::size_t i = 1; i<9; i++ ) {
 
         if (i == 8) {
+
             ui->gridLayout->setRowMinimumHeight(8, labelSize);
             ui->gridLayout->setRowStretch(8, 0);
             ui->gridLayout->setColumnStretch(i, 1);
             ui->gridLayout->setColumnMinimumWidth(i, 85);
+
             continue;
         }
         ui->gridLayout->setColumnStretch(i, 1);
@@ -479,15 +483,17 @@ void MainWindow::setupSquaresParameters() {
         ui->gridLayout->setColumnMinimumWidth(i, 85);
 
     }
-
-
+    */
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     for (auto frame : SquaresStorage) {
-       if (!frame->layout()) {
-           auto layout = new QVBoxLayout(frame);
-           frame->setLayout(layout);
-       }
+        if (!frame->objectName().startsWith("frame_")) continue;
+        if (!frame->layout()) {
+            auto layout = new QVBoxLayout(frame);
+            frame->setLayout(layout);
+        }
+
     }
+
 
 }
 
