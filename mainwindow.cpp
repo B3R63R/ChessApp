@@ -23,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     setupLabelParameters();
     setupBoardBorder();
     setupPieces();
-    handleCheck();
+    //handleCheck();
+    handleGameStatus();
 
 
 
@@ -93,6 +94,56 @@ void MainWindow::reverseBoard() {
 
 }
 
+void MainWindow::handleGameStatus() {
+    gameData = new GUI::GameData();
+    connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
+
+        //return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
+        std::tuple<bool, bool, bool, char, int, int> gameStatus = board.examineGameStatus();
+
+        bool isEndgame = std::get<0>(gameStatus);
+        bool isCheckmate = std::get<1>(gameStatus);
+        bool isChecked = std::get<2>(gameStatus);
+        char pieceColor = std::get<3>(gameStatus);
+
+
+        //Handle endgame
+        if (isEndgame) disconnectAllChildren(ui->frame);
+
+        // handle check
+        if (isChecked) {
+            int kingRowInt = std::get<4>(gameStatus);
+            int kingColInt = std::get<5>(gameStatus);
+            char kingRowChar = convertRowIntToCharIdx(kingRowInt);
+            char kingColChar = convertColIntToCharIdx(kingColInt);
+            std::string kingSquareName = "frame_" + std::string(1, kingColChar) + std::string(1,kingRowChar);
+            auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
+            if (isCheckmate) {
+                kingSquare->setStyleSheet("background-color: #B31B1B;");
+            }
+            else {
+                kingSquare->setStyleSheet("background-color: #FFDE21;");
+            }
+            gameData->lastKingSquareName =kingSquareName;
+        }
+        else {
+            if (!(gameData->lastKingSquareName.empty())) {
+                auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(gameData->lastKingSquareName));
+
+                int row = int(gameData->lastKingSquareName[7]);
+                int col = int(gameData->lastKingSquareName[6]);
+
+                updateSquareColor(kingSquare, row, col);
+                gameData->lastKingSquareName.clear();
+
+            }
+        }
+
+
+    });
+
+}
+/*
 void MainWindow::handleCheck() {
     gameData = new GUI::GameData();
     connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
@@ -127,7 +178,7 @@ void MainWindow::handleCheck() {
 
     });
 }
-
+*/
 
 void MainWindow::clearIndicators() {
     QList<GUI::MoveIndicator*> indicators = findChildren<GUI::MoveIndicator*>();
@@ -156,6 +207,7 @@ void MainWindow::handleTransferRookWhenCastling() {
 
         rookSquare->layout()->removeWidget(rook);
         newRookSquare->layout()->addWidget(rook);
+        rook->setCurrentFrame(newRookSquare);
     }
 }
 
@@ -233,6 +285,10 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
     auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
     auto lastPiece = lastPieceSquareClicked->findChild<GUI::Piece*>();
+    if (!lastPiece) {
+        qDebug() << "lastPiece null";
+        return 0;
+    }
     auto currentPiece = currentPieceSquareClicked->findChild<GUI::Piece*>();
     if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
     lastPieceSquareClicked->layout()->removeWidget(lastPiece);

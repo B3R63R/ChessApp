@@ -52,5 +52,6 @@ private:
     void setPiece(QFrame *frame, GUI::Piece *piece);
     GUI::Piece* choosePiece(char color, char pieceType, QFrame *frame);
     void setupBoardBorder();
+    void handleGameStatus();
 };
 #endif // MAINWINDOW_H

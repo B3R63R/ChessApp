@@ -88,7 +88,7 @@ bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int co
                 continue;
             }
             //finish scanning direction if king is covered by allies color pieces
-            else if (boardArray[examinedRow][examinedCol]->getColor() == this->getColor() && boardArray[examinedRow][examinedCol]->getName() != "K") {
+            else if (boardArray[examinedRow][examinedCol]->getColor() == this->getColor()) {
                 break;
             }
 
@@ -424,25 +424,22 @@ bool LOGIC::King::isLongCastleAvailable(const Board& board) {
     std::tuple currentKingField = {kingRow, kingCol};
     std::tuple passKingField = {kingRow, kingCol-1};
     std::tuple desiredKingField = {kingRow, kingCol-2};
-    std::tuple passRookField = {kingRow, kingCol-3};
-    std::tuple<int, int> castlingFieldsStorage[4] = {currentKingField, passKingField, desiredKingField, passRookField};
+    std::tuple<int, int> castlingFieldsStorage[3] = {currentKingField, passKingField, desiredKingField};
 
     //King didnt moved
-    if (boardArray[kingRow][kingCol]->getIsMoved() || kingCol != 4) {
-        return false;
-    }
+    if (boardArray[kingRow][kingCol]->getIsMoved() || kingCol != 4) return false;
+
+
     //Rook have to have specific location
     if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
         return false;
     }
     //Castling fields must be empty
-    if (boardArray[kingRow][kingCol-1] != nullptr || boardArray[kingRow][kingCol-2] != nullptr) {
-        return false;
-    }
+    if (boardArray[kingRow][kingCol-1] != nullptr || boardArray[kingRow][kingCol-2] != nullptr) return false;
+
     //Rook didnt moved
-    if (boardArray[rookRow][rookCol]->getIsMoved()) {
-        return false;
-    }
+    if (boardArray[rookRow][rookCol]->getIsMoved()) return false;
+
     //Castling fields are not attacked
     for (auto const& [row, col] : castlingFieldsStorage) {
         if (this->isAttacked(board, row, col)) {
@@ -576,6 +573,8 @@ void LOGIC::Board::setIsCastling(bool detector, char type, int row) {
 
 
 void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int newCol) {
+    //Reset
+    this->setIsCastling(false , ' ', -1);
 
     auto& boardArr = getBoardModifiable();
 
@@ -591,6 +590,7 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
     bool detectorForCatling = false;
     char typeOfCastling = ' ';
     int row = -1;
+
     if (isNewMoveInAvailableMoves) {
 
 
@@ -669,7 +669,7 @@ std::array<std::array<std::unique_ptr<LOGIC::Piece>, 8>, 8>& LOGIC::Board::getBo
 bool LOGIC::Board::getIsWhiteTurn() {
     return isWhiteTurn;
 }
-bool LOGIC::Board::examineisKingChecked() {
+std::tuple<bool, int, int>LOGIC::Board::examineKingCheck() {
     auto& boardArr = this->getBoard();
 
     std::string kingColor = this->getIsWhiteTurn() ? "w" : "b";
@@ -677,28 +677,41 @@ bool LOGIC::Board::examineisKingChecked() {
     std::tuple<int, int> kingLocation = this->getKingLocation(kingColor);
     //protection when is isnt on board;
     if (std::get<0>(kingLocation) == -1) {
-        return false;
+        return {false, -1, -1};
     }
     //Check if king is exposed
     auto& king = boardArr[std::get<0>(kingLocation)][std::get<1>(kingLocation)];
-    bool isKingInDanger = king->isAttacked(*this, std::get<0>(kingLocation), std::get<1>(kingLocation));
-    return isKingInDanger;
+    int row = std::get<0>(kingLocation);
+    int col = std::get<1>(kingLocation);
+    bool isKingInDanger = king->isAttacked(*this, row, col);
+    return {isKingInDanger, row, col};
 }
 
-bool LOGIC::Board::examineCheckmate() {
-    std::string pieceColor = this->getIsWhiteTurn() ? "w" : "b";
+std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
+
     auto& boardArr = this->getBoard();
+    std::tuple<bool, int, int> kingCkeckInfo = this->examineKingCheck();
+    bool isChecked = std::get<0>(kingCkeckInfo);
+    int kingRow = std::get<1>(kingCkeckInfo);
+    int kingCol = std::get<2>(kingCkeckInfo);
+    bool isEndgame = true;
+    bool isCheckmate = true;
+    char pieceColor = this->getIsWhiteTurn() ? 'w' : 'b';
 
     for (auto& row : boardArr) {
-        for (const auto& col : row) {
-            if (col && col->getColor() == pieceColor) {
-                if (!col->getAvailableMoves(*this).empty()) {
-                    return false;
+        for (const auto& piece : row) {
+
+            if (piece && piece->getColor()[0] == pieceColor) {
+                if (!piece->getAvailableMoves(*this).empty()) {
+                    isEndgame = false;
+                    isCheckmate = false;
+                    return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
                 }
             }
         }
     }
-    return true;
+    return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
+
 }
 
 
