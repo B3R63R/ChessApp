@@ -287,7 +287,86 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
 
 }
 
+std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
 
+    int rowForPieceToMove = this->getRow();
+    int colForPieceToMove = this->getColumn();
+    auto& boardArr = board.getBoard();
+    auto lastMove = board.getLastMove();
+    int oldRowLastMove = lastMove[0];
+    //int oldColLastMove = lastMove[1];
+    int newRowLastMove = lastMove[2];
+    int newColLastMove = lastMove[3];
+
+    auto& lastPiece = boardArr[newRowLastMove][newColLastMove];
+    auto& PieceToMove = boardArr[rowForPieceToMove][colForPieceToMove];
+
+    //Check if pieces exist
+    if (!lastPiece || !PieceToMove ) return {-1, -1, -1, -1};
+
+    //Check if last piece moved was pawn
+    if (lastPiece->getName() != "P") return {-1, -1, -1, -1};
+
+    //Check if it was move by 2 fields
+    if (abs(newRowLastMove - oldRowLastMove) != 2) return {-1, -1, -1, -1};
+
+    //Check if the same row
+    if (newRowLastMove != rowForPieceToMove) return {-1, -1, -1, -1};
+
+    //Check if is it close to the right or left then update enPassant col
+    if (abs(colForPieceToMove - newColLastMove) == 1)
+
+    colForPieceToMove = newColLastMove;
+
+    //Need to know color to set row of enPassant
+    rowForPieceToMove = (PieceToMove->getColor() == "w") ? rowForPieceToMove+1 : rowForPieceToMove-1;
+    //new square for pawn cords ; beaten pawn cords
+    return {rowForPieceToMove, colForPieceToMove, newRowLastMove, newColLastMove};
+
+}
+
+bool LOGIC::Pawn::isEnPassantAvailable(Board& board) {
+
+    auto enPassantInfo = this->potentialEnPassant(board);
+    if (enPassantInfo[0] == -1) return false;
+    auto& boardArray = board.getBoardModifiable();
+    int currentRow = this->getRow();
+    int currentCol = this->getColumn();
+
+    int newRowForPawn = enPassantInfo[0];
+    int newColForPawn = enPassantInfo[1];
+
+    int beatenPawnRow = enPassantInfo[2];
+    int beatenPawnCol = enPassantInfo[3];
+
+
+    //Store pawn that can be captured
+    auto capturedPawn = std::move(boardArray[beatenPawnRow][beatenPawnCol]);
+
+
+    std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
+
+
+    //Place piece to new field
+    boardArray[newRowForPawn][newColForPawn] = std::move(boardArray[currentRow][currentCol]);
+    boardArray[newRowForPawn][newColForPawn]->setPosition(newRowForPawn, newColForPawn);
+
+    //Remove beaten pawn
+    boardArray[beatenPawnRow][beatenPawnCol] = nullptr;
+
+    //Check if king is exposed
+    std::tuple<int, int> kingLocation = board.getKingLocation(transferedPieceColor);
+    bool EnPassantAvailable = !(this->isAttacked(board, std::get<0>(kingLocation), std::get<1>(kingLocation)));
+
+    //Undo move to keep piece on their original place
+    boardArray[currentRow][currentCol] = std::move(boardArray[newRowForPawn][newColForPawn]);
+    boardArray[currentRow][currentCol]->setPosition(currentRow, currentCol);
+
+    //Restore captured piece
+    boardArray[beatenPawnRow][beatenPawnCol] = std::move(capturedPawn);
+
+    return EnPassantAvailable;
+}
 
 LOGIC::Knight::Knight(const std::string& color, int row, int column):
     Piece(color, row, column, "N") {}
@@ -559,7 +638,7 @@ void LOGIC::Board::setLastMove(int currentRow, int currentCol, int newRow, int n
     lastMove[3] = newCol;
 }
 
-std::array<int, 4> LOGIC::Board::getLastMove() {
+std::array<int, 4> LOGIC::Board::getLastMove() const{
     return lastMove;
 }
 
@@ -715,37 +794,6 @@ std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
     return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
 
 }
-
-
-/*
-int main() {
-    LOGIC::Board b;
-    b.setupPieces();
-    //b.addPiece(4, 3, "b", "R");
-    //b.addPiece(5, 6, "b", "R");
-    //b.addPiece(4, 6, "w", "K");
-    //b.addPiece(3, 6, "w", "K");
-    //b.addPiece(5, 6, "b", "P");
-    //b.display();
-
-    //auto [row, col] = b.getKingLocation("w");
-
-    //std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
-
-    for (const auto& t : b.getBoard()[1][0]->getAvailableMoves(b)) {
-        std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")\n";
-    }
-
-    b.makeLegalMove(1, 0, 2, 0);
-    b.makeLegalMove(6, 0, 5, 0);
-    b.makeLegalMove(2, 0, 3, 0);
-    b.makeLegalMove(5, 0, 4, 0);
-    b.display();
-    return 0;
-
-}
-*/
-
 
 
 

@@ -23,6 +23,7 @@ public:
     ~MainWindow();
 protected:
 
+
 private slots:
 
 private:

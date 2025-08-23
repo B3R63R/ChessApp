@@ -29,7 +29,7 @@ public:
     bool getIsWhiteTurn();
     const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
     std::tuple<int, int> getKingLocation(std::string color) const;
-    std::array<int, 4> getLastMove();
+    std::array<int, 4> getLastMove() const;
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoardModifiable();
     std::vector<std::tuple<int,int>>RaisePiece(int currentRow, int currentCol);
     std::tuple<bool, int, int> examineKingCheck();
@@ -70,6 +70,8 @@ class Pawn : public Piece {
 public:
     Pawn(const std::string& color, int row, int column);
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
+    std::array<int, 4> potentialEnPassant (const Board& board);
+    bool isEnPassantAvailable(Board& board);
 
 };
 

@@ -25,12 +25,6 @@ MainWindow::MainWindow(QWidget *parent)
     setupPieces();
     //handleCheck();
     handleGameStatus();
-    if (ui->centralwidget->layout()) {
-        ui->centralwidget->layout()->setAlignment(ui->frame, Qt::AlignCenter);
-    }
-    // ----------------------
-
-    ui->gridLayout->setContentsMargins(0, 0, 0, 0);
 
 
 }
@@ -494,6 +488,4 @@ void MainWindow::setupSquaresColors() {
         updateSquareColor(frame, row, col);
     }
 }
-
-
 
