@@ -119,7 +119,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1291, 866);
+        MainWindow->resize(998, 862);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color:  #151515;\n"
 ""));
         centralwidget = new QWidget(MainWindow);
@@ -133,8 +133,8 @@ public:
         sizePolicy.setVerticalStretch(1);
         sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy);
-        frame->setMinimumSize(QSize(715, 715));
-        frame->setMaximumSize(QSize(150000, 150000));
+        frame->setMinimumSize(QSize(720, 720));
+        frame->setMaximumSize(QSize(800, 800));
         frame->setBaseSize(QSize(715, 715));
         frame->setStyleSheet(QString::fromUtf8(""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
@@ -328,6 +328,7 @@ public:
         label_H1->setSizePolicy(sizePolicy);
         label_H1->setMinimumSize(QSize(85, 35));
         label_H1->setMaximumSize(QSize(85, 35));
+        label_H1->setSizeIncrement(QSize(0, 35));
         label_H1->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H1, 8, 2, 1, 1);
@@ -458,6 +459,7 @@ public:
         label_H5->setSizePolicy(sizePolicy);
         label_H5->setMinimumSize(QSize(85, 35));
         label_H5->setMaximumSize(QSize(85, 35));
+        label_H5->setSizeIncrement(QSize(0, 35));
         label_H5->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H5, 8, 6, 1, 1);
@@ -468,6 +470,7 @@ public:
         label_H4->setSizePolicy(sizePolicy);
         label_H4->setMinimumSize(QSize(85, 35));
         label_H4->setMaximumSize(QSize(85, 35));
+        label_H4->setSizeIncrement(QSize(0, 35));
         label_H4->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H4, 8, 5, 1, 1);
@@ -635,6 +638,7 @@ public:
         label_H0->setSizePolicy(sizePolicy);
         label_H0->setMinimumSize(QSize(85, 35));
         label_H0->setMaximumSize(QSize(85, 35));
+        label_H0->setSizeIncrement(QSize(0, 35));
         label_H0->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H0, 8, 1, 1, 1);
@@ -976,6 +980,7 @@ public:
         label_H3->setSizePolicy(sizePolicy);
         label_H3->setMinimumSize(QSize(85, 35));
         label_H3->setMaximumSize(QSize(85, 35));
+        label_H3->setSizeIncrement(QSize(0, 35));
         label_H3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H3, 8, 4, 1, 1);
@@ -1022,6 +1027,7 @@ public:
         label_H7->setSizePolicy(sizePolicy);
         label_H7->setMinimumSize(QSize(85, 35));
         label_H7->setMaximumSize(QSize(85, 35));
+        label_H7->setSizeIncrement(QSize(0, 35));
         label_H7->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H7, 8, 8, 1, 1);
@@ -1044,6 +1050,7 @@ public:
         label_H6->setSizePolicy(sizePolicy);
         label_H6->setMinimumSize(QSize(85, 35));
         label_H6->setMaximumSize(QSize(85, 35));
+        label_H6->setSizeIncrement(QSize(0, 35));
         label_H6->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H6, 8, 7, 1, 1);
@@ -1078,6 +1085,7 @@ public:
         label_H2->setSizePolicy(sizePolicy);
         label_H2->setMinimumSize(QSize(85, 35));
         label_H2->setMaximumSize(QSize(85, 35));
+        label_H2->setSizeIncrement(QSize(0, 35));
         label_H2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label_H2, 8, 3, 1, 1);
@@ -1087,6 +1095,7 @@ public:
         sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy);
         widget->setMinimumSize(QSize(35, 35));
+        widget->setMaximumSize(QSize(35, 35));
         widget->setStyleSheet(QString::fromUtf8(""));
 
         gridLayout->addWidget(widget, 8, 0, 1, 1);
@@ -1100,7 +1109,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1291, 22));
+        menubar->setGeometry(QRect(0, 0, 998, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");

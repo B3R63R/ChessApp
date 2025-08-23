@@ -2,6 +2,8 @@
 #include "gui_moveindicator.h"
 
 #include <QBoxLayout>
+
+
 GUI::MoveIndicator::MoveIndicator(QWidget *parent)
     : QPushButton(parent)
 {   //Fill whole area of parent
@@ -14,8 +16,8 @@ GUI::MoveIndicator::MoveIndicator(QWidget *parent)
 
     //Craete visible circle
     visualCircle = new QFrame(this);
-    visualCircle->setFixedSize(30, 30);
-    visualCircle->setStyleSheet("border: 2px thick rgba(94, 87, 87, 0.5); border-radius: 15px; background-color: rgba(64, 55, 55, 0.5);");
+    visualCircle->setFixedSize(20, 20);
+    visualCircle->setStyleSheet("border-radius: 10px; background-color: rgba(204, 188, 167, 0.5);");
 
     //Dont capture click event
     visualCircle->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -28,4 +30,3 @@ GUI::MoveIndicator::MoveIndicator(QWidget *parent)
     this->setLayout(layout);
 
 }
-

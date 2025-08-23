@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1291</width>
-    <height>866</height>
+    <width>998</width>
+    <height>862</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,14 +29,14 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>715</width>
-        <height>715</height>
+        <width>720</width>
+        <height>720</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>150000</width>
-        <height>150000</height>
+        <width>800</width>
+        <height>800</height>
        </size>
       </property>
       <property name="baseSize">
@@ -590,6 +590,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="text">
             <string>B</string>
            </property>
@@ -958,6 +964,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="text">
             <string>F</string>
            </property>
@@ -983,6 +995,12 @@
            <property name="maximumSize">
             <size>
              <width>85</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
              <height>35</height>
             </size>
            </property>
@@ -1454,6 +1472,12 @@
            <property name="maximumSize">
             <size>
              <width>85</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
              <height>35</height>
             </size>
            </property>
@@ -2437,6 +2461,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="text">
             <string>D</string>
            </property>
@@ -2567,6 +2597,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="text">
             <string>H</string>
            </property>
@@ -2626,6 +2662,12 @@
            <property name="maximumSize">
             <size>
              <width>85</width>
+             <height>35</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
              <height>35</height>
             </size>
            </property>
@@ -2725,6 +2767,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="text">
             <string>C</string>
            </property>
@@ -2747,6 +2795,12 @@
              <height>35</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>35</width>
+             <height>35</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -2764,7 +2818,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1291</width>
+     <width>998</width>
      <height>22</height>
     </rect>
    </property>

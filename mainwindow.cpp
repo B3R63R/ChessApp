@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QList>
 #include <algorithm>
-
+#include "gui_moveindicator.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +25,12 @@ MainWindow::MainWindow(QWidget *parent)
     setupPieces();
     //handleCheck();
     handleGameStatus();
+    if (ui->centralwidget->layout()) {
+        ui->centralwidget->layout()->setAlignment(ui->frame, Qt::AlignCenter);
+    }
+    // ----------------------
 
+    ui->gridLayout->setContentsMargins(0, 0, 0, 0);
 
 
 }
@@ -33,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete gameData;
 }
 
 int convertColCharToIntIdx(char col) {
@@ -119,10 +125,10 @@ void MainWindow::handleGameStatus() {
             std::string kingSquareName = "frame_" + std::string(1, kingColChar) + std::string(1,kingRowChar);
             auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
             if (isCheckmate) {
-                kingSquare->setStyleSheet("background-color: #B31B1B;");
+                kingSquare->setStyleSheet("background-color: #8C1D18;");
             }
             else {
-                kingSquare->setStyleSheet("background-color: #FFDE21;");
+                kingSquare->setStyleSheet("background-color: #D4AF37;");
             }
             gameData->lastKingSquareName =kingSquareName;
         }
@@ -130,8 +136,8 @@ void MainWindow::handleGameStatus() {
             if (!(gameData->lastKingSquareName.empty())) {
                 auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(gameData->lastKingSquareName));
 
-                int row = int(gameData->lastKingSquareName[7]);
-                int col = int(gameData->lastKingSquareName[6]);
+                int row = convertRowIntToCharIdx(gameData->lastKingSquareName[7]);
+                int col = convertColCharToIntIdx(gameData->lastKingSquareName[6]);
 
                 updateSquareColor(kingSquare, row, col);
                 gameData->lastKingSquareName.clear();
@@ -143,42 +149,6 @@ void MainWindow::handleGameStatus() {
     });
 
 }
-/*
-void MainWindow::handleCheck() {
-    gameData = new GUI::GameData();
-    connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
-        if(board.examineisKingChecked()) {
-            std::string kingColor = (board.getIsWhiteTurn()) ? "w" : "b";
-            std::tuple<int, int> kingLocation = board.getKingLocation(kingColor);
-            int kingRowInt = std::get<0>(kingLocation);
-            int kingColInt = std::get<1>(kingLocation);
-            char kingRowChar = convertRowIntToCharIdx(kingRowInt);
-            char kingColChar = convertColIntToCharIdx(kingColInt);
-            std::string kingSquareName = "frame_" + std::string(1, kingColChar) + std::string(1,kingRowChar);
-            auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(kingSquareName));
-            kingSquare->setStyleSheet("background-color: blue;");
-            gameData->lastKingSquareName =kingSquareName;
-            if (board.examineCheckmate()) {
-                disconnectAllChildren(ui->frame);
-            }
-        }
-        else {
-            if (!(gameData->lastKingSquareName.empty())) {
-                auto kingSquare = ui->frame->findChild<QFrame*>(QString::fromStdString(gameData->lastKingSquareName));
-                kingSquare->setStyleSheet("background-color: blue;");
-                int row = int(gameData->lastKingSquareName[7]);
-                int col = int(gameData->lastKingSquareName[6]);
-
-                updateSquareColor(kingSquare, row, col);
-                gameData->lastKingSquareName.clear();
-
-            }
-
-        }
-
-    });
-}
-*/
 
 void MainWindow::clearIndicators() {
     QList<GUI::MoveIndicator*> indicators = findChildren<GUI::MoveIndicator*>();
@@ -437,18 +407,19 @@ void MainWindow::setupPieces() {
 void MainWindow::setupLabelParameters() {
     QList<QLabel*> labelsStorage = ui->frame->findChildren<QLabel*>();
     for (auto label : labelsStorage) {
-        label->setAlignment(Qt::AlignCenter);
+        //label->setAlignment(Qt::AlignCenter);
         label->setStyleSheet(
                 "font-family: 'CARDOT';"
                 "font-size: 15pt;"
             "color: #EAEAEA;"
             "background-color: #151515;"   );
+
     }
 
 }
 
 void MainWindow::setupBoardBorder() {
-    ui->frame->setStyleSheet("#frame {padding-top: 0.5em; border: none;}");
+    ui->frame->setStyleSheet("#frame {padding-top: 0.5; border: none;}");
 
     QString borderStyle = "1.5px solid #7f7f7f;";
     QList<QWidget*> widgetStorage = ui->frame->findChildren<QWidget*>();
@@ -466,7 +437,7 @@ void MainWindow::setupBoardBorder() {
             style += "border-left: " + borderStyle;
 
         }
-        //right side
+        //Right side
         if (col == 8 && row !=8) style += "border-right: " + borderStyle;
 
 
@@ -474,76 +445,19 @@ void MainWindow::setupBoardBorder() {
             if (col != 0) style += "border-bottom: " + borderStyle;
         }
 
-        //bottom side
-        //if (row == 8) style += "border-bottom: " + borderStyle;
-
-        //top side
+        //Top side
         if (row == 0 && col != 0) style += "border-top: " + borderStyle;
 
-
-        if (!style.isEmpty()) {
-            widget->setStyleSheet(currentStyle + style + "border-style: solid;");
-        }
-        /*
-        //Left side
-        if (col == 0) {
-            style += (row == 8) ? "border-left: " + borderStyle :  "border-right: " + borderStyle + "border-left: " + borderStyle;
-
-        }
-        //right side
-        if (col == 8) style += "border-right: " + borderStyle;
+        //Set style
+        if (!style.isEmpty()) widget->setStyleSheet(currentStyle + style + "border-style: solid;");
 
 
-        if (row == 7) {
-            if (col != 0) style += "border-bottom: " + borderStyle;
-        }
-
-        //bottom side
-        if (row == 8) style += "border-bottom: " + borderStyle;
-
-        //top side
-        if (row == 0) style += "border-top: " + borderStyle;
-
-
-        if (!style.isEmpty()) {
-            widget->setStyleSheet(currentStyle + style + "border-style: solid;");
-        }
-        */
     }
 
 }
 
 void MainWindow::setupSquaresParameters() {
-    //ui->frame->setMinimumSize(660,660);
-    //ui->frame->setMaximumSize(960,960);
-    /*
 
-    int labelSize = 35;
-
-    ui->gridLayout->setColumnMinimumWidth(0, labelSize);
-    ui->gridLayout->setColumnStretch(0, 0);
-    ui->gridLayout->setRowMinimumHeight(0, 85);
-    ui->gridLayout->setRowStretch(0, 1);
-
-    for (std::size_t i = 1; i<9; i++ ) {
-
-        if (i == 8) {
-
-            ui->gridLayout->setRowMinimumHeight(8, labelSize);
-            ui->gridLayout->setRowStretch(8, 0);
-            ui->gridLayout->setColumnStretch(i, 1);
-            ui->gridLayout->setColumnMinimumWidth(i, 85);
-
-            continue;
-        }
-        ui->gridLayout->setColumnStretch(i, 1);
-        ui->gridLayout->setRowStretch(i, 1);
-
-        ui->gridLayout->setRowMinimumHeight(i, 85);
-        ui->gridLayout->setColumnMinimumWidth(i, 85);
-
-    }
-    */
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
     for (auto frame : SquaresStorage) {
         if (!frame->objectName().startsWith("frame_")) continue;
@@ -581,22 +495,5 @@ void MainWindow::setupSquaresColors() {
     }
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    QMainWindow::resizeEvent(event);
-    int labelSize = 35;
-    //Access window size
-    int w = ui->centralwidget->width();
-    int h = ui->centralwidget->height();
-    //Check which smaller
-    int side = qMin(w, h) - labelSize;
-    side = (side/8)*8 + labelSize;
-    // Calculate new position cords
-    int x = (w - side) / 2;
-    int y = (h - side) / 2;
-
-    // Set new geometry
-    ui->frame->setGeometry(x, y, side, side);
-}
 
 
