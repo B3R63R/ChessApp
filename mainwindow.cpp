@@ -175,6 +175,7 @@ void MainWindow::handleTransferRookWhenCastling() {
     }
 }
 
+
 void MainWindow::handleEmptySquareMove(int row, int col) {
     //Download available moves
     std::vector<std::tuple<int,int>> availableMovesStorage = board.RaisePiece(row, col);
@@ -224,13 +225,16 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             //Place raised piece on new square
             targetSquare->layout()->addWidget(lastPiece);
             lastPiece->setCurrentFrame(targetSquare);
+
+            handleEnPassant(row, col);
+
+            clearIndicators();
+
             //Update logic program
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
             board.display();
             gameData->setMoveMade();
             handleTransferRookWhenCastling();
-
-            clearIndicators();
 
             lastClickedPieceSquareName.clear();
             lastRowClicked = -1;
@@ -239,6 +243,36 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
         });
 
     }
+
+}
+
+void MainWindow::handleEnPassant(int row, int col) {
+    bool wasEnPassant = std::get<0>(board.EnPassantInfo);
+    int enPassantTargetRow = std::get<1>(board.EnPassantInfo);
+    int enPassantTargetCol = std::get<2>(board.EnPassantInfo);
+    qDebug()<< wasEnPassant << enPassantTargetRow << enPassantTargetCol;
+
+    if (!(wasEnPassant && enPassantTargetRow == row && enPassantTargetCol == col)) return;
+
+    int beatenPawnRow = std::get<3>(board.EnPassantInfo);
+    int beatenPawnCol = std::get<4>(board.EnPassantInfo);
+
+
+    char beatenRowChar = convertRowIntToCharIdx(beatenPawnRow);
+    char beatenColChar = convertColIntToCharIdx(beatenPawnCol);
+
+    //Create full objectName
+    std::string beatenSquareName = "frame_" + std::string(1, beatenColChar) + std::string(1,beatenRowChar);
+
+    auto beatenPawnSquare = ui->frame->findChild<QFrame*>(beatenSquareName);
+
+    if (!beatenPawnSquare) return;
+
+    auto beatenPawnPiece = beatenPawnSquare->findChild<GUI::Piece*>();
+
+    if (!beatenPawnPiece) return;
+
+    beatenPawnPiece->deleteLater();
 
 }
 
@@ -272,6 +306,7 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     lastClickedPieceSquareName.clear();
     lastRowClicked = -1;
     lastColClicked = -1;
+
     return 0;
 }
 

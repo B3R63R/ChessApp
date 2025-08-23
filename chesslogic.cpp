@@ -190,7 +190,7 @@ bool LOGIC::Piece::isAttacked(const Board& board, int row, int col) {
         return false;
     }
 }
-bool LOGIC::Piece::CheckisKingInDanger(Board& board, int row, int col) {
+bool LOGIC::Piece::checkisKingInDanger(Board& board, int row, int col) {
 
     auto& boardArray = board.getBoardModifiable();
     int currentRow = this->getRow();
@@ -225,10 +225,11 @@ std::vector<std::tuple<int, int>> LOGIC::Piece::getAvailableMoves(Board& board) 
 
     for (const auto& [row, col] : potentialMovesStorage) {
 
-        if (this->CheckisKingInDanger(board, row, col) != true) {
+        if (this->checkisKingInDanger(board, row, col) != true) {
             availableMoves.push_back({row, col});
         }
     }
+
     return availableMoves;
 }
 
@@ -298,11 +299,14 @@ std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
     int newRowLastMove = lastMove[2];
     int newColLastMove = lastMove[3];
 
+    //If last move exists;
+    if (newRowLastMove == -1) return {-1, -1, -1, -1};
+
     auto& lastPiece = boardArr[newRowLastMove][newColLastMove];
-    auto& PieceToMove = boardArr[rowForPieceToMove][colForPieceToMove];
+    auto& pieceToMove = boardArr[rowForPieceToMove][colForPieceToMove];
 
     //Check if pieces exist
-    if (!lastPiece || !PieceToMove ) return {-1, -1, -1, -1};
+    if (!lastPiece || !pieceToMove ) return {-1, -1, -1, -1};
 
     //Check if last piece moved was pawn
     if (lastPiece->getName() != "P") return {-1, -1, -1, -1};
@@ -319,16 +323,19 @@ std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
     colForPieceToMove = newColLastMove;
 
     //Need to know color to set row of enPassant
-    rowForPieceToMove = (PieceToMove->getColor() == "w") ? rowForPieceToMove+1 : rowForPieceToMove-1;
+    rowForPieceToMove = (pieceToMove->getColor() == "w") ? rowForPieceToMove+1 : rowForPieceToMove-1;
     //new square for pawn cords ; beaten pawn cords
     return {rowForPieceToMove, colForPieceToMove, newRowLastMove, newColLastMove};
 
 }
 
-bool LOGIC::Pawn::isEnPassantAvailable(Board& board) {
+std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
 
     auto enPassantInfo = this->potentialEnPassant(board);
-    if (enPassantInfo[0] == -1) return false;
+    if (enPassantInfo[0] == -1) {
+        board.EnPassantInfo = {false, -1, -1, -1, -1};
+        return {-1, -1};
+    }
     auto& boardArray = board.getBoardModifiable();
     int currentRow = this->getRow();
     int currentCol = this->getColumn();
@@ -365,7 +372,19 @@ bool LOGIC::Pawn::isEnPassantAvailable(Board& board) {
     //Restore captured piece
     boardArray[beatenPawnRow][beatenPawnCol] = std::move(capturedPawn);
 
-    return EnPassantAvailable;
+    if (EnPassantAvailable) {
+        board.EnPassantInfo = {EnPassantAvailable, newRowForPawn, newColForPawn, beatenPawnRow, beatenPawnCol};
+        return {newRowForPawn, newColForPawn};
+    }
+    board.EnPassantInfo = {false, -1, -1, -1, -1};
+    return {-1, -1};
+}
+std::vector<std::tuple<int, int>> LOGIC::Pawn::getAvailableMoves(Board& board) {
+
+    auto availableMovesStorage =LOGIC::Piece::getAvailableMoves(board);
+    auto enPassantMove = this->handleEnPassant(board);
+    if (std::get<0>(enPassantMove) != -1) availableMovesStorage.push_back(enPassantMove);
+    return availableMovesStorage;
 }
 
 LOGIC::Knight::Knight(const std::string& color, int row, int column):
@@ -657,10 +676,11 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
 
     auto& boardArr = getBoardModifiable();
 
-    if (!boardArr[currentRow][currentCol]) {
-        return;
-    }
+
     auto& piece = boardArr[currentRow][currentCol];
+    //if piece Exist
+    if (!piece) return;
+
     std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
     std::tuple<int, int> newMove = {newRow, newCol};
 
@@ -670,8 +690,9 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
     char typeOfCastling = ' ';
     int row = -1;
 
-    if (isNewMoveInAvailableMoves) {
 
+    //Handle OtherMoves;
+    if (isNewMoveInAvailableMoves) {
 
         this->setLastMove(currentRow, currentCol, newRow, newCol);
         boardArr[newRow][newCol] = std::move(boardArr[currentRow][currentCol]);
@@ -680,6 +701,19 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
         if (movedPiece) {
             movedPiece->setPosition(newRow, newCol);
             movedPiece->setIsMoved();
+        }
+
+        //Handle EnPassant
+        bool EnPassantAvailable = std::get<0>(this->EnPassantInfo);
+
+        int newRowForPawn = std::get<1>(this->EnPassantInfo);
+        int newColForPawn = std::get<2>(this->EnPassantInfo);
+
+        int beatenPawnRow = std::get<3>(this->EnPassantInfo);
+        int beatenPawnCol = std::get<4>(this->EnPassantInfo);
+
+        if (EnPassantAvailable) {
+            if (newRowForPawn == newRow && newColForPawn == newCol) boardArr[beatenPawnRow][beatenPawnCol] = nullptr;
         }
 
         //Handle castling
@@ -703,6 +737,7 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
                 typeOfCastling = 'l';
             }
         }
+
         isWhiteTurn = !isWhiteTurn;
         this->setIsCastling(detectorForCatling, typeOfCastling, row);
     }
@@ -794,6 +829,37 @@ std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
     return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
 
 }
+
+
+/*
+int main() {
+    LOGIC::Board b;
+    b.setupPieces();
+    //b.addPiece(4, 3, "b", "R");
+    //b.addPiece(5, 6, "b", "R");
+    //b.addPiece(4, 6, "w", "K");
+    //b.addPiece(3, 6, "w", "K");
+    //b.addPiece(5, 6, "b", "P");
+    //b.display();
+
+    //auto [row, col] = b.getKingLocation("w");
+
+    //std::cout << "wiersz=" << row << ", kolumna=" << col << std::endl;
+
+    for (const auto& t : b.getBoard()[1][0]->getAvailableMoves(b)) {
+        std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t) << ")\n";
+    }
+
+    b.makeLegalMove(1, 0, 2, 0);
+    b.makeLegalMove(6, 0, 5, 0);
+    b.makeLegalMove(2, 0, 3, 0);
+    b.makeLegalMove(5, 0, 4, 0);
+    b.display();
+    return 0;
+
+}
+*/
+
 
 
 

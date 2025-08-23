@@ -15,10 +15,12 @@ class Piece;
 
 class Board {
 public:
+    std::tuple<bool, int, int, int, int> EnPassantInfo = {false, -1, -1, -1, -1};
     std::array<int, 4> lastMove = {-1, -1, -1, -1};
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
     bool isWhiteTurn;
     std::tuple<bool, char, int> isCastling;
+    bool isEnPassant = false;
     Board();
 
     void display();
@@ -53,7 +55,7 @@ public:
     bool isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName);
     bool isAttacked(const Board& board, int row, int col);
-    bool CheckisKingInDanger( Board& board, int row, int col);
+    bool checkisKingInDanger( Board& board, int row, int col);
     virtual std::vector<std::tuple<int, int>> getAvailableMoves(Board& board);
     std::string getSymbol();
     std::string getColor();
@@ -71,7 +73,8 @@ public:
     Pawn(const std::string& color, int row, int column);
     std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) override;
     std::array<int, 4> potentialEnPassant (const Board& board);
-    bool isEnPassantAvailable(Board& board);
+    std::tuple<int, int> handleEnPassant(Board& board);
+    std::vector<std::tuple<int, int>> getAvailableMoves(Board& board) override;
 
 };
 
