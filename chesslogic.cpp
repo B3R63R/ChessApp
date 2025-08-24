@@ -112,7 +112,7 @@ bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int co
             //
 
             //Check if move is in chessboard scope
-            if (!(0 <= examinedRow && examinedRow < 8 && 0 <= examinedCol && examinedCol < 8)) {
+            if (!(board.isInsideBoard(examinedRow, examinedCol))) {
                 break;
             }
             //Field isn't attacked, check another field
@@ -170,7 +170,7 @@ bool LOGIC::Piece::isAttackedByOtherPieces(const Board& board, int row, int col,
             examinedCol += colOffset;
         }
         //Check if move is in chessboard scope
-        if (0 <= examinedRow && examinedRow < 8 && 0 <= examinedCol && examinedCol < 8) {
+        if (board.isInsideBoard(examinedRow, examinedCol)) {
             //There is other color piece
             if (boardArray[examinedRow][examinedCol] != nullptr && boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
                 //Check if this piece can attack king
@@ -605,19 +605,19 @@ std::vector<std::tuple<int, int>> LOGIC::King::getAvailableMoves(Board& board) {
 
 LOGIC::Board::Board() {
     isWhiteTurn = true;
-    for (int row=0; row<8; row++) {
-        for (int col = 0; col <8; col++) {
+    for (int row=0; row< BOARD_SIZE; row++) {
+        for (int col = 0; col < BOARD_SIZE; col++) {
             board[row][col] = nullptr;
         }
     }
 }
-const std::array<std::array<std::unique_ptr<LOGIC::Piece>, 8>, 8>& LOGIC::Board::getBoard() const {
+const std::array<std::array<std::unique_ptr<LOGIC::Piece>, BOARD_SIZE>, BOARD_SIZE>& LOGIC::Board::getBoard() const {
     return board;
 }
 
 void LOGIC::Board::display() {
-    for (int row = 7; row >= 0; row--) {
-        for (int col = 0; col <8; col++) {
+    for (int row = BOARD_SIZE-1; row >= 0; row--) {
+        for (int col = 0; col <BOARD_SIZE; col++) {
             if (board[row][col]) {
                 std::cout << board[row][col] -> getSymbol() + " ";
             }
@@ -634,7 +634,7 @@ void LOGIC::Board::display() {
 void LOGIC::Board::setupPieces() {
 
     // Pawns
-    for (int field = 0; field < 8; field++) {
+    for (int field = 0; field < BOARD_SIZE; field++) {
         board[1][field] = std::make_unique<Pawn>(Color::WHITE, 1, field);
         board[6][field] = std::make_unique<Pawn>(Color::BLACK, 6, field);
     }
@@ -801,7 +801,7 @@ std::vector<std::tuple<int,int>> LOGIC::Board::RaisePiece(int currentRow, int cu
     std::vector<std::tuple<int,int>> availableMovesForPiece = piece->getAvailableMoves(*this);
     return availableMovesForPiece;
 }
-std::array<std::array<std::unique_ptr<LOGIC::Piece>, 8>, 8>& LOGIC::Board::getBoardModifiable() {
+std::array<std::array<std::unique_ptr<LOGIC::Piece>, BOARD_SIZE>, BOARD_SIZE>& LOGIC::Board::getBoardModifiable() {
     return board;
 }
 
@@ -854,7 +854,7 @@ std::tuple<bool, bool, bool, LOGIC::Color, int, int> LOGIC::Board::examineGameSt
 }
 
 bool LOGIC::Board::isInsideBoard(int row, int col) const{
-    return row >= 0 && row < 8 && col >= 0 && col < 8;
+    return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
 }
 
 std::tuple<bool, int, int, int, int> LOGIC::Board::getEnPassantInfo() {
