@@ -270,11 +270,11 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
         int newRow = 0;
         int newCol = 0;
         //Reject moves through 2 fields if pawn has moved
-        if (row == 2 && this->hasMoved == true) {
+        if (row == 2 && this->getIsMoved() == true) {
             continue;
         }
         //Set directions based on current color
-        if (this->color == Color::WHITE) {
+        if (this->getColor() == Color::WHITE) {
             newRow = this->getRow() + row;
             newCol = this->getColumn() + col;
         }
@@ -351,7 +351,7 @@ std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
 
     //Need to know color to set row of enPassant
     rowForPieceToMove = (pieceToMove->getColor() == Color::WHITE) ? rowForPieceToMove+1 : rowForPieceToMove-1;
-    //new square for pawn cords ; beaten pawn cords
+    //new square for pawn cords ; captured pawn cords
     return {rowForPieceToMove, colForPieceToMove, newRowLastMove, newColLastMove};
 
 }
@@ -360,7 +360,7 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
 
     auto enPassantInfo = this->potentialEnPassant(board);
     if (enPassantInfo[0] == -1) {
-        board.EnPassantInfo = {false, -1, -1, -1, -1};
+        board.setEnPassantInfo(false, -1, -1, -1, -1);
         return {-1, -1};
     }
     auto& boardArray = board.getBoardModifiable();
@@ -370,11 +370,11 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
     int newRowForPawn = enPassantInfo[0];
     int newColForPawn = enPassantInfo[1];
 
-    int beatenPawnRow = enPassantInfo[2];
-    int beatenPawnCol = enPassantInfo[3];
+    int capturedPawnRow = enPassantInfo[2];
+    int capturedPawnCol = enPassantInfo[3];
 
     //Store pawn that can be captured
-    auto capturedPawn = std::move(boardArray[beatenPawnRow][beatenPawnCol]);
+    auto capturedPawn = std::move(boardArray[capturedPawnRow][capturedPawnCol]);
 
     Color transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
 
@@ -382,8 +382,8 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
     boardArray[newRowForPawn][newColForPawn] = std::move(boardArray[currentRow][currentCol]);
     boardArray[newRowForPawn][newColForPawn]->setPosition(newRowForPawn, newColForPawn);
 
-    //Remove beaten pawn
-    boardArray[beatenPawnRow][beatenPawnCol] = nullptr;
+    //Remove captured pawn
+    boardArray[capturedPawnRow][capturedPawnCol] = nullptr;
 
     //Check if king is exposed
     std::tuple<int, int> kingLocation = board.getKingLocation(transferedPieceColor);
@@ -394,13 +394,13 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
     boardArray[currentRow][currentCol]->setPosition(currentRow, currentCol);
 
     //Restore captured pawn
-    boardArray[beatenPawnRow][beatenPawnCol] = std::move(capturedPawn);
+    boardArray[capturedPawnRow][capturedPawnCol] = std::move(capturedPawn);
 
     if (EnPassantAvailable) {
-        board.EnPassantInfo = {EnPassantAvailable, newRowForPawn, newColForPawn, beatenPawnRow, beatenPawnCol};
+        board.setEnPassantInfo(EnPassantAvailable, newRowForPawn, newColForPawn, capturedPawnRow, capturedPawnCol);
         return {newRowForPawn, newColForPawn};
     }
-    board.EnPassantInfo = {false, -1, -1, -1, -1};
+    board.setEnPassantInfo(false, -1, -1, -1, -1);
     return {-1, -1};
 }
 std::vector<std::tuple<int, int>> LOGIC::Pawn::getAvailableMoves(Board& board) {
@@ -700,7 +700,6 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
 
     auto& boardArr = getBoardModifiable();
 
-
     auto& piece = boardArr[currentRow][currentCol];
     //if piece Exist
     if (!piece) return;
@@ -733,11 +732,11 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
         int newRowForPawn = std::get<1>(this->EnPassantInfo);
         int newColForPawn = std::get<2>(this->EnPassantInfo);
 
-        int beatenPawnRow = std::get<3>(this->EnPassantInfo);
-        int beatenPawnCol = std::get<4>(this->EnPassantInfo);
+        int capturedPawnRow = std::get<3>(this->EnPassantInfo);
+        int capturedPawnCol = std::get<4>(this->EnPassantInfo);
 
         if (EnPassantAvailable) {
-            if (newRowForPawn == newRow && newColForPawn == newCol) boardArr[beatenPawnRow][beatenPawnCol] = nullptr;
+            if (newRowForPawn == newRow && newColForPawn == newCol) boardArr[capturedPawnRow][capturedPawnCol] = nullptr;
         }
 
         //Handle castling
@@ -858,7 +857,13 @@ bool LOGIC::Board::isInsideBoard(int row, int col) const{
     return row >= 0 && row < 8 && col >= 0 && col < 8;
 }
 
-
+std::tuple<bool, int, int, int, int> LOGIC::Board::getEnPassantInfo() {
+    return EnPassantInfo;
+}
+//{EnPassantAvailable, newRowForPawn, newColForPawn, capturedPawnRow, capturedPawnCol}
+void LOGIC::Board::setEnPassantInfo(bool EnPassantAvailable, int newRowForPawn, int newColForPawn, int capturedPawnRow,  int capturedPawnCol) {
+    EnPassantInfo = {EnPassantAvailable, newRowForPawn, newColForPawn, capturedPawnRow, capturedPawnCol};
+}
 /*
 int main() {
     LOGIC::Board b;

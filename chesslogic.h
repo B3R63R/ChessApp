@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 #include <array>
-#include <string>
 #include <memory>
-#include <vector>
 #include <tuple>
+
+const int BOARD_SIZE = 8;
 
 namespace LOGIC {
 
@@ -18,21 +18,18 @@ enum class PieceType { PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING };
 class Piece;
 
 class Board {
-public:
-    std::tuple<bool, int, int, int, int> EnPassantInfo = {false, -1, -1, -1, -1};
-    std::array<int, 4> lastMove = {-1, -1, -1, -1};
-    std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
-    bool isWhiteTurn;
-    std::tuple<bool, char, int> isCastling;
-    bool isEnPassant = false;
-    Board();
 
+public:
+
+    Board();
     void display();
     void setupPieces();
     void makeLegalMove(int currentRow, int currentCol, int newRow, int newCol);
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
     void addPiece(int row, int col, Color color, PieceType name);
     bool getIsWhiteTurn();
+    bool isInsideBoard(int row, int col) const;
+    void setIsCastling(bool detector, char type, int row);
     const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
     std::tuple<int, int> getKingLocation(Color color) const;
     std::array<int, 4> getLastMove() const;
@@ -41,18 +38,23 @@ public:
     std::tuple<bool, int, int> examineKingCheck();
     std::tuple<bool, bool, bool, LOGIC::Color, int, int> examineGameStatus();
     std::tuple<bool, char, int> getIsCastling();
-    void setIsCastling(bool detector, char type, int row);
-    bool isInsideBoard(int row, int col) const;
+    std::tuple<bool, int, int, int, int> getEnPassantInfo();
+    void setEnPassantInfo(bool EnPassantAvailable, int newRowForPawn, int newColForPawn, int capturedPawnRow,  int capturedPawnCol);
+
+
+private:
+
+    std::tuple<bool, int, int, int, int> EnPassantInfo = {false, -1, -1, -1, -1};
+    std::array<int, 4> lastMove = {-1, -1, -1, -1};
+    std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
+    std::tuple<bool, char, int> isCastling;
+    bool isWhiteTurn;
 
 };
 
 class Piece {
 public:
-    Color color;
-    PieceType name;
-    int row;
-    int column;
-    bool hasMoved;
+
 
     Piece(Color color, int row, int column, const PieceType name);
     virtual std::vector<std::tuple<int, int>> getPotentialMoves(const Board& board) = 0;
@@ -70,6 +72,12 @@ public:
     void setPosition(int Row, int Column);
     bool getIsMoved();
     void setIsMoved();
+private:
+    Color color;
+    PieceType name;
+    int row;
+    int column;
+    bool hasMoved;
 
 };
 

@@ -247,15 +247,15 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 }
 
 void MainWindow::handleEnPassant(int row, int col) {
-    bool wasEnPassant = std::get<0>(board.EnPassantInfo);
-    int enPassantTargetRow = std::get<1>(board.EnPassantInfo);
-    int enPassantTargetCol = std::get<2>(board.EnPassantInfo);
+    bool wasEnPassant = std::get<0>(board.getEnPassantInfo());
+    int enPassantTargetRow = std::get<1>(board.getEnPassantInfo());
+    int enPassantTargetCol = std::get<2>(board.getEnPassantInfo());
     qDebug()<< wasEnPassant << enPassantTargetRow << enPassantTargetCol;
 
     if (!(wasEnPassant && enPassantTargetRow == row && enPassantTargetCol == col)) return;
 
-    int beatenPawnRow = std::get<3>(board.EnPassantInfo);
-    int beatenPawnCol = std::get<4>(board.EnPassantInfo);
+    int beatenPawnRow = std::get<3>(board.getEnPassantInfo());
+    int beatenPawnCol = std::get<4>(board.getEnPassantInfo());
 
 
     char beatenRowChar = convertRowIntToCharIdx(beatenPawnRow);
