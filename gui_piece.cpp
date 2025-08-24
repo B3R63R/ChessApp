@@ -1,7 +1,7 @@
 #include "gui_piece.h"
 
-GUI::Piece::Piece(QWidget *parent)
-    : QPushButton(parent)
+GUI::Piece::Piece(LOGIC::Color color, QWidget *parent)
+    : QPushButton(parent), color(color)
 {
 
     this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -17,5 +17,9 @@ void GUI::Piece::setCurrentFrame(QFrame* frame) {
 }
 QFrame* GUI::Piece::getCurrentFrame() {
     return currentFrame;
+}
+
+LOGIC::Color GUI::Piece::getColor() {
+    return color;
 }
 

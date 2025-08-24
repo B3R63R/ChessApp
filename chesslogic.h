@@ -1,7 +1,7 @@
 #ifndef CHESSLOGIC_H
 #define CHESSLOGIC_H
 
-#endif // CHESSLOGIC_H
+
 #include <string>
 #include <vector>
 #include <array>
@@ -128,3 +128,4 @@ public:
     std::vector<std::tuple<int, int>> getAvailableMoves(Board& board) override;
 };
 }
+#endif // CHESSLOGIC_H

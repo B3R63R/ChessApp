@@ -65,4 +65,17 @@
         <file>img/piecesicon.svg</file>
         <file>img/piecesicon.png</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>sounds/capture.wav</file>
+        <file>sounds/castle.wav</file>
+        <file>sounds/click.wav</file>
+        <file>sounds/game-end.wav</file>
+        <file>sounds/game-start.wav</file>
+        <file>sounds/move-check.wav</file>
+        <file>sounds/move-self.wav</file>
+        <file>sounds/notify.wav</file>
+        <file>sounds/promote.wav</file>
+        <file>sounds/tenseconds.wav</file>
+        <file>sounds/move-enemy.wav</file>
+    </qresource>
 </RCC>

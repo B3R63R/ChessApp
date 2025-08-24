@@ -27,6 +27,16 @@ StartMenu::StartMenu(QWidget *parent)
     connect(trayIcon, &QSystemTrayIcon::activated, this, &StartMenu::iconActivated);
 
 
+    //Audio
+    aStartGame = new QSoundEffect(this);
+    aStartGame->setSource(QUrl("qrc:/sounds/sounds/game-start.wav"));
+    aStartGame->setVolume(VOLUME);
+
+    aClick = new QSoundEffect(this);
+    aClick->setSource(QUrl("qrc:/sounds/sounds/click.wav"));
+    aClick->setVolume(VOLUME);
+
+
 }
 
 StartMenu::~StartMenu()
@@ -35,9 +45,8 @@ StartMenu::~StartMenu()
 }
 
 
-
 void StartMenu::setStartButton() {
-    QFont fontCardot("CARDOT", 32);
+    //QFont fontCardot("CARDOT", 32);
     auto* startButton = ui->startButton;
 
 }
@@ -47,7 +56,9 @@ void StartMenu::on_startButton_clicked()
     hide();
     MainWindow *mainWindow = new MainWindow();
     mainWindow->show();
+    aStartGame->play();
 }
+
 
 
 void StartMenu::iconActivated(QSystemTrayIcon::ActivationReason reason_)
@@ -72,3 +83,9 @@ QMenu* StartMenu::createMenuForTray()
 
     return menu;
 }
+
+void StartMenu::on_optionsButton_clicked()
+{
+    aClick->play();
+}
+

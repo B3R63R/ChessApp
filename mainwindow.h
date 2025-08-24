@@ -7,7 +7,7 @@
 #include "gui_gamedata.h"
 #include <QFrame>
 #include "gui_piece.h"
-
+#include <QSoundEffect>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -41,9 +41,9 @@ private:
     void setupLabelParameters();
     void setupPieces();
     int handlePieceClick(const std::string& fieldName);
-    int handleBeatingMove(int row, int col, std::string fieldName);
+    int handleCapture(int row, int col, std::string fieldName);
     void handleEmptySquareMove(int row, int col);
-    void handleTransferRookWhenCastling();
+    bool handleTransferRookWhenCastling();
     void clearIndicators();
     void handleCheck();
     void updateSquareColor(QFrame* square, int row, int col);
@@ -53,6 +53,15 @@ private:
     GUI::Piece* choosePiece(LOGIC::Color color, LOGIC::PieceType pieceType, QFrame *frame);
     void setupBoardBorder();
     void handleGameStatus();
-    void handleEnPassant(int row, int col);
+    bool handleEnPassant(int row, int col);
+
+    //audio
+    void setAudioEffects();
+    QSoundEffect* aMoveSelf;
+    QSoundEffect* aMoveEnemy;
+    QSoundEffect* aCastle;
+    QSoundEffect* aGameEnd;
+    QSoundEffect* aCheck;
+    QSoundEffect* aCapture;
 };
 #endif // MAINWINDOW_H

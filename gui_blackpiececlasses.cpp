@@ -1,27 +1,27 @@
 #include "gui_blackpiececlasses.h"
 #include "gui_piece.h"
 
-GUI::PawnBlack::PawnBlack(QWidget *parent)
-    : Piece(parent)
+GUI::PawnBlack::PawnBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
     this->setStyleSheet(this->styleSheet() +"background-image: url(:/chessfontgioco/chessfonts/gioco/bP.svg);");
 }
 
-GUI::RookBlack::RookBlack(QWidget *parent)
-    : Piece(parent)
+GUI::RookBlack::RookBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
     this->setStyleSheet(this->styleSheet() + "background-image: url(:/chessfontgioco/chessfonts/gioco/bR.svg);");
 }
 
-GUI::BishopBlack::BishopBlack(QWidget *parent)
-    : Piece(parent)
+GUI::BishopBlack::BishopBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
 
     this->setStyleSheet(this->styleSheet() + "background-image: url(:/chessfontgioco/chessfonts/gioco/bB.svg);");
 }
 
-GUI::KnightBlack::KnightBlack(QWidget *parent)
-    : Piece(parent)
+GUI::KnightBlack::KnightBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
 
 
@@ -29,15 +29,15 @@ GUI::KnightBlack::KnightBlack(QWidget *parent)
 
 }
 
-GUI::QueenBlack::QueenBlack(QWidget *parent)
-    : Piece(parent)
+GUI::QueenBlack::QueenBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
 
     this->setStyleSheet(this->styleSheet() + "background-image: url(:/chessfontgioco/chessfonts/gioco/bQ.svg);");
 }
 
-GUI::KingBlack::KingBlack(QWidget *parent)
-    : Piece(parent)
+GUI::KingBlack::KingBlack(LOGIC::Color color, QWidget *parent)
+    : Piece(color, parent)
 {
     this->setStyleSheet(this->styleSheet() + "background-image: url(:/chessfontgioco/chessfonts/gioco/bK.svg);");
 }

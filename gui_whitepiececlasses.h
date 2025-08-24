@@ -8,38 +8,38 @@ namespace GUI {
 class PawnWhite : public GUI::Piece
 {
 public:
-    explicit PawnWhite(QWidget *parent = nullptr);
+    explicit PawnWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 
 class RookWhite : public GUI::Piece
 {
 public:
-    explicit RookWhite(QWidget *parent = nullptr);
+    explicit RookWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class KnightWhite : public GUI::Piece
 {
 public:
-    explicit KnightWhite(QWidget *parent = nullptr);
+    explicit KnightWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class BishopWhite : public GUI::Piece
 {
 public:
-    explicit BishopWhite(QWidget *parent = nullptr);
+    explicit BishopWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class QueenWhite : public GUI::Piece
 {
 public:
-    explicit QueenWhite(QWidget *parent = nullptr);
+    explicit QueenWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class KingWhite : public GUI::Piece
 {
 public:
-    explicit KingWhite(QWidget *parent = nullptr);
+    explicit KingWhite(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 }

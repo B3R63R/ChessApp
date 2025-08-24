@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++2a -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
-INCPATH       = -I../../../Chess -I. -I../../../../Qt/6.8.2/gcc_64/include -I../../../../Qt/6.8.2/gcc_64/include/QtWidgets -I../../../../Qt/6.8.2/gcc_64/include/QtGui -I../../../../Qt/6.8.2/gcc_64/include/QtCore -I. -I. -I../../../../Qt/6.8.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../../../Chess -I. -I../../../../Qt/6.8.2/gcc_64/include -I../../../../Qt/6.8.2/gcc_64/include/QtWidgets -I../../../../Qt/6.8.2/gcc_64/include/QtMultimedia -I../../../../Qt/6.8.2/gcc_64/include/QtGui -I../../../../Qt/6.8.2/gcc_64/include/QtNetwork -I../../../../Qt/6.8.2/gcc_64/include/QtCore -I. -I. -I../../../../Qt/6.8.2/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/daro/Qt/6.8.2/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Chess1.0.0
 DISTDIR = /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/.tmp/Chess1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/daro/Qt/6.8.2/gcc_64/lib -Wl,-rpath-link,/home/daro/Qt/6.8.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Widgets.so /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Gui.so /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Core.so -lpthread -lGL   
+LIBS          = $(SUBLIBS) /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Widgets.so /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Multimedia.so -pthread /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Gui.so /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Network.so /home/daro/Qt/6.8.2/gcc_64/lib/libQt6Core.so -lpthread -lGL   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -577,7 +577,9 @@ Makefile: ../../Chess.pro ../../../../Qt/6.8.2/gcc_64/mkspecs/features/spec_pre.
 		../../Chess.pro \
 		../../resource.qrc \
 		../../../../Qt/6.8.2/gcc_64/lib/libQt6Widgets.prl \
+		../../../../Qt/6.8.2/gcc_64/lib/libQt6Multimedia.prl \
 		../../../../Qt/6.8.2/gcc_64/lib/libQt6Gui.prl \
+		../../../../Qt/6.8.2/gcc_64/lib/libQt6Network.prl \
 		../../../../Qt/6.8.2/gcc_64/lib/libQt6Core.prl
 	$(QMAKE) -o Makefile ../../Chess.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 ../../../../Qt/6.8.2/gcc_64/mkspecs/features/spec_pre.prf:
@@ -816,7 +818,9 @@ Makefile: ../../Chess.pro ../../../../Qt/6.8.2/gcc_64/mkspecs/features/spec_pre.
 ../../Chess.pro:
 ../../resource.qrc:
 ../../../../Qt/6.8.2/gcc_64/lib/libQt6Widgets.prl:
+../../../../Qt/6.8.2/gcc_64/lib/libQt6Multimedia.prl:
 ../../../../Qt/6.8.2/gcc_64/lib/libQt6Gui.prl:
+../../../../Qt/6.8.2/gcc_64/lib/libQt6Network.prl:
 ../../../../Qt/6.8.2/gcc_64/lib/libQt6Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../Chess.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -893,6 +897,17 @@ qrc_resource.cpp: ../../resource.qrc \
 		../../chessfonts/gioco/wP.svg \
 		../../chessfonts/gioco/wN.svg \
 		../../chessfonts/gioco/wQ.svg \
+		../../sounds/promote.wav \
+		../../sounds/capture.wav \
+		../../sounds/game-start.wav \
+		../../sounds/notify.wav \
+		../../sounds/move-check.wav \
+		../../sounds/game-end.wav \
+		../../sounds/move-enemy.wav \
+		../../sounds/click.wav \
+		../../sounds/castle.wav \
+		../../sounds/move-self.wav \
+		../../sounds/tenseconds.wav \
 		../../fonts/Cardot-nAal4.otf \
 		../../chessfonts/standard/bN.png \
 		../../chessfonts/standard/wP.png \
@@ -1033,7 +1048,7 @@ moc_gui_gamedata.cpp: ../../gui_gamedata.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/qbindingstorage.h \
 		moc_predefs.h \
 		../../../../Qt/6.8.2/gcc_64/libexec/moc
-	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_gamedata.h -o moc_gui_gamedata.cpp
+	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtMultimedia -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtNetwork -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_gamedata.h -o moc_gui_gamedata.cpp
 
 moc_gui_moveindicator.cpp: ../../gui_moveindicator.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
@@ -1231,7 +1246,7 @@ moc_gui_moveindicator.cpp: ../../gui_moveindicator.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		moc_predefs.h \
 		../../../../Qt/6.8.2/gcc_64/libexec/moc
-	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_moveindicator.h -o moc_gui_moveindicator.cpp
+	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtMultimedia -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtNetwork -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_moveindicator.h -o moc_gui_moveindicator.cpp
 
 moc_gui_piece.cpp: ../../gui_piece.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
@@ -1429,7 +1444,7 @@ moc_gui_piece.cpp: ../../gui_piece.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		moc_predefs.h \
 		../../../../Qt/6.8.2/gcc_64/libexec/moc
-	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_piece.h -o moc_gui_piece.cpp
+	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtMultimedia -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtNetwork -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../gui_piece.h -o moc_gui_piece.cpp
 
 moc_mainwindow.cpp: ../../mainwindow.h \
 		../../chesslogic.h \
@@ -1632,9 +1647,15 @@ moc_mainwindow.cpp: ../../mainwindow.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		../../gui_piece.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/QSoundEffect \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qaudio.h \
 		moc_predefs.h \
 		../../../../Qt/6.8.2/gcc_64/libexec/moc
-	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
+	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtMultimedia -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtNetwork -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
 
 moc_startmenu.cpp: ../../startmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QSystemTrayIcon \
@@ -1829,9 +1850,15 @@ moc_startmenu.cpp: ../../startmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtGui/qguiapplication_platform.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/QSoundEffect \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qaudio.h \
 		moc_predefs.h \
 		../../../../Qt/6.8.2/gcc_64/libexec/moc
-	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../startmenu.h -o moc_startmenu.cpp
+	/home/daro/Qt/6.8.2/gcc_64/libexec/moc $(DEFINES) --include /home/daro/QTprojects/Chess/build/Desktop_Qt_6_8_2-Debug/moc_predefs.h -I/home/daro/Qt/6.8.2/gcc_64/mkspecs/linux-g++ -I/home/daro/QTprojects/Chess -I/home/daro/Qt/6.8.2/gcc_64/include -I/home/daro/Qt/6.8.2/gcc_64/include/QtWidgets -I/home/daro/Qt/6.8.2/gcc_64/include/QtMultimedia -I/home/daro/Qt/6.8.2/gcc_64/include/QtGui -I/home/daro/Qt/6.8.2/gcc_64/include/QtNetwork -I/home/daro/Qt/6.8.2/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../startmenu.h -o moc_startmenu.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -2957,6 +2984,12 @@ main.o: ../../main.cpp ../../mainwindow.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		../../gui_piece.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/QSoundEffect \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qaudio.h \
 		../../startmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QSystemTrayIcon \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qsystemtrayicon.h \
@@ -3167,15 +3200,35 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		../../gui_piece.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/QSoundEffect \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qaudio.h \
 		ui_mainwindow.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QMenuBar \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QStatusBar \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../gui_whitepiececlasses.h \
 		../../gui_blackpiececlasses.h \
 		../../gui_moveindicator.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QLayout \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
@@ -3372,18 +3425,40 @@ startmenu.o: ../../startmenu.cpp ../../startmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtGui/qguiapplication_platform.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/QSoundEffect \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qsoundeffect.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtMultimedia/qaudio.h \
 		ui_startmenu.h \
-		../../mainwindow.h \
-		../../chesslogic.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QFrame \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QMenuBar \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qmenu.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QStatusBar \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+		../../mainwindow.h \
+		../../chesslogic.h \
 		../../../../Qt/6.8.2/gcc_64/include/QtGui/QResizeEvent \
 		../../gui_gamedata.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QFrame \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 		../../gui_piece.h \
-		../../../../Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt/6.8.2/gcc_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o startmenu.o ../../startmenu.cpp
 

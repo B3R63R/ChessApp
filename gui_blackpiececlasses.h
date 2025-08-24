@@ -8,7 +8,7 @@ namespace GUI {
 class PawnBlack : public  GUI::Piece
 {
 public:
-    explicit PawnBlack(QWidget *parent = nullptr);
+    explicit PawnBlack(LOGIC::Color color, QWidget *parent = nullptr);
 
 };
 
@@ -16,31 +16,31 @@ public:
 class RookBlack : public  GUI::Piece
 {
 public:
-    explicit RookBlack(QWidget *parent = nullptr);
+    explicit RookBlack(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class KnightBlack : public  GUI::Piece
 {
 public:
-    explicit KnightBlack(QWidget *parent = nullptr);
+    explicit KnightBlack(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class BishopBlack : public  GUI::Piece
 {
 public:
-    explicit BishopBlack(QWidget *parent = nullptr);
+    explicit BishopBlack(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class QueenBlack : public  GUI::Piece
 {
 public:
-    explicit QueenBlack(QWidget *parent = nullptr);
+    explicit QueenBlack(LOGIC::Color color, QWidget *parent = nullptr);
 };
 
 class KingBlack : public  GUI::Piece
 {
 public:
-    explicit KingBlack(QWidget *parent = nullptr);
+    explicit KingBlack(LOGIC::Color color, QWidget *parent = nullptr);
 };
 }
 #endif // GUI_BLACKPIECECLASSES_H

@@ -9,21 +9,17 @@
 
 
 LOGIC::Piece::Piece(Color color, int row, int column, const PieceType name)
-    : color(color), row(row), column(column), name(name), hasMoved(false) {}
+    : color(color), name(name), row(row), column(column), hasMoved(false) {}
 
 std::string LOGIC::Piece::getSymbol() {
     std::string nameSymbol;
     std::string colorSymbol;
-    switch (this->color) {
-    case Color::WHITE:
-        colorSymbol = "w";
-        break;
-    case Color::BLACK:
-        colorSymbol = "b";
-        break;
-    }
 
-    switch (this->name) {
+    if (this->getColor() == Color::WHITE) colorSymbol = "w";
+    if (this->getColor() == Color::BLACK) colorSymbol = "b";
+
+    switch (this->getName()) {
+
     case PieceType::PAWN:
         nameSymbol = "P";
         break;

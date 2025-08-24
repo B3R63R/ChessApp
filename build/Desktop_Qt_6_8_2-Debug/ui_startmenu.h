@@ -40,7 +40,7 @@ public:
     QFrame *frame;
     QVBoxLayout *verticalLayout_2;
     QPushButton *startButton;
-    QPushButton *pushButton;
+    QPushButton *optionsButton;
     QPushButton *startButton_2;
     QSpacerItem *verticalSpacer_5;
     QSpacerItem *verticalSpacer_3;
@@ -156,9 +156,9 @@ public:
 
         verticalLayout_2->addWidget(startButton);
 
-        pushButton = new QPushButton(frame_2);
-        pushButton->setObjectName("pushButton");
-        pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        optionsButton = new QPushButton(frame_2);
+        optionsButton->setObjectName("optionsButton");
+        optionsButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font-family: 'CARDOT';\n"
 "    font-size: 40pt;\n"
 "    border: none;\n"
@@ -174,7 +174,7 @@ public:
 "	 color: #FFFFFF;\n"
 "}"));
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(optionsButton);
 
         startButton_2 = new QPushButton(frame_2);
         startButton_2->setObjectName("startButton_2");
@@ -246,7 +246,7 @@ public:
     {
         StartMenu->setWindowTitle(QCoreApplication::translate("StartMenu", "MainWindow", nullptr));
         startButton->setText(QCoreApplication::translate("StartMenu", " Start game ", nullptr));
-        pushButton->setText(QCoreApplication::translate("StartMenu", "Options", nullptr));
+        optionsButton->setText(QCoreApplication::translate("StartMenu", "Options", nullptr));
         startButton_2->setText(QCoreApplication::translate("StartMenu", "Quit", nullptr));
     } // retranslateUi
 

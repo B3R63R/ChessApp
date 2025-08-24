@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->gridLayout->setContentsMargins(0, 0, 0, 0);
     ui->gridLayout->setSpacing(0);
     //reverseBoard();
+    setAudioEffects();
     setupSquaresColors();
     setupSquaresParameters();
     setupLabelParameters();
@@ -27,7 +28,10 @@ MainWindow::MainWindow(QWidget *parent)
     handleGameStatus();
 
 
+
+
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -51,6 +55,32 @@ char convertRowIntToCharIdx(int row) {
     return row + 1 + '0';
 }
 
+void MainWindow::setAudioEffects() {
+    double volume = 0.2;
+    aMoveSelf = new QSoundEffect(this);
+    aMoveSelf->setSource(QUrl("qrc:/sounds/sounds/move-self.wav"));
+    aMoveSelf->setVolume(volume);
+
+    aMoveEnemy = new QSoundEffect(this);
+    aMoveEnemy->setSource(QUrl("qrc:/sounds/sounds/move-enemy.wav"));
+    aMoveEnemy->setVolume(volume);
+
+    aGameEnd = new QSoundEffect(this);
+    aGameEnd->setSource(QUrl("qrc:/sounds/sounds/game-end.wav"));
+    aGameEnd->setVolume(volume);
+
+    aCheck = new QSoundEffect(this);
+    aCheck->setSource(QUrl("qrc:/sounds/sounds/move-check.wav"));
+    aCheck->setVolume(volume);
+
+    aCapture = new QSoundEffect(this);
+    aCapture->setSource(QUrl("qrc:/sounds/sounds/capture.wav"));
+    aCapture->setVolume(volume);
+
+    aCastle = new QSoundEffect(this);
+    aCastle->setSource(QUrl("qrc:/sounds/sounds/castle.wav"));
+    aCastle->setVolume(volume);
+}
 void disconnectAllChildren(QObject *parent) {
 
     QList<QObject *> children = parent->findChildren<QObject *>();
@@ -71,14 +101,13 @@ void MainWindow::swapGridWidgets(int row1, int col1, int row2, int col2) {
 
 void MainWindow::reverseBoard() {
 
-    int size = 8;
-    int halfSize = size / 2;
+    int halfSize = BOARD_SIZE / 2;
 
     for (int row = 0; row < halfSize; row++) {
-        for (int col = 1; col <= size; col++) {
+        for (int col = 1; col <= BOARD_SIZE; col++) {
             //skip first col for labels - (col = 1)
             //skip last row for labels - (size -1)
-            swapGridWidgets(row, col, size -1 - row, size-col+1);
+            swapGridWidgets(row, col, BOARD_SIZE -1 - row, BOARD_SIZE-col+1);
         }
     }
 
@@ -86,10 +115,10 @@ void MainWindow::reverseBoard() {
     for (int col = 0; col < halfSize; col++) {
 
         //Rows
-        swapGridWidgets(col, 0, size - 1 - col, 0);
+        swapGridWidgets(col, 0, BOARD_SIZE - 1 - col, 0);
 
         //Columns
-        swapGridWidgets(size, col+1, size, size - col);
+        swapGridWidgets(BOARD_SIZE, col+1, BOARD_SIZE, BOARD_SIZE - col);
     }
 
 }
@@ -104,11 +133,15 @@ void MainWindow::handleGameStatus() {
         bool isEndgame = std::get<0>(gameStatus);
         bool isCheckmate = std::get<1>(gameStatus);
         bool isChecked = std::get<2>(gameStatus);
-        LOGIC::Color pieceColor = std::get<3>(gameStatus);
+        //LOGIC::Color pieceColor = std::get<3>(gameStatus);
 
 
         //Handle endgame
-        if (isEndgame) disconnectAllChildren(ui->frame);
+        if (isEndgame) {
+            disconnectAllChildren(ui->frame);
+            //Play sound effect
+            aGameEnd->play();
+        }
 
         // handle check
         if (isChecked) {
@@ -123,6 +156,8 @@ void MainWindow::handleGameStatus() {
             }
             else {
                 kingSquare->setStyleSheet("background-color: #D4AF37;");
+                //Play sound effect
+                aCheck->play();
             }
             gameData->lastKingSquareName =kingSquareName;
         }
@@ -151,7 +186,7 @@ void MainWindow::clearIndicators() {
     }
 }
 
-void MainWindow::handleTransferRookWhenCastling() {
+bool MainWindow::handleTransferRookWhenCastling() {
     std::tuple<bool, char, int> castlingData = board.getIsCastling();
     if (std::get<0>(castlingData)) {
 
@@ -172,7 +207,12 @@ void MainWindow::handleTransferRookWhenCastling() {
         rookSquare->layout()->removeWidget(rook);
         newRookSquare->layout()->addWidget(rook);
         rook->setCurrentFrame(newRookSquare);
+
+        //Play sound effect
+        aCastle->play();
+        return true;
     }
+    else return false;
 }
 
 
@@ -226,7 +266,11 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             targetSquare->layout()->addWidget(lastPiece);
             lastPiece->setCurrentFrame(targetSquare);
 
-            handleEnPassant(row, col);
+            //Play sound effect
+            if (!handleEnPassant(row, col)) {
+                if (lastPiece->getColor() == LOGIC::Color::WHITE) aMoveSelf->play();
+                else aMoveEnemy->play();
+            }
 
             clearIndicators();
 
@@ -234,7 +278,12 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
             board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
             board.display();
             gameData->setMoveMade();
-            handleTransferRookWhenCastling();
+
+            //Play sound effect
+            if (!handleTransferRookWhenCastling()) {
+                if (lastPiece->getColor() == LOGIC::Color::WHITE) aMoveSelf->play();
+                else aMoveEnemy->play();
+            }
 
             lastClickedPieceSquareName.clear();
             lastRowClicked = -1;
@@ -246,47 +295,49 @@ void MainWindow::handleEmptySquareMove(int row, int col) {
 
 }
 
-void MainWindow::handleEnPassant(int row, int col) {
+bool MainWindow::handleEnPassant(int row, int col) {
     bool wasEnPassant = std::get<0>(board.getEnPassantInfo());
     int enPassantTargetRow = std::get<1>(board.getEnPassantInfo());
     int enPassantTargetCol = std::get<2>(board.getEnPassantInfo());
     qDebug()<< wasEnPassant << enPassantTargetRow << enPassantTargetCol;
 
-    if (!(wasEnPassant && enPassantTargetRow == row && enPassantTargetCol == col)) return;
+    if (!(wasEnPassant && enPassantTargetRow == row && enPassantTargetCol == col)) return false;
 
-    int beatenPawnRow = std::get<3>(board.getEnPassantInfo());
-    int beatenPawnCol = std::get<4>(board.getEnPassantInfo());
+    int capturedPawnRow = std::get<3>(board.getEnPassantInfo());
+    int capturedPawnCol = std::get<4>(board.getEnPassantInfo());
 
 
-    char beatenRowChar = convertRowIntToCharIdx(beatenPawnRow);
-    char beatenColChar = convertColIntToCharIdx(beatenPawnCol);
+    char capturedRowChar = convertRowIntToCharIdx(capturedPawnRow);
+    char capturedColChar = convertColIntToCharIdx(capturedPawnCol);
 
     //Create full objectName
-    std::string beatenSquareName = "frame_" + std::string(1, beatenColChar) + std::string(1,beatenRowChar);
+    std::string capturedSquareName = "frame_" + std::string(1, capturedColChar) + std::string(1,capturedRowChar);
 
-    auto beatenPawnSquare = ui->frame->findChild<QFrame*>(beatenSquareName);
+    auto capturedPawnSquare = ui->frame->findChild<QFrame*>(capturedSquareName);
 
-    if (!beatenPawnSquare) return;
+    if (!capturedPawnSquare) return false;
 
-    auto beatenPawnPiece = beatenPawnSquare->findChild<GUI::Piece*>();
+    auto capturedPawnPiece = capturedPawnSquare->findChild<GUI::Piece*>();
 
-    if (!beatenPawnPiece) return;
+    if (!capturedPawnPiece) return false;
 
-    beatenPawnPiece->deleteLater();
+    capturedPawnPiece->deleteLater();
 
+    //Play sound effect
+    aCapture->play();
+    return true;
 }
 
-int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
+int MainWindow::handleCapture(int row, int col, std::string fieldName) {
 
     clearIndicators();
 
     auto lastPieceSquareClicked = ui->frame->findChild<QFrame*>(lastClickedPieceSquareName);
     auto currentPieceSquareClicked = ui->frame->findChild<QFrame*>(fieldName);
     auto lastPiece = lastPieceSquareClicked->findChild<GUI::Piece*>();
-    if (!lastPiece) {
-        qDebug() << "lastPiece null";
-        return 0;
-    }
+
+    if (!lastPiece) return 0;
+
     auto currentPiece = currentPieceSquareClicked->findChild<GUI::Piece*>();
     if (!lastPieceSquareClicked || !currentPieceSquareClicked) return 0;
     lastPieceSquareClicked->layout()->removeWidget(lastPiece);
@@ -298,6 +349,9 @@ int MainWindow::handleBeatingMove(int row, int col, std::string fieldName) {
     //add piece to new square
     currentPieceSquareClicked->layout()->addWidget(lastPiece);
     lastPiece->setCurrentFrame(currentPieceSquareClicked);
+
+    //play saund effect
+    aCapture->play();
 
     //update logic program
     board.makeLegalMove(lastRowClicked, lastColClicked, row, col);
@@ -331,7 +385,7 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
             //Beating
             else {
                 if (std::find(availableMovesHistory.begin(), availableMovesHistory.end(), move) != availableMovesHistory.end()) {
-                    handleBeatingMove(rowIdx, colIdx, fieldName);
+                    handleCapture(rowIdx, colIdx, fieldName);
                     board.display();
                 }
                 return 0;
@@ -366,21 +420,21 @@ void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
 GUI::Piece* MainWindow::choosePiece(LOGIC::Color color, LOGIC::PieceType pieceType, QFrame *frame) {
     if (color == LOGIC::Color::WHITE) {
         switch (pieceType) {
-        case LOGIC::PieceType::ROOK:   return new GUI::RookWhite(frame);
-        case LOGIC::PieceType::KNIGHT: return new GUI::KnightWhite(frame);
-        case LOGIC::PieceType::BISHOP: return new GUI::BishopWhite(frame);
-        case LOGIC::PieceType::QUEEN:  return new GUI::QueenWhite(frame);
-        case LOGIC::PieceType::KING:   return new GUI::KingWhite(frame);
-        case LOGIC::PieceType::PAWN:   return new GUI::PawnWhite(frame);
+        case LOGIC::PieceType::ROOK:   return new GUI::RookWhite(color, frame);
+        case LOGIC::PieceType::KNIGHT: return new GUI::KnightWhite(color, frame);
+        case LOGIC::PieceType::BISHOP: return new GUI::BishopWhite(color, frame);
+        case LOGIC::PieceType::QUEEN:  return new GUI::QueenWhite(color, frame);
+        case LOGIC::PieceType::KING:   return new GUI::KingWhite(color, frame);
+        case LOGIC::PieceType::PAWN:   return new GUI::PawnWhite(color, frame);
         }
     } else { // BLACK
         switch (pieceType) {
-        case LOGIC::PieceType::ROOK:    return new GUI::RookBlack(frame);
-        case LOGIC::PieceType::KNIGHT:  return new GUI::KnightBlack(frame);
-        case LOGIC::PieceType::BISHOP:  return new GUI::BishopBlack(frame);
-        case LOGIC::PieceType::QUEEN:   return new GUI::QueenBlack(frame);
-        case LOGIC::PieceType::KING:    return new GUI::KingBlack(frame);
-        case LOGIC::PieceType::PAWN:    return new GUI::PawnBlack(frame);
+        case LOGIC::PieceType::ROOK:    return new GUI::RookBlack(color, frame);
+        case LOGIC::PieceType::KNIGHT:  return new GUI::KnightBlack(color, frame);
+        case LOGIC::PieceType::BISHOP:  return new GUI::BishopBlack(color, frame);
+        case LOGIC::PieceType::QUEEN:   return new GUI::QueenBlack(color, frame);
+        case LOGIC::PieceType::KING:    return new GUI::KingBlack(color, frame);
+        case LOGIC::PieceType::PAWN:    return new GUI::PawnBlack(color, frame);
         }
     }
     return nullptr;
@@ -394,7 +448,7 @@ void MainWindow::setupPieces() {
     piecesMap['A'] = LOGIC::PieceType::ROOK;  piecesMap['H'] = LOGIC::PieceType::ROOK;
     piecesMap['B'] = LOGIC::PieceType::KNIGHT;  piecesMap['G'] = LOGIC::PieceType::KNIGHT;
     piecesMap['C'] = LOGIC::PieceType::BISHOP;  piecesMap['F'] = LOGIC::PieceType::BISHOP;
-    piecesMap['D'] = LOGIC::PieceType::QUEEN;  piecesMap['E'] = LOGIC::PieceType::KNIGHT;
+    piecesMap['D'] = LOGIC::PieceType::QUEEN;  piecesMap['E'] = LOGIC::PieceType::KING;
 
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
 
@@ -462,15 +516,15 @@ void MainWindow::setupBoardBorder() {
         ui->gridLayout->getItemPosition(widgetIdx,  &row, &col, &_, &_);
 
         //Left side
-        if (col == 1 && row != 8) {
+        if (col == 1 && row != BOARD_SIZE) {
             style += "border-left: " + borderStyle;
 
         }
         //Right side
-        if (col == 8 && row !=8) style += "border-right: " + borderStyle;
+        if (col == BOARD_SIZE && row !=BOARD_SIZE) style += "border-right: " + borderStyle;
 
 
-        if (row == 7) {
+        if (row == BOARD_SIZE-1) {
             if (col != 0) style += "border-bottom: " + borderStyle;
         }
 

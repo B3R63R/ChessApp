@@ -198,7 +198,7 @@ QPushButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="optionsButton">
            <property name="styleSheet">
             <string notr="true">QPushButton {
     font-family: 'CARDOT';
