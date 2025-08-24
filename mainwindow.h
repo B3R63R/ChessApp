@@ -50,7 +50,7 @@ private:
     void reverseBoard();
     void swapGridWidgets(int row1, int col1, int row2, int col2);
     void setPiece(QFrame *frame, GUI::Piece *piece);
-    GUI::Piece* choosePiece(char color, char pieceType, QFrame *frame);
+    GUI::Piece* choosePiece(LOGIC::Color color, LOGIC::PieceType pieceType, QFrame *frame);
     void setupBoardBorder();
     void handleGameStatus();
     void handleEnPassant(int row, int col);

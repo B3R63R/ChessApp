@@ -99,12 +99,12 @@ void MainWindow::handleGameStatus() {
     connect(gameData, &GUI::GameData::moveMadeChanged, this, [=, this]() {
 
         //return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
-        std::tuple<bool, bool, bool, char, int, int> gameStatus = board.examineGameStatus();
+        std::tuple<bool, bool, bool, LOGIC::Color, int, int> gameStatus = board.examineGameStatus();
 
         bool isEndgame = std::get<0>(gameStatus);
         bool isCheckmate = std::get<1>(gameStatus);
         bool isChecked = std::get<2>(gameStatus);
-        char pieceColor = std::get<3>(gameStatus);
+        LOGIC::Color pieceColor = std::get<3>(gameStatus);
 
 
         //Handle endgame
@@ -322,8 +322,8 @@ int MainWindow::handlePieceClick(const std::string& fieldName) {
     if (!piece) return 0;
 
     //Check if it right color to move
-    if ((piece->getColor() == "w" && !board.getIsWhiteTurn()) ||
-        (piece->getColor() == "b" && board.getIsWhiteTurn())) {
+    if ((piece->getColor() == LOGIC::Color::WHITE && !board.getIsWhiteTurn()) ||
+        (piece->getColor() == LOGIC::Color::BLACK && board.getIsWhiteTurn())) {
 
         if (availableMovesHistory.empty()) {
             return 0;
@@ -363,24 +363,24 @@ void MainWindow::setPiece(QFrame *frame, GUI::Piece *piece) {
     });
 }
 
-GUI::Piece* MainWindow::choosePiece(char color, char pieceType, QFrame *frame) {
-    if (color == 'w') {
+GUI::Piece* MainWindow::choosePiece(LOGIC::Color color, LOGIC::PieceType pieceType, QFrame *frame) {
+    if (color == LOGIC::Color::WHITE) {
         switch (pieceType) {
-        case 'R':   return new GUI::RookWhite(frame);
-        case 'N':   return new GUI::KnightWhite(frame);
-        case 'B':   return new GUI::BishopWhite(frame);
-        case 'Q':   return new GUI::QueenWhite(frame);
-        case 'K':   return new GUI::KingWhite(frame);
-        case 'P':   return new GUI::PawnWhite(frame);
+        case LOGIC::PieceType::ROOK:   return new GUI::RookWhite(frame);
+        case LOGIC::PieceType::KNIGHT: return new GUI::KnightWhite(frame);
+        case LOGIC::PieceType::BISHOP: return new GUI::BishopWhite(frame);
+        case LOGIC::PieceType::QUEEN:  return new GUI::QueenWhite(frame);
+        case LOGIC::PieceType::KING:   return new GUI::KingWhite(frame);
+        case LOGIC::PieceType::PAWN:   return new GUI::PawnWhite(frame);
         }
     } else { // BLACK
         switch (pieceType) {
-        case 'R':   return new GUI::RookBlack(frame);
-        case 'N':   return new GUI::KnightBlack(frame);
-        case 'B':   return new GUI::BishopBlack(frame);
-        case 'Q':   return new GUI::QueenBlack(frame);
-        case 'K':   return new GUI::KingBlack(frame);
-        case 'P':   return new GUI::PawnBlack(frame);
+        case LOGIC::PieceType::ROOK:    return new GUI::RookBlack(frame);
+        case LOGIC::PieceType::KNIGHT:  return new GUI::KnightBlack(frame);
+        case LOGIC::PieceType::BISHOP:  return new GUI::BishopBlack(frame);
+        case LOGIC::PieceType::QUEEN:   return new GUI::QueenBlack(frame);
+        case LOGIC::PieceType::KING:    return new GUI::KingBlack(frame);
+        case LOGIC::PieceType::PAWN:    return new GUI::PawnBlack(frame);
         }
     }
     return nullptr;
@@ -388,13 +388,13 @@ GUI::Piece* MainWindow::choosePiece(char color, char pieceType, QFrame *frame) {
 
 void MainWindow::setupPieces() {
 
-    QMap<char, char> piecesMap;
+    QMap<char, LOGIC::PieceType> piecesMap;
     //Key-column symbol, value-piece symbol
     //Craated for custom piece location;
-    piecesMap['A'] = 'R';  piecesMap['H'] = 'R';
-    piecesMap['B'] = 'N';  piecesMap['G'] = 'N';
-    piecesMap['C'] = 'B';  piecesMap['F'] = 'B';
-    piecesMap['D'] = 'Q';  piecesMap['E'] = 'K';
+    piecesMap['A'] = LOGIC::PieceType::ROOK;  piecesMap['H'] = LOGIC::PieceType::ROOK;
+    piecesMap['B'] = LOGIC::PieceType::KNIGHT;  piecesMap['G'] = LOGIC::PieceType::KNIGHT;
+    piecesMap['C'] = LOGIC::PieceType::BISHOP;  piecesMap['F'] = LOGIC::PieceType::BISHOP;
+    piecesMap['D'] = LOGIC::PieceType::QUEEN;  piecesMap['E'] = LOGIC::PieceType::KNIGHT;
 
     QList<QFrame*> SquaresStorage = ui->frame->findChildren<QFrame*>();
 
@@ -402,22 +402,22 @@ void MainWindow::setupPieces() {
         auto fieldName = frame->objectName().toStdString();
         char row = fieldName[7];
         char col = fieldName[6];
-        char color;
-        char pieceType;
+        LOGIC::Color color;
+        LOGIC::PieceType pieceType;
         bool shouldCreatePiece = false;
 
         if (!fieldName.starts_with("frame_")) continue;
 
         //Pawns
         if (row == '2' || row == '7') {
-            color = (row == '2') ? 'w' : 'b';
-            pieceType = 'P';
+            color = (row == '2') ? LOGIC::Color::WHITE : LOGIC::Color::BLACK;
+            pieceType = LOGIC::PieceType::PAWN;
             shouldCreatePiece = true;
 
         }
         //Other pieces
         else if (row == '1' || row == '8') {
-            color = (row == '1') ? 'w' : 'b';
+            color = (row == '1') ? LOGIC::Color::WHITE : LOGIC::Color::BLACK;
             pieceType = piecesMap[col];
             shouldCreatePiece = true;
 

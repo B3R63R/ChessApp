@@ -6,17 +6,49 @@
 #include <map>
 #include <tuple>
 #include <algorithm>
-#include <QDebug>
-LOGIC::Piece::Piece(const std::string& color, int row, int column, const std::string& name)
+
+
+LOGIC::Piece::Piece(Color color, int row, int column, const PieceType name)
     : color(color), row(row), column(column), name(name), hasMoved(false) {}
 
 std::string LOGIC::Piece::getSymbol() {
-    return color+name;
+    std::string nameSymbol;
+    std::string colorSymbol;
+    switch (this->color) {
+    case Color::WHITE:
+        colorSymbol = "w";
+        break;
+    case Color::BLACK:
+        colorSymbol = "b";
+        break;
+    }
+
+    switch (this->name) {
+    case PieceType::PAWN:
+        nameSymbol = "P";
+        break;
+    case PieceType::ROOK:
+        nameSymbol = "R";
+        break;
+    case PieceType::KNIGHT:
+        nameSymbol = "N";
+        break;
+    case PieceType::BISHOP:
+        nameSymbol = "B";
+        break;
+    case PieceType::QUEEN:
+        nameSymbol = "Q";
+        break;
+    case PieceType::KING:
+        nameSymbol = "K";
+        break;
+    }
+    return colorSymbol + nameSymbol;
 }
-std::string LOGIC::Piece::getColor() {
+LOGIC::Color LOGIC::Piece::getColor() {
     return color;
 }
-std::string LOGIC::Piece::getName() {
+LOGIC::PieceType LOGIC::Piece::getName() {
     return name;
 }
 int LOGIC::Piece::getColumn() {
@@ -47,7 +79,7 @@ std::vector<std::tuple<int, int>> LOGIC::Piece::getPotentialMovesHelper(const Bo
             newRow += rowOffset;
             newCol += colOffset;
             //Check if moves is in chessboard scope
-            if (!(0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8)) {
+            if (!board.isInsideBoard(newRow, newCol)) {
                 break;
             }
             //Check moves to empty squeres
@@ -67,7 +99,7 @@ std::vector<std::tuple<int, int>> LOGIC::Piece::getPotentialMovesHelper(const Bo
     }
     return potentialMoves;
 }
-bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, PieceType pieceName) {
     const auto& boardArray = board.getBoard();
     //iterate directions
     for (const auto& [rowOffset, colOffset] : directions) {
@@ -95,7 +127,7 @@ bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int co
             //Scanner reached other color piece
             else if (boardArray[examinedRow][examinedCol]->getColor() != this->getColor()) {
                 //pointed piece attacks (or Queen) attacks king
-                if (boardArray[examinedRow][examinedCol]->getName() == pieceName || boardArray[examinedRow][examinedCol]->getName() == "Q") {
+                if (boardArray[examinedRow][examinedCol]->getName() == pieceName || boardArray[examinedRow][examinedCol]->getName() == PieceType::QUEEN) {
                     return true;
                 }
                 //Enemy color covers king from danger
@@ -108,10 +140,10 @@ bool LOGIC::Piece::isAttackedBySlidingPieces(const Board& board, int row, int co
     }
     return false;
 }
-bool LOGIC::Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const std::string& pieceName) {
+bool LOGIC::Piece::isAttackedByOtherPieces(const Board& board, int row, int col, std::vector<std::tuple<int, int>>& directions, const PieceType pieceName) {
     const auto& boardArray = board.getBoard();
     int direction;
-    std::string opponentColor;
+    //Color opponentColor;
 
     //iterate directions
     for (const auto& [rowOffset, colOffset] : directions) {
@@ -119,21 +151,21 @@ bool LOGIC::Piece::isAttackedByOtherPieces(const Board& board, int row, int col,
         int examinedCol = col;
 
         //If king is white look for black attacking pawn
-        if (this->getColor() == "w") {
-            opponentColor = "b";
+        if (this->getColor() == Color::WHITE) {
+            //opponentColor = Color::BLACK;
             direction = 1;
         }
         else {
-            opponentColor = "w";
+            //opponentColor = Color::WHITE;
             direction = -1;
         }
         //Check danger from king or knight
-        if (pieceName == "K" || pieceName == "N") {
+        if (pieceName == PieceType::KING || pieceName == PieceType::KNIGHT) {
             examinedRow += rowOffset;
             examinedCol += colOffset;
         }
         //Check danger from pawns
-        else if (pieceName == "P") {
+        else if (pieceName == PieceType::PAWN) {
             examinedRow += rowOffset * direction;
             examinedCol += colOffset;
         }
@@ -157,40 +189,34 @@ bool LOGIC::Piece::isAttacked(const Board& board, int row, int col) {
     std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
     std::vector<std::tuple<int, int>> kingDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
 
-    bool isKingAttackedByRook = this->isAttackedBySlidingPieces(board, row, col, rookDirections, "R");
-    bool isKingAttackedByBishop = this->isAttackedBySlidingPieces(board, row, col, bishopDirections, "B");
-    bool isKingAttackedByPawn = this->isAttackedByOtherPieces(board, row, col, pawnDirections, "P");
-    bool isKingAttackedByKnight = this->isAttackedByOtherPieces(board, row, col, knightDirections, "N");
-    bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, kingDirections, "K");
+    bool isKingAttackedByRook = this->isAttackedBySlidingPieces(board, row, col, rookDirections, PieceType::ROOK);
+    bool isKingAttackedByBishop = this->isAttackedBySlidingPieces(board, row, col, bishopDirections, PieceType::BISHOP);
+    bool isKingAttackedByPawn = this->isAttackedByOtherPieces(board, row, col, pawnDirections, PieceType::PAWN);
+    bool isKingAttackedByKnight = this->isAttackedByOtherPieces(board, row, col, knightDirections, PieceType::KNIGHT);
+    bool isKingAttackedByKing = this->isAttackedByOtherPieces(board, row, col, kingDirections, PieceType::KING);
 
     if (isKingAttackedByBishop) {
-        if (col == 5 && row == 2) qDebug() << "B";
         return true;
     }
     else if (isKingAttackedByKnight) {
-        if (col == 5 && row == 2) qDebug() << "N";
         return true;
     }
     else if (isKingAttackedByPawn) {
-        if (col == 5 && row == 2) qDebug() << "P";
         return true;
     }
 
     else if (isKingAttackedByRook) {
-        if (col == 5 && row == 2) qDebug() << "R";
         return true;
     }
 
     else if (isKingAttackedByKing) {
-        if (col == 5 && row == 2) qDebug() << "K";
         return true;
     }
     else {
-        if (col == 5 && row == 2) qDebug() << "False";
         return false;
     }
 }
-bool LOGIC::Piece::checkisKingInDanger(Board& board, int row, int col) {
+bool LOGIC::Piece::checkIfKingInDanger(Board& board, int row, int col) {
 
     auto& boardArray = board.getBoardModifiable();
     int currentRow = this->getRow();
@@ -200,7 +226,7 @@ bool LOGIC::Piece::checkisKingInDanger(Board& board, int row, int col) {
     auto capturedPiece = std::move(boardArray[row][col]);
 
     //Place piece to new field
-    std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
+    Color transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
     boardArray[row][col] = std::move(boardArray[currentRow][currentCol]);
     boardArray[row][col]->setPosition(row, col);
 
@@ -225,7 +251,7 @@ std::vector<std::tuple<int, int>> LOGIC::Piece::getAvailableMoves(Board& board) 
 
     for (const auto& [row, col] : potentialMovesStorage) {
 
-        if (this->checkisKingInDanger(board, row, col) != true) {
+        if (this->checkIfKingInDanger(board, row, col) != true) {
             availableMoves.push_back({row, col});
         }
     }
@@ -233,8 +259,9 @@ std::vector<std::tuple<int, int>> LOGIC::Piece::getAvailableMoves(Board& board) 
     return availableMoves;
 }
 
-LOGIC::Pawn::Pawn(const std::string& color, int row, int column):
-    Piece(color, row, column, "P") {}
+LOGIC::Pawn::Pawn(Color color, int row, int column):
+    Piece(color, row, column, PieceType::PAWN) {}
+//Piece(const std::string& colorSymbol, int row, int column, const std::string& nameSymbol, PieceType& name, Color& color);
 std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
     const auto& boardArray = board.getBoard();
@@ -247,7 +274,7 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
             continue;
         }
         //Set directions based on current color
-        if (this->color == "w") {
+        if (this->color == Color::WHITE) {
             newRow = this->getRow() + row;
             newCol = this->getColumn() + col;
         }
@@ -256,7 +283,7 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
             newCol = this->getColumn() + col;
         }
         //Check if move is in chessboard scope
-        if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
+        if (board.isInsideBoard(newRow, newCol)) {
             //Check moves on empty squere (the same column)
             if (boardArray[newRow][newCol] == nullptr && newCol == this->getColumn()) {
                 // move by one square
@@ -265,7 +292,7 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
                 }
                 //Check moves through 2 squares (indirect transition field must be empty)
                 else {
-                    if (this->getColor() == "w") {
+                    if (this->getColor() == Color::WHITE) {
                         if (boardArray[newRow-1][newCol] == nullptr) {
                             potentialMoves.push_back({newRow, newCol});
                         }
@@ -278,7 +305,7 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getPotentialMoves(const Board& bo
                 }
             }
 
-            //Check beating piece diagonally (squere occupied by diffrent color piece)
+            //Check capture piece diagonally (squere occupied by diffrent color piece)
             else if (boardArray[newRow][newCol] != nullptr && boardArray[newRow][newCol]->getColor() != this->getColor() && newCol != this->getColumn()) {
                 potentialMoves.push_back({newRow, newCol});
             }
@@ -309,7 +336,7 @@ std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
     if (!lastPiece || !pieceToMove ) return {-1, -1, -1, -1};
 
     //Check if last piece moved was pawn
-    if (lastPiece->getName() != "P") return {-1, -1, -1, -1};
+    if (lastPiece->getName() != PieceType::PAWN) return {-1, -1, -1, -1};
 
     //Check if it was move by 2 fields
     if (abs(newRowLastMove - oldRowLastMove) != 2) return {-1, -1, -1, -1};
@@ -323,7 +350,7 @@ std::array<int, 4> LOGIC::Pawn::potentialEnPassant (const Board& board) {
     colForPieceToMove = newColLastMove;
 
     //Need to know color to set row of enPassant
-    rowForPieceToMove = (pieceToMove->getColor() == "w") ? rowForPieceToMove+1 : rowForPieceToMove-1;
+    rowForPieceToMove = (pieceToMove->getColor() == Color::WHITE) ? rowForPieceToMove+1 : rowForPieceToMove-1;
     //new square for pawn cords ; beaten pawn cords
     return {rowForPieceToMove, colForPieceToMove, newRowLastMove, newColLastMove};
 
@@ -346,13 +373,10 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
     int beatenPawnRow = enPassantInfo[2];
     int beatenPawnCol = enPassantInfo[3];
 
-
     //Store pawn that can be captured
     auto capturedPawn = std::move(boardArray[beatenPawnRow][beatenPawnCol]);
 
-
-    std::string transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
-
+    Color transferedPieceColor = boardArray[currentRow][currentCol]->getColor();
 
     //Place piece to new field
     boardArray[newRowForPawn][newColForPawn] = std::move(boardArray[currentRow][currentCol]);
@@ -369,7 +393,7 @@ std::tuple<int, int> LOGIC::Pawn::handleEnPassant(Board& board) {
     boardArray[currentRow][currentCol] = std::move(boardArray[newRowForPawn][newColForPawn]);
     boardArray[currentRow][currentCol]->setPosition(currentRow, currentCol);
 
-    //Restore captured piece
+    //Restore captured pawn
     boardArray[beatenPawnRow][beatenPawnCol] = std::move(capturedPawn);
 
     if (EnPassantAvailable) {
@@ -387,8 +411,8 @@ std::vector<std::tuple<int, int>> LOGIC::Pawn::getAvailableMoves(Board& board) {
     return availableMovesStorage;
 }
 
-LOGIC::Knight::Knight(const std::string& color, int row, int column):
-    Piece(color, row, column, "N") {}
+LOGIC::Knight::Knight(Color color, int row, int column):
+    Piece(color, row, column, PieceType::KNIGHT) {}
 
 std::vector<std::tuple<int, int>> LOGIC::Knight::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
@@ -399,7 +423,7 @@ std::vector<std::tuple<int, int>> LOGIC::Knight::getPotentialMoves(const Board& 
         int newRow = this->getRow() + row;
         int newCol = this->getColumn() + col;
         //Check if moves is in chessboard scope
-        if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
+        if (board.isInsideBoard(newRow, newCol)) {
             //Move to empty square
             if (boardArray[newRow][newCol] == nullptr) {
                 potentialMoves.push_back({newRow, newCol});
@@ -415,31 +439,31 @@ std::vector<std::tuple<int, int>> LOGIC::Knight::getPotentialMoves(const Board& 
 
 
 
-LOGIC::Rook::Rook(const std::string& color, int row, int column):
-    Piece(color, row, column, "R") {}
+LOGIC::Rook::Rook(Color color, int row, int column):
+    Piece(color, row, column, PieceType::ROOK) {}
 
 std::vector<std::tuple<int, int>> LOGIC::Rook::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> rookDirections = {{1,0}, {-1,0}, {0,1}, {0,-1}};
     return LOGIC::Piece::getPotentialMovesHelper(board, rookDirections);
 }
 
-LOGIC::Bishop::Bishop(const std::string& color, int row, int column):
-    Piece(color, row, column, "B") {}
+LOGIC::Bishop::Bishop(Color color, int row, int column):
+    Piece(color, row, column, PieceType::BISHOP) {}
 
 std::vector<std::tuple<int, int>> LOGIC::Bishop::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> bishopDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
     return LOGIC::Piece::getPotentialMovesHelper(board, bishopDirections);
 }
-LOGIC::Queen::Queen(const std::string& color, int row, int column):
-    Piece(color, row, column, "Q") {}
+LOGIC::Queen::Queen(Color color, int row, int column):
+    Piece(color, row, column, PieceType::QUEEN) {}
 
 std::vector<std::tuple<int, int>> LOGIC::Queen::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> QueenDirections = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
     return LOGIC::Piece::getPotentialMovesHelper(board, QueenDirections);
 }
 
-LOGIC::King::King(const std::string& color, int row, int column):
-    Piece(color, row, column, "K") {}
+LOGIC::King::King(Color color, int row, int column):
+    Piece(color, row, column, PieceType::KING) {}
 
 std::vector<std::tuple<int, int>> LOGIC::King::getPotentialMoves(const Board& board) {
     std::vector<std::tuple<int, int>> potentialMoves;
@@ -449,7 +473,7 @@ std::vector<std::tuple<int, int>> LOGIC::King::getPotentialMoves(const Board& bo
         int newRow = this->getRow() + row;
         int newCol = this->getColumn() + col;
         //Check if moves is in chessboard scope
-        if (0 <= newRow && newRow < 8 && 0 <= newCol && newCol < 8) {
+        if (board.isInsideBoard(newRow, newCol)) {
             //Move to empty square
             if (boardArray[newRow][newCol] == nullptr) {
                 potentialMoves.push_back({newRow, newCol});
@@ -469,7 +493,7 @@ bool LOGIC::King::isShortCastleAvailable(const Board& board) {
     int kingCol = this->getColumn();
     int rookRow;
     int rookCol = 7;
-    if (this->getColor() == "w") {
+    if (this->getColor() == Color::WHITE) {
         rookRow = 0;
     }
     else {
@@ -486,7 +510,7 @@ bool LOGIC::King::isShortCastleAvailable(const Board& board) {
     }
 
     //Rook have to have specific location
-    if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+    if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != PieceType::ROOK || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
         return false;
     }
     //Castling fields must be empty
@@ -513,7 +537,7 @@ bool LOGIC::King::isLongCastleAvailable(const Board& board) {
     int kingCol = this->getColumn();
     int rookRow;
     int rookCol = 0;
-    if (this->getColor() == "w") {
+    if (this->getColor() == Color::WHITE) {
         rookRow = 0;
     }
     else {
@@ -529,7 +553,7 @@ bool LOGIC::King::isLongCastleAvailable(const Board& board) {
 
 
     //Rook have to have specific location
-    if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != "R" || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
+    if (boardArray[rookRow][rookCol] == nullptr || boardArray[rookRow][rookCol]->getName() != PieceType::ROOK || boardArray[rookRow][rookCol]->getColor() != this->getColor()) {
         return false;
     }
     //Castling fields must be empty
@@ -611,12 +635,12 @@ void LOGIC::Board::setupPieces() {
 
     // Pawns
     for (int field = 0; field < 8; field++) {
-        board[1][field] = std::make_unique<Pawn>("w", 1, field);
-        board[6][field] = std::make_unique<Pawn>("b", 6, field);
+        board[1][field] = std::make_unique<Pawn>(Color::WHITE, 1, field);
+        board[6][field] = std::make_unique<Pawn>(Color::BLACK, 6, field);
     }
 
     // Other pieces
-    std::map <std::string, int> piecesParams = {{"w", 0}, {"b", 7}};
+    std::map <LOGIC::Color, int> piecesParams = {{Color::WHITE, 0}, {Color::BLACK, 7}};
 
     for (auto const& [color, row] : piecesParams) {
         board[row][0] = std::make_unique<Rook>(color, row, 0);
@@ -631,15 +655,15 @@ void LOGIC::Board::setupPieces() {
 
 }
 
-std::tuple<int,int> LOGIC::Board::getKingLocation(std::string color) const {
+std::tuple<int,int> LOGIC::Board::getKingLocation(Color color) const {
     int kingRow = -1;
     int kingCol = -1;
     size_t rowIdx = 0;
     const auto& boardArray = this->getBoard();
     for (const auto& row : boardArray) {
         size_t colIdx = 0;
-        for (const auto& col : row) {
-            if (col && col->getName() == "K" && col->getColor() == color) {
+        for (const auto& piece : row) {
+            if (piece && piece->getName() == PieceType::KING && piece->getColor() == color) {
                 kingRow = rowIdx;
                 kingCol = colIdx;
                 return {kingRow, kingCol};
@@ -717,7 +741,7 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
         }
 
         //Handle castling
-        if (movedPiece->getName() == "K" && abs(newCol-currentCol) >1) {
+        if (movedPiece->getName() == PieceType::KING && abs(newCol-currentCol) >1) {
             row = isWhiteTurn ? 0 : 7;
             detectorForCatling = true;
             //Short castle
@@ -743,29 +767,29 @@ void LOGIC::Board::makeLegalMove(int currentRow, int currentCol, int newRow, int
     }
 }
 
-void LOGIC::Board::addPiece(int row, int col, std::string color, std::string name) {
-    if (name == "R") {
-        // Wieża (Rook)
+void LOGIC::Board::addPiece(int row, int col, Color color, PieceType name) {
+    if (name == PieceType::ROOK) {
+        //Rook
         board[row][col] = std::make_unique<Rook>(color, row, col);
     }
-    else if (name == "N") {
-        // Skoczek (Knight)
+    else if (name == PieceType::KNIGHT) {
+        //Knight
         board[row][col] = std::make_unique<Knight>(color, row, col);
     }
-    else if (name == "B") {
-        // Goniec (Bishop)
+    else if (name == PieceType::BISHOP) {
+        //Bishop
         board[row][col] = std::make_unique<Bishop>(color, row, col);
     }
-    else if (name == "Q") {
-        // Hetman (Queen)
+    else if (name == PieceType::QUEEN) {
+        //Queen
         board[row][col] = std::make_unique<Queen>(color, row, col);
     }
-    else if (name == "K") {
-        // Król (King)
+    else if (name == PieceType::KING) {
+        //King
         board[row][col] = std::make_unique<King>(color, row, col);
     }
-    else if (name == "P") {
-        // Pion (Pawn)
+    else if (name == PieceType::PAWN) {
+        //Pawn
         board[row][col] = std::make_unique<Pawn>(color, row, col);
     }
 
@@ -788,7 +812,7 @@ bool LOGIC::Board::getIsWhiteTurn() {
 std::tuple<bool, int, int>LOGIC::Board::examineKingCheck() {
     auto& boardArr = this->getBoard();
 
-    std::string kingColor = this->getIsWhiteTurn() ? "w" : "b";
+    Color kingColor = this->getIsWhiteTurn() ? Color::WHITE : Color::BLACK;
 
     std::tuple<int, int> kingLocation = this->getKingLocation(kingColor);
     //protection when is isnt on board;
@@ -803,7 +827,7 @@ std::tuple<bool, int, int>LOGIC::Board::examineKingCheck() {
     return {isKingInDanger, row, col};
 }
 
-std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
+std::tuple<bool, bool, bool, LOGIC::Color, int, int> LOGIC::Board::examineGameStatus() {
 
     auto& boardArr = this->getBoard();
     std::tuple<bool, int, int> kingCkeckInfo = this->examineKingCheck();
@@ -812,12 +836,12 @@ std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
     int kingCol = std::get<2>(kingCkeckInfo);
     bool isEndgame = true;
     bool isCheckmate = true;
-    char pieceColor = this->getIsWhiteTurn() ? 'w' : 'b';
+    Color pieceColor = (this->getIsWhiteTurn()) ? Color::WHITE : Color::BLACK;
 
     for (auto& row : boardArr) {
         for (const auto& piece : row) {
 
-            if (piece && piece->getColor()[0] == pieceColor) {
+            if (piece && piece->getColor() == pieceColor) {
                 if (!piece->getAvailableMoves(*this).empty()) {
                     isEndgame = false;
                     isCheckmate = false;
@@ -828,6 +852,10 @@ std::tuple<bool, bool, bool, char, int, int> LOGIC::Board::examineGameStatus() {
     }
     return {isEndgame, isCheckmate, isChecked, pieceColor, kingRow, kingCol};
 
+}
+
+bool LOGIC::Board::isInsideBoard(int row, int col) const{
+    return row >= 0 && row < 8 && col >= 0 && col < 8;
 }
 
 
