@@ -3,6 +3,9 @@
 #include "mainwindow.h"
 #include "startmenu.h"
 #include <QIcon>
+#include <QMenu>
+
+
 StartMenu::StartMenu(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::StartMenu)
@@ -47,11 +50,11 @@ StartMenu::~StartMenu()
 
 void StartMenu::setStartButton() {
     //QFont fontCardot("CARDOT", 32);
-    auto* startButton = ui->startButton;
+    auto* startButton = ui->pushButton_start;
 
 }
 
-void StartMenu::on_startButton_clicked()
+void StartMenu::on_pushButton_start_clicked()
 {
     hide();
     MainWindow *mainWindow = new MainWindow();
@@ -84,7 +87,7 @@ QMenu* StartMenu::createMenuForTray()
     return menu;
 }
 
-void StartMenu::on_optionsButton_clicked()
+void StartMenu::on_pushButton_options_clicked()
 {
     aClick->play();
 }

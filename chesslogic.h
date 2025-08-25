@@ -10,6 +10,15 @@
 
 const int BOARD_SIZE = 8;
 
+const int SHORT_CASTLE_ROOK_COL = 5;
+const int LONG_CASTLE_ROOK_COL = 3;
+
+const int WHITE_PIECES_HOME_ROW = 0;
+const int BLACK_PIECES_HOME_ROW = 7;
+
+const int WHITE_PAWNS_HOME_ROW = 1;
+const int BLACK_PAWNS_HOME_ROW = 6;
+
 namespace LOGIC {
 
 enum class Color { WHITE, BLACK};
@@ -28,6 +37,7 @@ public:
     void setLastMove(int currentRow, int currentCol, int newRow, int newCol);
     void addPiece(int row, int col, Color color, PieceType name);
     bool getIsWhiteTurn();
+    void setIsWhiteTurn(bool setter);
     bool isInsideBoard(int row, int col) const;
     void setIsCastling(bool detector, char type, int row);
     const std::array<std::array<std::unique_ptr<Piece>, 8>, 8>& getBoard() const;
@@ -40,15 +50,21 @@ public:
     std::tuple<bool, char, int> getIsCastling();
     std::tuple<bool, int, int, int, int> getEnPassantInfo();
     void setEnPassantInfo(bool EnPassantAvailable, int newRowForPawn, int newColForPawn, int capturedPawnRow,  int capturedPawnCol);
+    bool isPromotion(int newRow, int newCol, auto& boardArr);
+    void removePawnForEnPassant(int newRow, int newCol, auto& boardArr);
+    void handleCastling(int newCol, int currentCol, auto& boardArr, auto& movedPiece);
+    void setKingLocation(int row, int col, Color);
 
 
 private:
-
+    bool isWhiteTurn;
     std::tuple<bool, int, int, int, int> EnPassantInfo = {false, -1, -1, -1, -1};
     std::array<int, 4> lastMove = {-1, -1, -1, -1};
     std::array<std::array<std::unique_ptr<Piece>, 8>, 8> board;
     std::tuple<bool, char, int> isCastling;
-    bool isWhiteTurn;
+    std::tuple<int, int> blackKingPos = {7, 4};
+    std::tuple<int, int> whiteKingPos = {0, 4};
+
 
 };
 

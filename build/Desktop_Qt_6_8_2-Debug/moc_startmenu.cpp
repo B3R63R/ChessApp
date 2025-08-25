@@ -41,8 +41,8 @@ static constexpr auto qt_meta_stringdata_ZN9StartMenuE = QtMocHelpers::stringDat
     "iconActivated",
     "",
     "QSystemTrayIcon::ActivationReason",
-    "on_startButton_clicked",
-    "on_optionsButton_clicked"
+    "on_pushButton_start_clicked",
+    "on_pushButton_options_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -86,9 +86,9 @@ Q_CONSTINIT const QMetaObject StartMenu::staticMetaObject = { {
         // method 'iconActivated'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QSystemTrayIcon::ActivationReason, std::false_type>,
-        // method 'on_startButton_clicked'
+        // method 'on_pushButton_start_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_optionsButton_clicked'
+        // method 'on_pushButton_options_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -100,8 +100,8 @@ void StartMenu::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->iconActivated((*reinterpret_cast< std::add_pointer_t<QSystemTrayIcon::ActivationReason>>(_a[1]))); break;
-        case 1: _t->on_startButton_clicked(); break;
-        case 2: _t->on_optionsButton_clicked(); break;
+        case 1: _t->on_pushButton_start_clicked(); break;
+        case 2: _t->on_pushButton_options_clicked(); break;
         default: ;
         }
     }

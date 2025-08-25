@@ -3,6 +3,7 @@
 #include <QSystemTrayIcon>
 #include <QMainWindow>
 #include <QSoundEffect>
+#include "optionswindow.h"
 
 const double VOLUME = 0.2;
 
@@ -21,11 +22,9 @@ public:
 
 private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason);
-    void on_startButton_clicked();
+    void on_pushButton_start_clicked();
+    void on_pushButton_options_clicked();
     //void goToOptions();
-
-
-    void on_optionsButton_clicked();
 
 private:
     void setStartButton();

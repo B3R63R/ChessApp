@@ -17,6 +17,7 @@ SOURCES += \
     gui_whitepiececlasses.cpp \
     main.cpp \
     mainwindow.cpp \
+    optionswindow.cpp \
     startmenu.cpp
 
 HEADERS += \
@@ -27,10 +28,12 @@ HEADERS += \
     gui_piece.h \
     gui_whitepiececlasses.h \
     mainwindow.h \
+    optionswindow.h \
     startmenu.h
 
 FORMS += \
     mainwindow.ui \
+    optionswindow.ui \
     startmenu.ui
 
 # Default rules for deployment.

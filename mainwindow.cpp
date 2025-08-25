@@ -192,7 +192,7 @@ bool MainWindow::handleTransferRookWhenCastling() {
 
         char rowRookInt = std::get<2>(castlingData);
         int colRookInt = (std::get<1>(castlingData) == 'l') ? 0 : 7;
-        int newColRookInt = (std::get<1>(castlingData) == 'l') ? 3 : 5;
+        int newColRookInt = (std::get<1>(castlingData) == 'l') ? LONG_CASTLE_ROOK_COL : SHORT_CASTLE_ROOK_COL;
 
         char rookRowChar = convertRowIntToCharIdx(rowRookInt);
         char rookColChar = convertColIntToCharIdx(colRookInt);
